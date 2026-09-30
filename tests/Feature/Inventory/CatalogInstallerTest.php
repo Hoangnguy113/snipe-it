@@ -93,4 +93,27 @@ class CatalogInstallerTest extends TestCase
 
         (new CatalogInstaller($definition))->install(User::factory()->superuser()->create());
     }
+
+    public function test_command_fails_without_a_superuser(): void
+    {
+        // Ensure no superusers exist
+        User::where('permissions->superuser', '1')->delete();
+
+        $this->artisan('inv:catalog-install')
+            ->expectsOutputToContain('superuser')
+            ->assertExitCode(1);
+    }
+
+    public function test_command_installs_and_reports_counts(): void
+    {
+        config(['inventory_catalog' => $this->definition()]);
+        User::factory()->superuser()->create();
+
+        $this->artisan('inv:catalog-install')
+            ->expectsOutputToContain('categories: 2')
+            ->expectsOutputToContain('fields: 3')
+            ->assertExitCode(0);
+
+        $this->assertDatabaseHas('categories', ['name' => 'Máy in thử']);
+    }
 }
