@@ -1255,7 +1255,8 @@ git commit -m "docs(inventory): kế hoạch thực thi GĐ8 và giới hạn v�
 
 ## Ghi chú kiểm chứng
 
-*(Điền ở Task 6 Bước 4.)*
+- **Cảnh báo tồn kho tối thiểu (Bước 4):** lệnh `grep -rn "min_amt" app/Console/Commands app/Notifications app/Mail` **không có kết quả nào**. `min_amt` không được đọc trực tiếp trong ba thư mục đó. Tuy vậy cảnh báo vẫn tồn tại qua đường gián tiếp: `app/Console/Commands/SendInventoryAlerts.php:46` gọi `Helper::checkLowInventory()`, và hàm này (`app/Helpers/Helper.php` khoảng dòng 869-872) truy vấn `Consumable` theo `qty` so với `min_amt` (`whereNotNull('min_amt')`). Ngoài ra `app/Http/Controllers/Api/LowStockController.php` và `app/Livewire/AlertMenu.php` cũng hiển thị mức thấp. Kết luận: hộp mực là vật tư tiêu hao có `min_amt` và được lệnh `SendInventoryAlerts` (email theo cài đặt cảnh báo) cùng menu cảnh báo bắt; chưa chạy thật lệnh gửi email trong GĐ8.
+- **Cài danh mục thật trên MySQL (thay Bước 3 gốc):** bằng test tạm (không commit) trên DB test `snipeit_testing`: `CatalogInstaller` với `config('inventory_catalog')` thật cho `categories 16, fields 52, fieldsets 13, models 13`; cả 52 cột `db_column` có trong bảng `assets`; chạy lại ra toàn số 0; mỗi mô-đen mẫu có bộ trường đúng số trường. Không gặp `Row size too large` / `Duplicate column`. Bước 3.4-3.5 (mở giao diện bằng trình duyệt trên bản sao DB dev) chưa làm; `CatalogPageTest` và `CatalogAssetFlowTest` phủ phần tương ứng.
 
 ## Self-review
 

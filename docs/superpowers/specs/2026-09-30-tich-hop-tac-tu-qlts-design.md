@@ -798,6 +798,8 @@ Toàn dự án dùng **Superpowers**: mỗi giai đoạn đi qua `brainstorming`
 | Hộp mực · Hàng tiêu dùng | Vật tư tiêu hao (`consumables`) có mức cảnh báo tồn kho tối thiểu | Nhập tay / CSV / nhập GLPI |
 | Toàn cục | Tìm kiếm chung và Bảng điều khiển sẵn có của Snipe-IT | Không làm thêm |
 
+> **Giới hạn đã kiểm chứng:** Vật tư tiêu hao của Snipe-IT chỉ cấp phát cho **người dùng** (`ConsumableCheckoutController` chỉ nhận `assigned_user`), không cấp cho máy in hay máy. Hộp mực vì thế theo dõi được tồn kho và người nhận, **không** theo dõi được "hộp mực nào đang lắp trong máy in nào" như GLPI.
+
 ### 18.2 Trường tùy chỉnh — QĐ-15
 
 Mỗi danh mục tài sản có **một bộ trường (fieldset)** do bộ cài danh mục tạo. ⚠️ *Đã kiểm chứng trong mã (GĐ8):* Snipe-IT gắn bộ trường vào **mô-đen** (`models.fieldset_id`, `AssetModel::fieldset()`), **không** gắn vào danh mục — nên mỗi danh mục kèm một **mô-đen mẫu** mang bộ trường đó; thiết bị chọn mô-đen thì hiện đúng các trường. Danh sách trường của từng loại **chốt ở GĐ8 từ lược đồ GLPI 11 thật** (không đoán). Riêng *Máy tính*, đã biết từ form GLPI của chủ đầu tư:
