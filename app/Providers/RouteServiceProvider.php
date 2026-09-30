@@ -24,6 +24,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapWebRoutes();
 
+            $this->mapAgentRoutes();
+
             require base_path('routes/scim.php');
         });
     }
@@ -52,6 +54,24 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/web/users.php');
             require base_path('routes/web/kits.php');
             require base_path('routes/web.php');
+        });
+    }
+
+    /**
+     * Routes for the QLTS agent on workstations (GLPI Agent).
+     *
+     * Deliberately outside the 'web' middleware group: the agent has no
+     * session and no CSRF token. HTTP Basic auth lives in VerifyAgentRequest.
+     *
+     * @return void
+     */
+    protected function mapAgentRoutes()
+    {
+        Route::group([
+            'middleware' => [\App\Http\Middleware\VerifyAgentRequest::class],
+            'prefix' => 'agent',
+        ], function ($router) {
+            require base_path('routes/agent.php');
         });
     }
 
