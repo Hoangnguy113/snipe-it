@@ -3,7 +3,7 @@
 > **Dự án:** Quanly-CNTT (Snipe-IT v8.7.2)
 > **Ngày:** 30/09/2026
 > **Trạng thái:** Chờ duyệt spec
-> **Phạm vi:** Kiểm kê tự động · Cảnh báo thay linh kiện · Điều khiển từ xa · Cài app từ xa · Báo cáo
+> **Phạm vi:** Kiểm kê tự động · Cảnh báo thay linh kiện · Điều khiển từ xa · Cài app từ xa · Báo cáo · Danh mục thiết bị ngang menu GLPI (§18) · Nhập dữ liệu GLPI · Kiểm kê SNMP máy in/thiết bị mạng
 
 ---
 
@@ -90,6 +90,10 @@ Bảng `components` của Snipe-IT là **kho vật tư theo số lượng**, kh�
 | **QĐ-12** | Nhãn `CHUA-PHAN-NHOM` luôn `ignored`, không bao giờ thành khoa phòng (§8.2) | Đó là dấu hiệu người cài quên điền, không phải tên khoa |
 | **QĐ-13** | `assets.location_id` chỉ đổi khi có người duyệt, kể cả với nhãn đã duyệt trước đó (§8.2). **Không bao giờ ghi đè một vị trí đã có** | Máy đổi nhãn = điều chuyển tài sản giữa khoa phòng, là việc hành chính |
 | **QĐ-14** | **Máy chưa cấp cho ai nằm ở Kho.** Một bản ghi `locations` tên *Kho*, chọn một lần trong Cài đặt, làm `rtd_location_id` mặc định (§8.3) | Không để tài sản ở trạng thái *không có vị trí*. Máy chưa cấp phát vẫn phải điểm danh được khi kiểm kê |
+| **QĐ-15** | **Trường GLPI mà Snipe-IT không có** (kỹ thuật viên, nhóm phụ trách, tên/số người dùng thay thế, mạng, nhóm...) lưu bằng **Custom Fields** của Snipe-IT, mỗi danh mục một bộ trường (§18.2) | Hiện sẵn trên form, nhập CSV, API, báo cáo mà không viết giao diện. Chấp nhận cột `_snipeit_*` do Snipe-IT tự sinh |
+| **QĐ-16** | Mục menu kiểu GLPI (Máy tính, Máy in...) là **đường dẫn lọc sẵn theo danh mục**, **không** sửa `layouts/default.blade.php` (§18.3) | Không chạm file lõi thứ 14. Nếu sau này cần menu nhóm riêng thì xin duyệt thêm |
+| **QĐ-17** | **Nhập một lần từ GLPI** bằng `artisan inv:glpi-import`, chỉ đọc GLPI, chạy lại an toàn, xong mới gỡ GLPI (§18.4) | Giữ lịch sử mua sắm, bảo hành, vị trí, người dùng |
+| **QĐ-18** | **SNMP được đưa vào phạm vi** cho máy in và thiết bị mạng; `Task::Collect` vẫn tắt (§18.5) | Theo yêu cầu chủ đầu tư; thay đổi so với bản đầu coi SNMP là ngoài phạm vi |
 
 ---
 
@@ -286,7 +290,7 @@ flowchart TB
 
 ## 6. Mô hình dữ liệu
 
-Tất cả bảng mới dùng tiền tố `inv_`. **Không thêm cột nào vào bảng lõi Snipe-IT.**
+Tất cả bảng mới dùng tiền tố `inv_`. **Không tự viết migration thêm cột vào bảng lõi Snipe-IT.** (Ngoại lệ duy nhất: cột `_snipeit_*` do cơ chế Custom Fields chính hãng của Snipe-IT sinh ra — QĐ-15, §18.)
 
 ### 6.1 Nhóm hạ tầng tác tử
 
@@ -733,7 +737,8 @@ Nguyên tắc: mọi code mới ở vùng riêng (§14). Chỉ 13 file lõi ph�
 
 ### Ngoài phạm vi (YAGNI — chưa làm)
 
-- Kiểm kê thiết bị mạng qua SNMP (`netdiscovery`/`netinventory`) — agent có sẵn, nhưng chưa ai yêu cầu.
+- ~~Kiểm kê thiết bị mạng qua SNMP~~ — **đã đưa vào phạm vi ở QĐ-18 / §18.5**.
+- Sơ đồ kéo thả tủ rack, vị trí U, quan hệ cáp/PDU dạng đồ hoạ — chủ đầu tư chọn mức B, không chọn mức C. Rack/PDU/cáp chỉ lưu thông tin (§18.1).
 - Kiểm kê máy ảo ESX.
 - `Task::Collect` (truy vấn Registry/WMI từ xa) — cố ý tắt, xem §12.1.
 - Nhúng phiên remote vào trong trang web — RustDesk không hỗ trợ; vẫn gọi ra app ngoài.
@@ -744,7 +749,7 @@ Nguyên tắc: mọi code mới ở vùng riêng (§14). Chỉ 13 file lõi ph�
 
 ---
 
-## 16. Bảy giai đoạn & tiêu chí hoàn thành
+## 16. Mười giai đoạn & tiêu chí hoàn thành
 
 | GĐ | Tên | Phụ thuộc | Tiêu chí hoàn thành (kiểm chứng được) |
 |---|---|---|---|
@@ -757,7 +762,11 @@ Nguyên tắc: mọi code mới ở vùng riêng (§14). Chỉ 13 file lõi ph�
 | **6** | Cài app từ xa | GĐ1 + **HTTPS** | Nạp 1 gói MSI vào kho → gửi lệnh tới 1 máy → agent tải, kiểm SHA512, cài xong → trang tiến độ báo **ok**; app xuất hiện trong `inv_softwares` ở lần kiểm kê kế tiếp |
 | **7** | Báo cáo + hạ tầng >300 máy | GĐ2, GĐ3, GĐ5 | **4 báo cáo mới** ra đúng số liệu, xuất được Excel/PDF; **3 báo cáo có sẵn** (Điều chỉnh tài sản, Bản quyền, Nhật ký kiểm kê) hiện thêm cột kiểm kê đúng số liệu; **Bảo trì** và **Hoạt động** hiện đúng bản ghi do GĐ3/GĐ4 sinh ra **mà không sửa code báo cáo**; `inv:doctor` báo đủ 13 file lõi còn bản vá; chạy trên nginx/IIS + php-fpm; `queue:work` chạy như Windows Service; mô phỏng 300 agent gửi cùng lúc mà web vẫn mở được |
 
-**Thứ tự đề nghị:** GĐ0 ∥ GĐ1 → GĐ2 → GĐ3 → GĐ4 → GĐ5 → GĐ6 → GĐ7.
+| **8** | Danh mục thiết bị (§18.1–18.3) | GĐ1 | Có đủ danh mục, bộ trường, mô-đen mẫu theo bảng §18.1; các đường dẫn lọc sẵn mở đúng danh mục; tạo được 1 thiết bị mỗi loại qua giao diện **và** qua nhập CSV; hộp mực là vật tư tiêu hao có cảnh báo tồn kho tối thiểu; không sửa file lõi nào ngoài 13 file đã liệt kê |
+| **9** | Nhập từ GLPI (§18.4) | GĐ8 | `inv:glpi-import --dry-run` chạy không lỗi và in đúng "tạo N / bỏ qua M / lỗi K" từng loại; sau chạy thật, số tài sản Snipe-IT khớp GLPI theo từng loại; chạy lần 2 **không** sinh bản ghi trùng; GLPI chỉ bị đọc, không bị ghi |
+| **10** | Kiểm kê SNMP máy in/thiết bị mạng (§18.5) | GĐ8 | Quét 1 dải IP thử: máy in và switch hiện đúng serial, số trang in, firmware trong Custom Fields; thiết bị lạ vào `inv_unmatched`, **không** tự tạo tài sản; thông tin đăng nhập SNMP lưu dạng `encrypted`; `Task::Collect` vẫn tắt |
+
+**Thứ tự đề nghị:** GĐ0 ∥ GĐ1 → GĐ2 → GĐ3 → GĐ4 → GĐ5 → GĐ6 → GĐ7; GĐ8 → GĐ9 → GĐ10 làm xen kẽ (chỉ cần GĐ1). **Gỡ GLPI chỉ được thực hiện sau khi GĐ9 đạt cổng kiểm soát.**
 GĐ4 chỉ cần GĐ1, nên có thể kéo lên làm sớm nếu đơn vị cần điều khiển từ xa dùng ngay.
 
 ---
@@ -765,3 +774,67 @@ GĐ4 chỉ cần GĐ1, nên có thể kéo lên làm sớm nếu đơn vị cầ
 ## 17. Cách làm việc
 
 Toàn dự án dùng **Superpowers**: mỗi giai đoạn đi qua `brainstorming` → spec → `writing-plans` → `executing-plans`, viết test trước theo `test-driven-development`, và `verification-before-completion` trước khi tuyên bố xong. Tuân thủ `CLAUDE.md`: nêu rõ giả định, code tối thiểu, sửa có chủ đích, mỗi bước có tiêu chí kiểm chứng.
+
+---
+
+## 18. Mở rộng danh mục thiết bị (ngang menu GLPI)
+
+> Bổ sung 30/09/2026 theo yêu cầu chủ đầu tư: quản lý **đầy đủ các mục** trong menu *Tài sản* của GLPI (Máy tính, Màn hình, Phần mềm, Thiết bị mạng, Thiết bị ngoại vi, Máy in, Hộp mực, Hàng tiêu dùng, Điện thoại, Tủ rack, Khung máy, PDU, Thiết bị thụ động, Nội dung không được quản lý, Cáp kết nối, Thẻ SIM, Toàn cục), **nhập dữ liệu từ GLPI**, kiểm kê **SNMP** cho máy in/thiết bị mạng. Mức tích hợp đã chốt: **B** (cấu hình sẵn + SNMP), không làm sơ đồ rack (mức C).
+>
+> Cột "Snipe-IT có gì" dưới đây là **hiểu biết chung về Snipe-IT, chưa kiểm chứng từng dòng trong mã** — GĐ8 phải kiểm chứng trong mã v8.7.2 trước khi làm.
+
+### 18.1 Ánh xạ 17 mục GLPI → Snipe-IT
+
+| Mục GLPI | Trong Snipe-IT | Nguồn dữ liệu |
+|---|---|---|
+| Các máy tính | Tài sản, danh mục *Máy tính* | Agent (GĐ0–7) + nhập GLPI |
+| Các màn hình | Tài sản, danh mục *Màn hình*; vẫn ghi `inv_monitors` như linh kiện của máy (§6.2) | Agent + nhập GLPI |
+| Phần mềm | Giấy phép (`licenses`) + `inv_softwares` (§11) | Agent + nhập GLPI |
+| Các thiết bị mạng | Tài sản, danh mục *Thiết bị mạng* | SNMP (§18.5) + nhập GLPI |
+| Máy in | Tài sản, danh mục *Máy in* (số trang, firmware) | SNMP + nhập GLPI |
+| Điện thoại · Thiết bị ngoại vi · Thiết bị thụ động · Nội dung không được quản lý | Tài sản, mỗi loại một danh mục | Nhập tay / CSV / nhập GLPI |
+| Tủ rack · Khung máy · Bộ phân phối nguồn (PDU) · Cáp kết nối | Tài sản, mỗi loại một danh mục. Trường: rack cha, vị trí U, cổng PDU, hai đầu cáp. **Chỉ lưu thông tin, không có sơ đồ** | Nhập tay / CSV / nhập GLPI |
+| Thẻ SIM | Tài sản, danh mục *Thẻ SIM* (ICCID, PIN, nhà mạng, số thuê bao). Agent gửi mục `simcards` thì lưu | Nhập tay / agent / nhập GLPI |
+| Hộp mực · Hàng tiêu dùng | Vật tư tiêu hao (`consumables`) có mức cảnh báo tồn kho tối thiểu | Nhập tay / CSV / nhập GLPI |
+| Toàn cục | Tìm kiếm chung và Bảng điều khiển sẵn có của Snipe-IT | Không làm thêm |
+
+### 18.2 Trường tùy chỉnh — QĐ-15
+
+Mỗi danh mục có **một bộ trường (fieldset)** do seeder tạo. Danh sách trường của từng loại **chốt ở GĐ8 từ lược đồ GLPI 11 thật** (không đoán). Riêng *Máy tính*, đã biết từ form GLPI của chủ đầu tư:
+
+| Trường GLPI | Lưu ở đâu |
+|---|---|
+| Tên · Trạng thái · Vị trí · Kiểu · Nhà sản xuất · Mô-đen · Số sê-ri · Số hàng tồn kho · Người dùng · Bình luận | **Trường sẵn có** của Snipe-IT (`name`, `status`, `location`, `category`, `manufacturer`, `model`, `serial`, `asset_tag`, người được cấp, `notes`) |
+| Kỹ thuật viên phụ trách · Nhóm phụ trách · Tên người dùng thay thế · Số người dùng thay thế · Mạng · Nhóm | **Custom Fields** trong bộ trường *Máy tính* |
+| UUID · Ngày khởi động gần nhất · Tác tử · User-Agent · Thẻ kiểm kê · Liên hệ / cập nhật kiểm kê gần nhất · Trạng thái Agent · Nguồn cập nhật | **Không phải Custom Field** — đã có ở `inv_hardware`, `inv_agents` (§6), hiện ở tab *Thông tin kiểm kê* |
+
+**Hạn chế đã chấp nhận:** Custom Fields không có ô chọn người/nhóm thật (chỉ là danh sách hoặc chữ). Kỹ thuật viên/nhóm phụ trách lưu dạng chữ hoặc danh sách cố định. Nếu sau này cần khoá ngoại thật thì thêm bảng `inv_asset_profiles` — sửa một chỗ, ghi ở §15.
+
+Custom Fields làm Snipe-IT tự thêm cột `_snipeit_*` vào `assets`. Đây là cơ chế chính hãng, nâng cấp Snipe-IT không làm hỏng, và là **ngoại lệ duy nhất** của RB-1.
+
+### 18.3 Menu kiểu GLPI — QĐ-16
+
+Không sửa `resources/views/layouts/default.blade.php`. Mỗi mục là một **đường dẫn lọc sẵn theo danh mục** trong trang tài sản (`/hardware?category_id=...`) và trang vật tư tiêu hao. Trang chỉ mục `resources/views/inventory/catalog.blade.php` liệt kê 17 mục kiểu GLPI, mỗi mục kèm số lượng, và truy cập bằng đường dẫn `/inventory/catalog` (route trong `routes/web/inventory.php`). Đặt thêm liên kết vào thanh menu bên trái hay bất kỳ view lõi nào ngoài 13 file đã liệt kê đều là **file lõi thứ 14** — phải xin duyệt riêng.
+
+### 18.4 Nhập từ GLPI — QĐ-17
+
+`artisan inv:glpi-import`, code ở `app/Console/Commands/Inventory/` và `app/Services/Inventory/GlpiImport/`.
+
+| Đặc điểm | Quy định |
+|---|---|
+| Nguồn | Đọc trực tiếp MariaDB của GLPI (WSL, dữ liệu ở `D:\DEV\QLTS`). **Chỉ đọc**, không ghi ngược |
+| Phạm vi | 14 loại tài sản trong bảng §18.1 + hộp mực + hàng tiêu dùng. Mỗi loại có bộ ánh xạ cột riêng |
+| Cột nhập | Tên, trạng thái, vị trí, kiểu, nhà sản xuất, mô-đen, serial, số hàng tồn kho, người dùng, kỹ thuật viên, nhóm, ngày mua, bảo hành, bình luận |
+| Chống trùng | Khớp theo serial, rồi asset tag. Chạy lại nhiều lần vẫn an toàn (idempotent) |
+| `--dry-run` | In "sẽ tạo N / bỏ qua M / lỗi K" từng loại, **không ghi** gì |
+| Vị trí/người dùng/nhà sản xuất chưa có | **Không tự tạo hàng loạt** (tinh thần QĐ-11): gom thành danh sách chờ admin duyệt, dòng nào thiếu khoá tham chiếu thì báo lỗi kèm lý do |
+| Tài sản lạ | Giữ đúng RB-9 với **agent**; riêng lệnh nhập GLPI do admin chủ động chạy nên được phép tạo tài sản mới, có nhãn nguồn `glpi-import` trong `notes` |
+
+Trình tự bắt buộc: `--dry-run` → duyệt báo cáo → chạy thật → đối chiếu số lượng theo loại → **mới gỡ GLPI**.
+
+### 18.5 Kiểm kê SNMP — QĐ-18
+
+- **Máy quét:** 1–3 máy trạm được đánh dấu trong Snipe-IT chạy thêm `netdiscovery` + `netinventory` của GLPI Agent 1.20. Các máy còn lại giữ `tasks = inventory,deploy`. **`collect` vẫn tắt** (QĐ-7, RB-6).
+- **Máy chủ giao việc:** màn hình cấu hình dải IP và thông tin đăng nhập SNMP (community / v3). Thông tin đăng nhập lưu bằng cast `encrypted`, **không** plain text (như §12.4). Bảng mới `inv_scan_ranges`, `inv_scan_credentials`.
+- **Kết quả:** khớp thiết bị theo serial, rồi MAC. Không thấy trong sổ → `inv_unmatched`, **không tự tạo tài sản** (RB-9). Số trang in, mực, firmware ghi vào Custom Fields.
+- **Rủi ro chưa kiểm chứng:** giao thức quét SNMP của agent (`Task/NetDiscovery.pm`, `Task/NetInventory.pm`) chưa được đọc từ mã như §4. **Việc đầu tiên của GĐ10 là đọc mã hai module này** và ghi lại kết quả thành một mục §4.7 — không giả định khuôn thông điệp.

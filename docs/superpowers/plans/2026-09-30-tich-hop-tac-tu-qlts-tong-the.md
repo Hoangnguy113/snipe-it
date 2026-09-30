@@ -17,7 +17,7 @@ Mọi giai đoạn đều phải tuân thủ. Sao nguyên văn từ spec:
 
 | # | Ràng buộc |
 |---|---|
-| RB-1 | **Không thêm/sửa cột nào trên bảng lõi Snipe-IT.** Mọi bảng mới dùng tiền tố `inv_` |
+| RB-1 | **Không tự viết migration thêm/sửa cột trên bảng lõi Snipe-IT.** Mọi bảng mới dùng tiền tố `inv_`. Ngoại lệ duy nhất: cột `_snipeit_*` do Custom Fields chính hãng sinh ra (spec QĐ-15, §18.2) |
 | RB-2 | **Chỉ được chạm 13 file lõi** đã liệt kê ở spec §13. Chạm file lõi thứ 14 → phải dừng, xin duyệt lại |
 | RB-3 | Mọi code mới nằm trong vùng riêng theo spec §14 (`app/*/Inventory/`, `app/Http/Controllers/Agent/`, `routes/agent.php`, ...) |
 | RB-4 | **Parser phải so khoá không phân biệt hoa/thường** — giao thức JSON gửi khoá chữ thường, XML gửi chữ hoa (spec §4.2, Cạm bẫy số 1) |
@@ -30,6 +30,9 @@ Mọi giai đoạn đều phải tuân thủ. Sao nguyên văn từ spec:
 | RB-11 | Mọi nhãn giao diện phải có cả `resources/lang/vi-VN/` **và** `resources/lang/en-US/` |
 | RB-12 | Ngưỡng cấu hình dùng đúng giá trị mặc định ở spec §6.2 (7 ngày / 15 phút / 5 phút / 10% / 60% / 30 ngày / 10 bản / 4 giờ / 24 giờ) |
 | RB-13 | Chạy test bằng `tools\php\php.exe vendor\bin\phpunit` (PHP hệ thống có thể khác phiên bản) |
+| RB-14 | **Không gỡ GLPI** trước khi GĐ9 (nhập từ GLPI) đạt cổng kiểm soát. Lệnh nhập chỉ **đọc** GLPI (spec QĐ-17) |
+| RB-15 | Menu kiểu GLPI là đường dẫn lọc sẵn / trang `/inventory/catalog`, **không** sửa `layouts/default.blade.php` (spec QĐ-16). Muốn nhóm menu riêng → xin duyệt file lõi thứ 14 |
+| RB-16 | SNMP chỉ bật `netdiscovery` + `netinventory`; `Task::Collect` vẫn tắt (RB-6). Thông tin đăng nhập SNMP lưu `encrypted`. GĐ10 phải đọc mã `NetDiscovery.pm`/`NetInventory.pm` **trước khi** thiết kế endpoint |
 
 ---
 
@@ -52,6 +55,9 @@ flowchart LR
     GD1 --> GD4
     GD1 --> GD5 --> GD7
     GD1 --> GD6
+    GD1 --> GD8["GĐ8<br/>Danh mục thiết bị"]
+    GD8 --> GD9["GĐ9<br/>Nhập từ GLPI"]
+    GD8 --> GD10["GĐ10<br/>SNMP"]
     TLS --> GD6
     GD3 --> GD7
 
@@ -76,6 +82,11 @@ GĐ0 và GĐ1 làm **song song** — GĐ0 ở `D:\DEV\QLTS`, GĐ1 ở `D:\DEV\Qu
 | **5** | Tình trạng máy liên tục | *viết khi tới lượt* | GĐ1 | Đèn xanh khi máy bật, **đỏ sau 15 phút** tắt máy; hiện đúng người đăng nhập/IP/%CPU/RAM/đĩa; dọn được heartbeat cũ |
 | **6** | Cài app từ xa | *viết khi tới lượt* | GĐ1 + **HTTPS** | Nạp 1 MSI → gửi tới 1 máy → agent tải, kiểm SHA512, cài xong → tiến độ báo **ok**; app xuất hiện trong `inv_softwares` lần kiểm kê sau |
 | **7** | Báo cáo + hạ tầng >300 máy | *viết khi tới lượt* | GĐ2, GĐ3, GĐ5 | **4 báo cáo mới** đúng số liệu, xuất Excel/PDF; **3 báo cáo có sẵn** (Điều chỉnh tài sản, Bản quyền, Nhật ký kiểm kê) hiện thêm cột kiểm kê đúng; **Bảo trì** và **Hoạt động** hiện bản ghi của GĐ3/GĐ4 mà **không sửa code báo cáo**; `inv:doctor` báo đủ **13 file lõi**; chạy nginx/IIS + php-fpm; `queue:work` là Windows Service; mô phỏng 300 agent gửi cùng lúc web vẫn mở |
+| **8** | Danh mục thiết bị ngang menu GLPI (spec §18.1–18.3) | *viết khi tới lượt* | GĐ1 | Đủ danh mục + bộ trường + mô-đen mẫu; đường dẫn lọc sẵn `/inventory/catalog` mở đúng; tạo được 1 thiết bị mỗi loại qua giao diện **và** CSV; hộp mực là vật tư tiêu hao có cảnh báo tồn kho tối thiểu; không chạm file lõi ngoài 13 file |
+| **9** | Nhập từ GLPI (spec §18.4) | *viết khi tới lượt* | GĐ8 | `inv:glpi-import --dry-run` sạch lỗi; số tài sản khớp GLPI theo từng loại; chạy lần 2 không sinh trùng; GLPI chỉ bị đọc. **Sau cổng này mới được gỡ GLPI** |
+| **10** | Kiểm kê SNMP máy in/thiết bị mạng (spec §18.5) | *viết khi tới lượt* | GĐ8 | Quét 1 dải IP thử: máy in/switch đúng serial, số trang, firmware; thiết bị lạ vào `inv_unmatched`; thông tin SNMP `encrypted`; `Task::Collect` vẫn tắt |
+
+GĐ8 → GĐ9 → GĐ10 làm **xen kẽ** với GĐ2–7 (chỉ cần GĐ1). GĐ9 làm trước GĐ10 vì việc gỡ GLPI phụ thuộc GĐ9. GĐ7 bổ sung: `inv:doctor` kiểm bộ trường tùy chỉnh còn nguyên.
 
 ---
 
