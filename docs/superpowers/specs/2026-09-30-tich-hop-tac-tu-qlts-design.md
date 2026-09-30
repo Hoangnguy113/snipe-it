@@ -800,7 +800,7 @@ Toàn dự án dùng **Superpowers**: mỗi giai đoạn đi qua `brainstorming`
 
 ### 18.2 Trường tùy chỉnh — QĐ-15
 
-Mỗi danh mục có **một bộ trường (fieldset)** do seeder tạo. Danh sách trường của từng loại **chốt ở GĐ8 từ lược đồ GLPI 11 thật** (không đoán). Riêng *Máy tính*, đã biết từ form GLPI của chủ đầu tư:
+Mỗi danh mục tài sản có **một bộ trường (fieldset)** do bộ cài danh mục tạo. ⚠️ *Đã kiểm chứng trong mã (GĐ8):* Snipe-IT gắn bộ trường vào **mô-đen** (`models.fieldset_id`, `AssetModel::fieldset()`), **không** gắn vào danh mục — nên mỗi danh mục kèm một **mô-đen mẫu** mang bộ trường đó; thiết bị chọn mô-đen thì hiện đúng các trường. Danh sách trường của từng loại **chốt ở GĐ8 từ lược đồ GLPI 11 thật** (không đoán). Riêng *Máy tính*, đã biết từ form GLPI của chủ đầu tư:
 
 | Trường GLPI | Lưu ở đâu |
 |---|---|
@@ -814,7 +814,7 @@ Custom Fields làm Snipe-IT tự thêm cột `_snipeit_*` vào `assets`. Đây l
 
 ### 18.3 Menu kiểu GLPI — QĐ-16
 
-Không sửa `resources/views/layouts/default.blade.php`. Mỗi mục là một **đường dẫn lọc sẵn theo danh mục** trong trang tài sản (`/hardware?category_id=...`) và trang vật tư tiêu hao. Trang chỉ mục `resources/views/inventory/catalog.blade.php` liệt kê 17 mục kiểu GLPI, mỗi mục kèm số lượng, và truy cập bằng đường dẫn `/inventory/catalog` (route trong `routes/web/inventory.php`). Đặt thêm liên kết vào thanh menu bên trái hay bất kỳ view lõi nào ngoài 13 file đã liệt kê đều là **file lõi thứ 14** — phải xin duyệt riêng.
+Không sửa `resources/views/layouts/default.blade.php`. Mỗi mục là một liên kết tới **trang chi tiết danh mục sẵn có** (`route('categories.show', $id)`), nơi Snipe-IT đã liệt kê tài sản / mô-đen / vật tư tiêu hao / giấy phép của danh mục đó. ⚠️ *Đã kiểm chứng:* trang `/hardware` **không** nhận `category_id` từ URL (view `hardware/index.blade.php` chỉ chuyển 4 tham số) nên không dùng cách lọc đó. Trang chỉ mục `resources/views/inventory/catalog.blade.php` liệt kê 17 mục kiểu GLPI, mỗi mục kèm số lượng, và truy cập bằng đường dẫn `/inventory/catalog` (route trong `routes/web/inventory.php`). Đặt thêm liên kết vào thanh menu bên trái hay bất kỳ view lõi nào ngoài 13 file đã liệt kê đều là **file lõi thứ 14** — phải xin duyệt riêng.
 
 ### 18.4 Nhập từ GLPI — QĐ-17
 
