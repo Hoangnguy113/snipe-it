@@ -59,7 +59,16 @@ Bảng `components` của Snipe-IT là **kho vật tư theo số lượng**, kh�
 - `assets` chỉ có `location_id` và `rtd_location_id` → trỏ sang bảng `locations`. **Không có `department_id`** — xem [`app/Models/Asset.php:193,200`](../../../app/Models/Asset.php#L193).
 - Bảng `departments` của Snipe-IT gắn vào **người dùng** (`users.department_id`), không gắn vào tài sản. Muốn lọc tài sản theo phòng ban, Snipe-IT phải đi vòng qua *người đang được cấp phát máy* — xem [`app/Models/Asset.php:2094-2112`](../../../app/Models/Asset.php#L2094).
 
-→ Máy chưa cấp cho ai thì **không thuộc phòng ban nào**, trong khi bệnh viện vẫn cần biết nó đặt ở khoa nào. **QĐ-10:** khoa phòng của máy ánh xạ vào `locations`, không động vào `departments` và **không thêm cột vào bảng `assets`** (sửa schema lõi sẽ xung đột mỗi lần nâng cấp). Luồng duyệt: §8.2.
+→ Máy chưa cấp cho ai thì **không thuộc phòng ban nào**, trong khi bệnh viện vẫn cần biết nó đặt ở đâu. **QĐ-10:** khoa phòng của máy ánh xạ vào `locations`, không động vào `departments` và **không thêm cột vào bảng `assets`** (sửa schema lõi sẽ xung đột mỗi lần nâng cấp). Luồng duyệt: §8.2.
+
+**Máy chưa cấp cho ai thì nằm ở Kho — QĐ-14.** Không để tài sản ở trạng thái *không có vị trí*: một máy chưa cấp phát vẫn là tài sản của đơn vị và vẫn phải điểm danh được khi kiểm kê. Snipe-IT **đã có sẵn** cơ chế này, kiểm chứng từ mã nguồn:
+
+| Tình huống | Snipe-IT làm gì sẵn | Nguồn |
+|---|---|---|
+| Cấp phát máy | `location_id` lấy theo vị trí của người / nơi nhận | [`app/Models/Asset.php:641-650`](../../../app/Models/Asset.php#L641) |
+| **Thu hồi máy** | `$asset->location_id = $asset->rtd_location_id` — **tự trả về vị trí mặc định** | [`AssetCheckinController.php:164`](../../../app/Http/Controllers/Assets/AssetCheckinController.php#L164) |
+
+→ `rtd_location_id` **chính là** khái niệm Kho. Đặt nó bằng Kho thì đường trả về **không phải viết dòng code nào**.
 
 ---
 
@@ -79,7 +88,8 @@ Bảng `components` của Snipe-IT là **kho vật tư theo số lượng**, kh�
 | **QĐ-10** | Khoa phòng của máy ánh xạ vào `locations`; **không** dùng `departments`, **không** thêm cột vào `assets` (§2.3) | `assets` không có `department_id`; `departments` gắn vào người dùng nên máy chưa cấp cho ai sẽ không thuộc khoa nào |
 | **QĐ-11** | **Không bao giờ tự tạo bản ghi `locations`** từ nhãn agent. Chỉ admin tạo, từ màn hình duyệt (§8.2) | Một lỗi gõ trong bộ cài sẽ sinh khoa phòng rác vĩnh viễn trong danh mục |
 | **QĐ-12** | Nhãn `CHUA-PHAN-NHOM` luôn `ignored`, không bao giờ thành khoa phòng (§8.2) | Đó là dấu hiệu người cài quên điền, không phải tên khoa |
-| **QĐ-13** | `assets.location_id` chỉ đổi khi có người duyệt, kể cả với nhãn đã duyệt trước đó (§8.2) | Máy đổi nhãn = điều chuyển tài sản giữa khoa phòng, là việc hành chính |
+| **QĐ-13** | `assets.location_id` chỉ đổi khi có người duyệt, kể cả với nhãn đã duyệt trước đó (§8.2). **Không bao giờ ghi đè một vị trí đã có** | Máy đổi nhãn = điều chuyển tài sản giữa khoa phòng, là việc hành chính |
+| **QĐ-14** | **Máy chưa cấp cho ai nằm ở Kho.** Một bản ghi `locations` tên *Kho*, chọn một lần trong Cài đặt, làm `rtd_location_id` mặc định (§8.3) | Không để tài sản ở trạng thái *không có vị trí*. Máy chưa cấp phát vẫn phải điểm danh được khi kiểm kê |
 
 ---
 
@@ -393,7 +403,7 @@ Thay đổi `critical` (`bios.ssn`, `bios.msn`) **luôn** gửi email ngay, khô
 
 ## 8. Hai luồng chờ duyệt
 
-Hai loại dữ liệu agent gửi về **không được tự ghi vào hồ sơ tài sản**: thay đổi linh kiện (§8.1) và nhãn khoa phòng (§8.2). Cả hai dùng **chung một bộ máy duyệt**: bảng `inv_changes`, chuông cảnh báo, màn hình duyệt, `ActionLog`. Không xây hai bộ máy duyệt.
+Hai loại dữ liệu agent gửi về **không được tự ghi vào hồ sơ tài sản**: thay đổi linh kiện (§8.1) và nhãn khoa phòng (§8.2). Cả hai dùng **chung một bộ máy duyệt**: bảng `inv_changes`, chuông cảnh báo, màn hình duyệt, `ActionLog`. Không xây hai bộ máy duyệt. §8.3 ghi quy tắc chỗ đứng của máy chưa cấp phát (Kho) — hệ quả trực tiếp của §8.2.
 
 ### 8.1 Thay linh kiện → hỏng hóc
 
@@ -465,12 +475,30 @@ flowchart TD
 | # | Quy tắc | Lý do |
 |---|---|---|
 | **QĐ-11** | **Không bao giờ tự tạo bản ghi `locations`.** Chỉ admin tạo, từ màn hình duyệt | Một lỗi gõ trong bộ cài sẽ sinh ra khoa phòng rác vĩnh viễn trong danh mục |
-| **QĐ-12** | `tag = CHUA-PHAN-NHOM` luôn `ignored`, không bao giờ thành khoa phòng | Đây là dấu hiệu người cài quên điền, không phải tên khoa. Máy đó vào báo cáo *chưa gán khoa phòng* (§11.1) |
+| **QĐ-12** | `tag = CHUA-PHAN-NHOM` luôn `ignored`, không bao giờ thành khoa phòng. Máy đó **nằm ở Kho** (§8.3) và vào báo cáo *chưa gán khoa phòng* (§11.1) | Đây là dấu hiệu người cài quên điền, không phải tên khoa — nhưng máy vẫn phải có chỗ đứng |
 | **QĐ-13** | `assets.location_id` **chỉ đổi khi có người duyệt**, kể cả khi nhãn đã từng được duyệt trước đó | Máy đổi nhãn = điều chuyển tài sản giữa khoa phòng. Đó là việc hành chính, không để phần mềm tự quyết |
 
 **Duyệt theo lô:** một nhãn thường đại diện cho nhiều máy. Duyệt một lần → tất cả máy mang nhãn đó được ghi `location_id`, mỗi máy một dòng `ActionLog`. Cột `agent_count` cho admin biết nhãn này ảnh hưởng bao nhiêu máy trước khi bấm.
 
 **Giai đoạn:** **GĐ3**. Bộ máy duyệt (hàng chờ, chuông, màn hình duyệt, email) được xây ở GĐ3 cho §8.1; thêm loại *khoa phòng* vào đó gần như miễn phí. Trong lúc chờ, nhãn vẫn được lưu đủ ở `inv_agents.tag` từ GĐ1 — không mất dữ liệu nào.
+
+### 8.3 Kho — chỗ đứng của máy chưa cấp phát
+
+**QĐ-14:** máy chưa cấp cho ai nằm ở **Kho**. Kho là **một bản ghi `locations` bình thường**, không phải bảng mới, không phải trạng thái đặc biệt — nên mọi thứ sẵn có của Snipe-IT (lọc, báo cáo, phân quyền theo vị trí) chạy ngay.
+
+**Cài đặt:** một ô chọn *Vị trí Kho mặc định* trong Cài đặt, trỏ tới một bản ghi `locations` do quản trị tự tạo. **Không tự tạo bản ghi Kho** — nhất quán với QĐ-11.
+
+**Ba đường máy về Kho:**
+
+| Đường | Xử lý | Phải viết code không? |
+|---|---|---|
+| Thu hồi máy (check-in) | Snipe-IT tự gán `location_id = rtd_location_id` | **Không** — cơ chế sẵn có, chỉ cần `rtd_location_id` đúng là Kho |
+| Agent khớp với tài sản đang **trống** `location_id` | Điền Kho | Có — 1 nhánh trong `AssetMatcher` |
+| Nhãn `CHUA-PHAN-NHOM` hoặc nhãn chưa được duyệt | Máy ở Kho cho tới khi có người duyệt khoa phòng | Không — hệ quả của hai dòng trên |
+
+**Ranh giới với QĐ-13:** điền Kho **chỉ khi `location_id` đang NULL**. Đây là *điền chỗ trống*, không phải *đổi vị trí*. Một máy đã có vị trí — dù là khoa phòng hay Kho — **không bao giờ** bị phần mềm ghi đè.
+
+> ⚠️ Bản việt hoá hiện dịch `default_location` thành *"Vị trí lắp đặt"* (`resources/lang/vi-VN/admin/hardware/form.php:25`). Với QĐ-14 thì nghĩa đúng hơn là *"Vị trí mặc định / Kho"*. Đây là việc việt hoá của chủ đầu tư, dự án **không tự sửa** — chỉ ghi ra để cân nhắc.
 
 ---
 
@@ -524,7 +552,7 @@ Tổng kết: **14 mục trong menu** = 10 có sẵn (3 được làm giàu, 2 t
 | Báo cáo | Nội dung | Xuất |
 |---|---|---|
 | **Biến động linh kiện** | Máy nào thay gì, ngày nào, ai duyệt, cũ → mới. Lọc theo khoảng thời gian / phòng ban / loại linh kiện | Excel + PDF (đính biên bản) |
-| **Máy mất liên lạc / chưa cài agent** | ① Tài sản quá N ngày không gửi kiểm kê ② Tài sản trong sổ nhưng chưa bao giờ thấy agent ③ Agent gửi về nhưng chưa khớp tài sản nào (`inv_unmatched`) ④ Máy có agent nhưng **chưa gán khoa phòng** — nhãn còn `pending`/`ignored` hoặc vẫn là `CHUA-PHAN-NHOM` (§8.2) | Excel |
+| **Máy mất liên lạc / chưa cài agent** | ① Tài sản quá N ngày không gửi kiểm kê ② Tài sản trong sổ nhưng chưa bao giờ thấy agent ③ Agent gửi về nhưng chưa khớp tài sản nào (`inv_unmatched`) ④ Máy có agent nhưng **chưa gán khoa phòng** — nhãn còn `pending`/`ignored` hoặc vẫn là `CHUA-PHAN-NHOM`, hiện đang nằm ở **Kho** (§8.2, §8.3) | Excel |
 | **Phần mềm đã cài & phần mềm chưa có bản quyền** | Tổng hợp `inv_softwares` toàn bộ máy; chỉ ra phần mềm đang chạy trên máy **mà không có bản ghi `licenses` nào** ⇒ rủi ro pháp lý. Phần *dùng lố / còn thừa* **không** nằm ở đây — nó thuộc Báo cáo bản quyền có sẵn, xem §11.2 | Excel |
 | **Cấu hình & sức khỏe** | Thống kê CPU/RAM/ổ cứng/HĐH; máy sắp hết đĩa (`free_mb` < ngưỡng); pin chai (`health_percent` < 60%); máy còn Windows cũ | Excel + PDF |
 
@@ -649,8 +677,8 @@ Nguyên tắc: mọi code mới ở vùng riêng (§14). Chỉ 13 file lõi ph�
 |---|---|---|---|---|
 | 1 | `config/permissions.php` | 4 | Thêm nhóm quyền "Điều khiển từ xa & Kiểm kê" — ⚠️ file có dòng *"DO NOT EDIT THIS FILE DIRECTLY"* | ~20 |
 | 2 | `resources/views/hardware/view.blade.php` | 2, 4 | Thêm `<x-tabs.nav-item>` (cạnh dòng 62) + `<x-tabs.pane name="inventory">` (sau dòng 363) + nút Điều khiển | ~14 |
-| 3 | `resources/views/settings/alerts.blade.php` | 3, 4 | Công tắc cảnh báo, người nhận, công tắc 2FA | ~18 |
-| 4 | `app/Models/Setting.php` | 3, 4 | Thêm cột cài đặt vào `$fillable` / `$casts` | ~6 |
+| 3 | `resources/views/settings/alerts.blade.php` | 3, 4 | Công tắc cảnh báo, người nhận, công tắc 2FA, ô chọn **Vị trí Kho mặc định** (§8.3) | ~22 |
+| 4 | `app/Models/Setting.php` | 3, 4 | Thêm cột cài đặt vào `$fillable` / `$casts`, gồm `inv_stock_location_id` (§8.3) | ~7 |
 | 5 | `app/Livewire/AlertMenu.php` + `resources/views/livewire/alert-menu.blade.php` | 3 | Thêm mục "Chờ duyệt thay linh kiện" (§8.1) và "Chờ duyệt khoa phòng" (§8.2) vào chuông sẵn có | ~16 |
 | 6 | `app/Console/Kernel.php` | 5, 7 | Đăng ký `MarkStaleAgents`, `PruneHeartbeats`, `PruneSnapshots` vào scheduler | ~4 |
 | 7 | `app/Providers/AuthServiceProvider.php` | 4 | Đăng ký `RemoteControlPolicy`, `DeployPolicy` | ~3 |
@@ -723,7 +751,7 @@ Nguyên tắc: mọi code mới ở vùng riêng (§14). Chỉ 13 file lõi ph�
 | **0** | Tác tử hợp nhất "Trợ lý CNTT" | *không* — làm song song | Cài lên 1 máy thử: `services.msc` thấy 2 service chạy; Programs & Features chỉ **1 dòng**; `rustdesk --get-id` trả ID; `glpi-agent --version` chạy; gỡ bằng `uninstall.ps1` sạch cả 2 |
 | **1** | Đường ống tiếp nhận kiểm kê | — | `artisan inv:import mau.json` tạo được snapshot; agent thật trỏ về Snipe-IT → xuất hiện trong `inv_agents` với `rustdesk_id` đã đọc được; agent nhận CONTACT JSON và **chuyển sang giao thức JSON** (kiểm bằng `--debug`) |
 | **2** | Cây linh kiện 100% như GLPI | GĐ1 | Mở 1 máy trong Snipe-IT, tab **Thông tin kiểm kê** hiện đủ: CPU, RAM **theo từng khe**, ổ cứng **theo serial**, phân vùng, card mạng/VGA/âm thanh, màn hình, HĐH, danh sách phần mềm — đối chiếu khớp với GLPI cho cùng máy đó |
-| **3** | Cảnh báo thay linh kiện → duyệt → hỏng hóc | GĐ2 | Rút 1 thanh RAM cắm thanh khác → chạy agent → thấy cảnh báo trên chuông + email → duyệt → cây cập nhật + thanh cũ nằm trong **Linh kiện hỏng hóc** + có **phiếu bảo trì** trên máy đó. Từ chối thì cây **không** đổi. Phiếu bảo trì nằm trong bảng `maintenances` sẵn có và **Báo cáo tài sản bảo trì** có sẵn hiện được nó mà không sửa code báo cáo (§11.3); lượt duyệt / từ chối hiện trong **Báo cáo hoạt động** có sẵn.<br>**Khoa phòng (§8.2):** cài 1 máy với `/TAG=KHOA-NOI` → nhãn hiện trong **Khoa phòng chờ duyệt**, `assets.location_id` **chưa đổi**; bấm *Tạo khoa phòng mới* → có bản ghi trong `locations` và máy được gán, có dòng `ActionLog`; đổi nhãn máy đó sang `KHOA-NGOAI` → **chờ duyệt tiếp**, không tự đổi; máy để `CHUA-PHAN-NHOM` **không bao giờ** sinh ra bản ghi `locations` |
+| **3** | Cảnh báo thay linh kiện → duyệt → hỏng hóc | GĐ2 | Rút 1 thanh RAM cắm thanh khác → chạy agent → thấy cảnh báo trên chuông + email → duyệt → cây cập nhật + thanh cũ nằm trong **Linh kiện hỏng hóc** + có **phiếu bảo trì** trên máy đó. Từ chối thì cây **không** đổi. Phiếu bảo trì nằm trong bảng `maintenances` sẵn có và **Báo cáo tài sản bảo trì** có sẵn hiện được nó mà không sửa code báo cáo (§11.3); lượt duyệt / từ chối hiện trong **Báo cáo hoạt động** có sẵn.<br>**Khoa phòng (§8.2):** cài 1 máy với `/TAG=KHOA-NOI` → nhãn hiện trong **Khoa phòng chờ duyệt**, `assets.location_id` **chưa đổi**; bấm *Tạo khoa phòng mới* → có bản ghi trong `locations` và máy được gán, có dòng `ActionLog`; đổi nhãn máy đó sang `KHOA-NGOAI` → **chờ duyệt tiếp**, không tự đổi; máy để `CHUA-PHAN-NHOM` **không bao giờ** sinh ra bản ghi `locations` mà nằm ở **Kho**; thu hồi một máy đã cấp → Snipe-IT tự trả nó về Kho; máy đã có vị trí **không bị ghi đè** thành Kho (QĐ-14) |
 | **4** | Điều khiển từ xa | GĐ1 | Tài khoản không quyền → 403; tài khoản có quyền → bấm nút mở được RustDesk; **mọi lần bấm đều có dòng trong Nhật ký**; tắt công tắc 2FA trong Cài đặt thì không bị chặn nữa. Dòng nhật ký ghi bằng `ActionLog` sẵn có, nên **Báo cáo hoạt động** có sẵn hiện được mà không sửa code báo cáo (§11.3) |
 | **5** | Tình trạng máy liên tục | GĐ1 | Bảng trạng thái hiện đèn xanh cho máy đang bật, chuyển **đỏ** sau N phút tắt máy; hiện đúng người đang đăng nhập, IP, %CPU/RAM/đĩa; `PruneHeartbeats` dọn được dữ liệu cũ |
 | **6** | Cài app từ xa | GĐ1 + **HTTPS** | Nạp 1 gói MSI vào kho → gửi lệnh tới 1 máy → agent tải, kiểm SHA512, cài xong → trang tiến độ báo **ok**; app xuất hiện trong `inv_softwares` ở lần kiểm kê kế tiếp |
