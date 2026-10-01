@@ -36,6 +36,7 @@ return [
 
         'ne_ram' => ['name' => 'RAM thiết bị mạng (MB)', 'element' => 'text', 'format' => 'NUMERIC'],
         'ne_cpu' => ['name' => 'CPU thiết bị mạng', 'element' => 'text'],
+        'ne_firmware' => ['name' => 'Firmware thiết bị mạng', 'element' => 'text'],
         'ne_uptime' => ['name' => 'Thời gian hoạt động thiết bị mạng', 'element' => 'text'],
 
         'printer_ports' => [
@@ -43,6 +44,7 @@ return [
             'element' => 'checkbox',
             'field_values' => "Serial\nParallel\nUSB\nWiFi\nEthernet",
         ],
+        'printer_firmware' => ['name' => 'Firmware máy in', 'element' => 'text'],
         'printer_memory' => ['name' => 'Bộ nhớ máy in (MB)', 'element' => 'text', 'format' => 'NUMERIC'],
         'pages_init' => ['name' => 'Số trang in ban đầu', 'element' => 'text', 'format' => 'NUMERIC'],
         'pages_last' => ['name' => 'Số trang in gần nhất', 'element' => 'text', 'format' => 'NUMERIC'],
@@ -71,6 +73,7 @@ return [
         'enc_power' => ['name' => 'Số nguồn cấp khung máy', 'element' => 'text', 'format' => 'NUMERIC'],
 
         'pdu_type' => ['name' => 'Loại PDU', 'element' => 'text'],
+        'pdu_ports' => ['name' => 'Số cổng PDU', 'element' => 'text', 'format' => 'NUMERIC'],
 
         'um_ip' => ['name' => 'Địa chỉ IP thiết bị', 'element' => 'text', 'format' => 'IP'],
         'um_hub' => ['name' => 'Là hub', 'element' => 'listbox', 'field_values' => "Có\nKhông"],
@@ -87,6 +90,7 @@ return [
         'sim_puk2' => ['name' => 'Mã PUK 2 SIM', 'element' => 'text', 'encrypted' => true],
         'sim_msin' => ['name' => 'MSIN SIM', 'element' => 'text'],
         'sim_line' => ['name' => 'Số thuê bao', 'element' => 'text'],
+        'sim_carrier' => ['name' => 'Nhà mạng SIM', 'element' => 'text'],
         'sim_type' => ['name' => 'Loại thẻ SIM', 'element' => 'text'],
         'sim_voltage' => ['name' => 'Điện áp SIM', 'element' => 'text'],
         'sim_voip' => ['name' => 'Cho phép VoIP', 'element' => 'listbox', 'field_values' => "Có\nKhông"],
@@ -104,7 +108,7 @@ return [
         'software' => ['category' => 'Phần mềm', 'type' => 'license'],
         'network_equipment' => [
             'category' => 'Thiết bị mạng', 'type' => 'asset',
-            'fields' => [...$tech, ...$contact, 'groups', 'network', 'ne_ram', 'ne_cpu', 'ne_uptime', 'sysdescr'],
+            'fields' => [...$tech, ...$contact, 'groups', 'network', 'ne_ram', 'ne_cpu', 'ne_firmware', 'ne_uptime', 'sysdescr'],
         ],
         'peripherals' => [
             'category' => 'Thiết bị ngoại vi', 'type' => 'asset',
@@ -114,7 +118,7 @@ return [
             'category' => 'Máy in', 'type' => 'asset',
             'fields' => [
                 ...$tech, ...$contact, 'groups', 'network',
-                'printer_ports', 'printer_memory', 'pages_init', 'pages_last', 'sysdescr',
+                'printer_ports', 'printer_memory', 'printer_firmware', 'pages_init', 'pages_last', 'sysdescr',
             ],
         ],
         'cartridges' => ['category' => 'Hộp mực', 'type' => 'consumable'],
@@ -137,7 +141,7 @@ return [
         ],
         'pdus' => [
             'category' => 'Bộ phân phối nguồn (PDU)', 'type' => 'asset',
-            'fields' => [...$tech, 'rack_parent', 'rack_unit', 'pdu_type'],
+            'fields' => [...$tech, 'rack_parent', 'rack_unit', 'pdu_type', 'pdu_ports'],
         ],
         'passive_equipment' => [
             'category' => 'Thiết bị thụ động', 'type' => 'asset',
@@ -155,7 +159,7 @@ return [
             'category' => 'Thẻ SIM', 'type' => 'asset',
             'fields' => [
                 ...$tech, 'sim_pin', 'sim_pin2', 'sim_puk', 'sim_puk2',
-                'sim_msin', 'sim_line', 'sim_type', 'sim_voltage', 'sim_voip',
+                'sim_msin', 'sim_line', 'sim_carrier', 'sim_type', 'sim_voltage', 'sim_voip',
             ],
         ],
     ],

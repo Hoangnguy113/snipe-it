@@ -810,13 +810,15 @@ Mỗi danh mục tài sản có **một bộ trường (fieldset)** do bộ cài
 | Kỹ thuật viên phụ trách · Nhóm phụ trách · Tên người dùng thay thế · Số người dùng thay thế · Mạng · Nhóm | **Custom Fields** trong bộ trường *Máy tính* |
 | UUID · Ngày khởi động gần nhất · Tác tử · User-Agent · Thẻ kiểm kê · Liên hệ / cập nhật kiểm kê gần nhất · Trạng thái Agent · Nguồn cập nhật | **Không phải Custom Field** — đã có ở `inv_hardware`, `inv_agents` (§6), hiện ở tab *Thông tin kiểm kê* |
 
+**Ghi chú nguồn và quy ước (GĐ8):** danh sách trường được suy ra từ các bảng GLPI 11 trong `D:/DEV/QLTS/glpi/install/mysql/glpi-empty.sql` (`glpi_computers`, `glpi_monitors`, `glpi_networkequipments`, `glpi_printers`, `glpi_phones`, `glpi_peripherals`, `glpi_racks`, `glpi_enclosures`, `glpi_pdus`, `glpi_passivedcequipments`, `glpi_unmanageds`, `glpi_cables`, `glpi_devicesimcards`/`glpi_items_devicesimcards`, `glpi_cartridgeitems`, `glpi_consumableitems`), trừ các trường Snipe-IT đã có sẵn. ICCID của thẻ SIM lưu ở trường sẵn có `serial`. Firmware của máy in và thiết bị mạng là Custom Field (`Firmware máy in`, `Firmware thiết bị mạng`); GĐ10 (SNMP) sẽ điền vào.
+
 **Hạn chế đã chấp nhận:** Custom Fields không có ô chọn người/nhóm thật (chỉ là danh sách hoặc chữ). Kỹ thuật viên/nhóm phụ trách lưu dạng chữ hoặc danh sách cố định. Nếu sau này cần khoá ngoại thật thì thêm bảng `inv_asset_profiles` — sửa một chỗ, ghi ở §15.
 
 Custom Fields làm Snipe-IT tự thêm cột `_snipeit_*` vào `assets`. Đây là cơ chế chính hãng, nâng cấp Snipe-IT không làm hỏng, và là **ngoại lệ duy nhất** của RB-1.
 
 ### 18.3 Menu kiểu GLPI — QĐ-16
 
-Không sửa `resources/views/layouts/default.blade.php`. Mỗi mục là một liên kết tới **trang chi tiết danh mục sẵn có** (`route('categories.show', $id)`), nơi Snipe-IT đã liệt kê tài sản / mô-đen / vật tư tiêu hao / giấy phép của danh mục đó. ⚠️ *Đã kiểm chứng:* trang `/hardware` **không** nhận `category_id` từ URL (view `hardware/index.blade.php` chỉ chuyển 4 tham số) nên không dùng cách lọc đó. Trang chỉ mục `resources/views/inventory/catalog.blade.php` liệt kê 17 mục kiểu GLPI, mỗi mục kèm số lượng, và truy cập bằng đường dẫn `/inventory/catalog` (route trong `routes/web/inventory.php`). Đặt thêm liên kết vào thanh menu bên trái hay bất kỳ view lõi nào ngoài 13 file đã liệt kê đều là **file lõi thứ 14** — phải xin duyệt riêng.
+Không sửa `resources/views/layouts/default.blade.php`. Mỗi mục là một liên kết tới **trang chi tiết danh mục sẵn có** (`route('categories.show', $id)`), nơi Snipe-IT đã liệt kê tài sản / mô-đen / vật tư tiêu hao / giấy phép của danh mục đó. ⚠️ *Đã kiểm chứng:* trang `/hardware` **không** nhận `category_id` từ URL (view `hardware/index.blade.php` chỉ chuyển 4 tham số) nên không dùng cách lọc đó. Trang chỉ mục `resources/views/inventory/catalog.blade.php` liệt kê 16 mục kiểu GLPI (mục thứ 17 "Toàn cục" là Tìm kiếm chung sẵn có của Snipe-IT), mỗi mục kèm số lượng, và truy cập bằng đường dẫn `/inventory/catalog` (route trong `routes/web/inventory.php`). Đặt thêm liên kết vào thanh menu bên trái hay bất kỳ view lõi nào ngoài 13 file đã liệt kê đều là **file lõi thứ 14** — phải xin duyệt riêng.
 
 ### 18.4 Nhập từ GLPI — QĐ-17
 

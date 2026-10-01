@@ -39,7 +39,7 @@ Sao từ spec / kế hoạch tổng thể:
 | `Category::$fillable` gồm `name`, `category_type`; `created_by` **không** fillable | `Category.php:71-81` | Gán `created_by` bằng thuộc tính trực tiếp |
 | `CustomFieldset` không có `created_by` trong factory | `CustomFieldsetFactory.php` | Không gán `created_by` cho bộ trường |
 | `CustomFieldSeeder` của Snipe-IT gọi `CustomField::truncate()` và xoá mọi cột `_snipeit_*` | `database/seeders/CustomFieldSeeder.php:15-27` | **Cấm** gọi seeder này trên DB thật; installer của ta chỉ thêm, không xoá |
-| `.env.testing` dùng **MySQL**; test tạo `CustomField` gọi `markIncompleteIfMySQL` (bị bỏ qua) và DDL phá transaction test | `.env.testing:34`; `tests/Support/CanSkipTests.php`; `.ai/rules/tests.md` | Chạy test DDL bằng SQLite trong bộ nhớ (xem "Quy ước lệnh") |
+| `.env.testing` dùng **MySQL**; môi trường này không có `pdo_sqlite`; DDL (tạo `CustomField`) vẫn chạy được trên MySQL test DB `snipeit_testing` nên test chạy thẳng trên đó, KHÔNG dùng `markIncompleteIfMySQL` và KHÔNG dùng tiền tố SQLite | `.env.testing:34`; `.ai/rules/tests.md`; chủ đầu tư xác nhận | Chạy test thường (xem "Quy ước lệnh"); mỗi file DDL mất 1-3 phút
 
 ## Quy ước lệnh
 
@@ -49,19 +49,14 @@ PHP của dự án nằm ở thư mục gốc repo, **không** nằm trong workt
 PHP="D:/DEV/Quanly-CNTT/tools/php/php.exe"
 ```
 
-Test **không** tạo trường tùy chỉnh chạy được như bình thường:
+Mọi test chạy thẳng trên MySQL test DB `snipeit_testing` (không có `pdo_sqlite`, không dùng tiền tố `DB_CONNECTION=sqlite`, không dùng `markIncompleteIfMySQL`):
 
 ```bash
 $PHP vendor/bin/phpunit tests/Unit/Inventory/CatalogDefinitionTest.php
+$PHP vendor/bin/phpunit tests/Feature/Inventory/CatalogInstallerTest.php
 ```
 
-Test **có** tạo trường tùy chỉnh (DDL) phải chạy trên SQLite trong bộ nhớ, vì trên MySQL chúng bị bỏ qua:
-
-```bash
-DB_CONNECTION=sqlite DB_DATABASE=:memory: $PHP vendor/bin/phpunit tests/Feature/Inventory/CatalogInstallerTest.php
-```
-
-Điều kiện: `$PHP -m` phải liệt kê `pdo_sqlite`. Nếu **không** có, **dừng và báo** — kết quả "incomplete/skipped" **không** được tính là đạt (xem Task 6, Bước 3).
+Test có DDL (tạo trường tùy chỉnh) chậm, 1-3 phút mỗi file; đặt timeout dài. Kết quả "incomplete/skipped" **không** được tính là đạt.
 
 ---
 
@@ -1209,7 +1204,7 @@ Vì test SQLite không chứng minh được `ALTER TABLE` trên MySQL thật, p
 
 1. Sao lưu/nhân bản CSDL dev sang schema mới `snipeit_gd8_check` (mysqldump → import), trỏ `.env` tạm sang schema đó.
 2. Chạy: `$PHP artisan inv:catalog-install`
-   Expected (trên DB chưa có danh mục/trường trùng tên): lệnh thoát mã 0, in `categories: 16`, `fields: 52` (số khoá trong `inventory_catalog.fields`), `fieldsets: 13`, `models: 13` (13 mục tài sản, trừ Phần mềm / Hộp mực / Hàng tiêu dùng), không có lỗi `Duplicate column` / `Row size too large`. Nếu DB đã có sẵn bản ghi trùng tên thì các số nhỏ hơn — đó là đúng, vì installer dùng lại bản ghi có sẵn. Đối chiếu số kỳ vọng bằng `$PHP artisan tinker --execute 'echo count(config("inventory_catalog.fields"));'` trước khi kết luận.
+   Expected (trên DB chưa có danh mục/trường trùng tên): lệnh thoát mã 0, in `categories: 16`, `fields: 56` (số khoá trong `inventory_catalog.fields`), `fieldsets: 13`, `models: 13` (13 mục tài sản, trừ Phần mềm / Hộp mực / Hàng tiêu dùng), không có lỗi `Duplicate column` / `Row size too large`. Nếu DB đã có sẵn bản ghi trùng tên thì các số nhỏ hơn — đó là đúng, vì installer dùng lại bản ghi có sẵn. Đối chiếu số kỳ vọng bằng `$PHP artisan tinker --execute 'echo count(config("inventory_catalog.fields"));'` trước khi kết luận.
 3. Chạy lần 2: kỳ vọng mọi số về `0`.
 4. Mở `/inventory/catalog` bằng tài khoản admin: đủ 16 dòng, không dòng nào còn "chưa cài", mỗi dòng bấm vào ra trang danh mục đúng.
 5. Tạo tay 1 tài sản thuộc mô-đen "Mô-đen mẫu Máy in" trên giao diện web: form hiện đủ các trường của bộ "Bộ trường Máy in", lưu được.
@@ -1217,7 +1212,7 @@ Vì test SQLite không chứng minh được `ALTER TABLE` trên MySQL thật, p
 
 **Nếu `$PHP -m` không có `pdo_sqlite` (nên Step 1 bị "Incomplete")**: Step 3 trở thành bằng chứng duy nhất cho phần DDL — làm đủ, và **báo rõ** với chủ đầu tư rằng test tự động phần installer chưa chạy được.
 
-**Nếu gặp `Row size too large` (MySQL giới hạn 65.535 byte/dòng)**: dừng. 52 cột `TEXT` thường không vượt vì TEXT lưu ngoài dòng, nhưng phải kiểm thật; nếu vượt, báo lại để bàn (giảm trường hoặc gộp), **không** tự đổi kiểu cột lõi.
+**Nếu gặp `Row size too large` (MySQL giới hạn 65.535 byte/dòng)**: dừng. 56 cột `TEXT` thường không vượt vì TEXT lưu ngoài dòng, nhưng phải kiểm thật; nếu vượt, báo lại để bàn (giảm trường hoặc gộp), **không** tự đổi kiểu cột lõi.
 
 - [ ] **Step 4: Kiểm chứng cảnh báo tồn kho tối thiểu của vật tư tiêu hao**
 
@@ -1248,20 +1243,28 @@ git commit -m "docs(inventory): kế hoạch thực thi GĐ8 và giới hạn v�
 | Yêu cầu | Bằng chứng |
 |---|---|
 | Đủ danh mục + bộ trường + mô-đen mẫu | Task 6 Bước 3 (chạy thật trên MySQL) + `CatalogInstallerTest` |
-| Trang `/inventory/catalog` mở đúng | `CatalogPageTest` + Task 6 Bước 3.4 |
-| Tạo được 1 thiết bị mỗi loại qua giao diện **và** CSV | `CatalogAssetFlowTest` (API + CSV) + Task 6 Bước 3.5 (giao diện web) |
+| Trang `/inventory/catalog` mở đúng | `CatalogPageTest` + test thật tạm của danh mục thật |
+| Tạo được 1 thiết bị mỗi loại qua giao diện **và** CSV | `CatalogAssetFlowTest` (API + CSV) + test thật tạm của danh mục thật + chủ đầu tư tự kiểm bằng tay trên giao diện (Bước 3.5 gốc đã được thay) |
 | Hộp mực là vật tư tiêu hao có cảnh báo tồn kho tối thiểu | Task 1 (`type=consumable`) + Task 6 Bước 4 |
 | Không chạm file lõi ngoài 13 file | Task 4 Bước 5: chỉ 1 dòng ở `RouteServiceProvider.php` |
 
 ## Ghi chú kiểm chứng
 
 - **Cảnh báo tồn kho tối thiểu (Bước 4):** lệnh `grep -rn "min_amt" app/Console/Commands app/Notifications app/Mail` **không có kết quả nào**. `min_amt` không được đọc trực tiếp trong ba thư mục đó. Tuy vậy cảnh báo vẫn tồn tại qua đường gián tiếp: `app/Console/Commands/SendInventoryAlerts.php:46` gọi `Helper::checkLowInventory()`, và hàm này (`app/Helpers/Helper.php` khoảng dòng 869-872) truy vấn `Consumable` theo `qty` so với `min_amt` (`whereNotNull('min_amt')`). Ngoài ra `app/Http/Controllers/Api/LowStockController.php` và `app/Livewire/AlertMenu.php` cũng hiển thị mức thấp. Kết luận: hộp mực là vật tư tiêu hao có `min_amt` và được lệnh `SendInventoryAlerts` (email theo cài đặt cảnh báo) cùng menu cảnh báo bắt; chưa chạy thật lệnh gửi email trong GĐ8.
-- **Cài danh mục thật trên MySQL (thay Bước 3 gốc):** bằng test tạm (không commit) trên DB test `snipeit_testing`: `CatalogInstaller` với `config('inventory_catalog')` thật cho `categories 16, fields 52, fieldsets 13, models 13`; cả 52 cột `db_column` có trong bảng `assets`; chạy lại ra toàn số 0; mỗi mô-đen mẫu có bộ trường đúng số trường. Không gặp `Row size too large` / `Duplicate column`. Bước 3.4-3.5 (mở giao diện bằng trình duyệt trên bản sao DB dev) chưa làm; `CatalogPageTest` và `CatalogAssetFlowTest` phủ phần tương ứng.
+- **Cài danh mục thật trên MySQL (thay Bước 3 gốc):** bằng test tạm (không commit) trên DB test `snipeit_testing`: `CatalogInstaller` với `config('inventory_catalog')` thật cho `categories 16, fields 56, fieldsets 13, models 13`; cả 56 cột `db_column` có trong bảng `assets`; chạy lại ra toàn số 0; mỗi mô-đen mẫu có bộ trường đúng số trường. Không gặp `Row size too large` / `Duplicate column`. Bước 3.4-3.5 (mở giao diện bằng trình duyệt trên bản sao DB dev) chưa làm; `CatalogPageTest` và `CatalogAssetFlowTest` phủ phần tương ứng.
+
+- **Chạy trên DB thật (kiểm trước khi chạy `inv:catalog-install`):**
+  - Sao lưu: `mysqldump` toàn bộ DB trước.
+  - Kiểm `SELECT ROW_FORMAT FROM information_schema.TABLES WHERE TABLE_NAME='assets';` phải là `Dynamic`.
+  - Đếm cột `_snipeit_%` hiện có trên bảng `assets` (cộng thêm 56 phải còn dưới giới hạn cột/kích thước dòng của MySQL).
+  - Chạy thử trên bản sao DB trước, rồi mới chạy DB thật.
+  - Nếu installer báo trường thiếu cột trên `assets` (lần chạy trước lỗi giữa chừng): xử lý trường đó rồi mới chạy lại.
+- **Mô-đen thật:** mô-đen thiết bị thật phải được gán bộ trường "Bộ trường X" bằng tay (hoặc do GĐ9 làm); installer chỉ gán cho mô-đen mẫu.
 
 ## Self-review
 
 - **Phủ spec §18.1–18.3:** 16 mục → Task 1; bộ trường theo QĐ-15 → Task 1–2; menu QĐ-16 → Task 4; nhập tay/CSV → Task 5. UUID/ngày khởi động/khối agent **không** làm ở đây (đã ở `inv_hardware`, `inv_agents` — GĐ2). "Toàn cục" = Tìm kiếm sẵn có, không có việc.
 - **Không có placeholder:** mọi bước mã đều có mã đầy đủ; các chỗ "nếu đỏ thì…" chỉ chỉ dẫn cách phân biệt lỗi test và lỗi mã, kèm nơi đọc.
 - **Nhất quán kiểu:** `CatalogInstaller::install(User): array{categories,fields,fieldsets,models}`, hằng `FIELDSET_PREFIX`/`MODEL_PREFIX`, route `inventory.catalog`, lang `admin/inventory/catalog.*` dùng thống nhất ở Task 2–6.
-- **Số liệu:** 52 trường và 13 mục tài sản là số tôi đếm tay từ `config/inventory_catalog.php` ở Task 1. Task 6 Bước 3 yêu cầu đếm lại bằng `count(config('inventory_catalog.fields'))`; nếu khác thì lấy số đếm được và sửa dòng kỳ vọng.
+- **Số liệu:** 56 trường và 13 mục tài sản là số tôi đếm tay từ `config/inventory_catalog.php` ở Task 1. Task 6 Bước 3 yêu cầu đếm lại bằng `count(config('inventory_catalog.fields'))`; nếu khác thì lấy số đếm được và sửa dòng kỳ vọng.
 - **Chưa kiểm chứng được lúc viết kế hoạch:** (1) `pdo_sqlite` có trong `tools\php\php.exe` hay không; (2) cột `created_by` có trên `custom_fields`/`models`/`categories` hay không (factory có gán, nhưng chưa đọc migration) — Task 2 Bước 4 nêu cách xử lý; (3) phản hồi 403 của route mới (Task 4 Bước 4 nêu cách xử lý). Không có mục nào được giả định đúng mà giấu đi.
