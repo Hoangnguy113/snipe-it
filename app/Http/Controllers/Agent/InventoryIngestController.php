@@ -8,6 +8,7 @@ use App\Models\Inventory\InvAgent;
 use App\Models\Inventory\InvSnapshot;
 use App\Services\Inventory\ContactResponder;
 use App\Services\Inventory\DecodedPayload;
+use App\Services\Inventory\Deploy\DeployService;
 use App\Services\Inventory\InvalidPayloadException;
 use App\Services\Inventory\PayloadDecoder;
 use App\Services\Inventory\SectionReader;
@@ -49,6 +50,7 @@ class InventoryIngestController extends Controller
         return match ($action) {
             'contact' => $this->handleContact($request, $message),
             'inventory' => $this->handleInventory($request, $message, $payload),
+            'getconfig' => response()->json(app(DeployService::class)->configAnswer($request)),
             default => response('Unsupported action: '.$action, 400),
         };
     }

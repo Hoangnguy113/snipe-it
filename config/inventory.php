@@ -15,6 +15,11 @@ return [
     // QĐ-8: điều khiển từ xa yêu cầu tài khoản đã bật 2FA (mặc định bật; quản trị tắt được).
     'remote_require_2fa' => (bool) env('INVENTORY_REMOTE_REQUIRE_2FA', true),
 
+    // RB-7 / spec 12.2: cài app từ xa TẮT cho tới khi HTTPS hoạt động. Bật bằng INVENTORY_DEPLOY_ENABLED=true.
+    // deploy_allow_http chỉ dùng cho test, KHÔNG bật ở môi trường thật.
+    'deploy_enabled' => (bool) env('INVENTORY_DEPLOY_ENABLED', false),
+    'deploy_allow_http' => (bool) env('INVENTORY_DEPLOY_ALLOW_HTTP', false),
+
     // Default thresholds - spec section 6.2
     'inventory_interval_hours' => (int) env('INVENTORY_INTERVAL_HOURS', 24),
     'deploy_poll_hours' => (int) env('INVENTORY_DEPLOY_POLL_HOURS', 4),

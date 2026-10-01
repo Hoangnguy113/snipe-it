@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Inventory\ApprovalController;
 use App\Http\Controllers\Inventory\CatalogController;
+use App\Http\Controllers\Inventory\DeployController;
 use App\Http\Controllers\Inventory\RemoteControlController;
 use App\Http\Controllers\Inventory\StatusBoardController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,21 @@ Route::group(['prefix' => 'inventory', 'middleware' => ['auth']], function () {
             ->parent('home')
             ->push(trans('admin/inventory/status.title'), route('inventory.status'))
         );
+
+    Route::get('packages', [DeployController::class, 'packages'])
+        ->name('inventory.packages')
+        ->breadcrumbs(fn (Trail $trail) => $trail
+            ->parent('home')
+            ->push(trans('admin/inventory/deploy.packages_title'), route('inventory.packages'))
+        );
+    Route::post('packages', [DeployController::class, 'storePackage'])->name('inventory.packages.store');
+    Route::get('deploy', [DeployController::class, 'jobs'])
+        ->name('inventory.deploy')
+        ->breadcrumbs(fn (Trail $trail) => $trail
+            ->parent('home')
+            ->push(trans('admin/inventory/deploy.jobs_title'), route('inventory.deploy'))
+        );
+    Route::post('deploy', [DeployController::class, 'storeJob'])->name('inventory.deploy.store');
 
     Route::get('removed-parts', [ApprovalController::class, 'removedParts'])
         ->name('inventory.removed_parts')
