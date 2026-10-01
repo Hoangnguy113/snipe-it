@@ -24,6 +24,11 @@ class ContactResponder
             'expiration' => $inventoryHours,
             'tasks' => [
                 'inventory' => [
+                    // Without 'server' + 'version' the agent assumes a legacy
+                    // server and re-sends an XML PROLOG on every run
+                    // (Target/Server.pm:126-144).
+                    'server' => 'glpi',
+                    'version' => '1.0',
                     'params' => [
                         ['content' => '', 'frequency' => $inventoryHours, 'unit' => 'hour'],
                     ],

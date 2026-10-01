@@ -26,6 +26,17 @@ class ContactResponderTest extends TestCase
         $this->assertArrayHasKey('deploy', $answer['tasks']);
     }
 
+    // Target/Server.pm:126-144 - setServerTaskSupport() ignores a task without BOTH
+    // 'server' and 'version', and doProlog() then returns true. The agent would
+    // send a legacy XML PROLOG on every run, with no GLPI-Agent-ID header.
+    public function test_inventory_task_declares_server_and_version_so_agent_skips_prolog(): void
+    {
+        $inventory = (new ContactResponder)->answer()['tasks']['inventory'];
+
+        $this->assertSame('glpi', $inventory['server']);
+        $this->assertNotEmpty($inventory['version']);
+    }
+
     // RB-6 / spec 12.1: enabling collect opens arbitrary command execution under
     // SYSTEM on all 300 machines. Never.
     public function test_answer_never_enables_collect(): void
