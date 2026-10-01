@@ -21,6 +21,9 @@ class Kernel extends ConsoleKernel
             $schedule->command('snipeit:expected-checkin')->daily();
             $schedule->command('snipeit:upcoming-audits')->daily();
         }
+        $schedule->command('inv:mark-stale')->hourly();
+        $schedule->command('inv:prune-heartbeats')->daily();
+        $schedule->command('inv:prune-snapshots')->daily();
         $schedule->command('snipeit:backup')->weekly();
         $schedule->command('backup:clean')->daily();
         $schedule->command('auth:clear-resets')->everyFifteenMinutes();

@@ -5,6 +5,7 @@ namespace App\Models\Inventory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Registry of the agents installed on workstations.
@@ -32,6 +33,17 @@ class InvAgent extends Model
         'last_inventory_at' => 'datetime',
         'last_heartbeat_at' => 'datetime',
     ];
+
+    public function latestHeartbeat(): HasOne
+    {
+        return $this->hasOne(InvHeartbeat::class, 'inv_agent_id')->latestOfMany('id');
+    }
+
+    public function isOnline(): bool
+    {
+        return $this->last_heartbeat_at !== null
+            && $this->last_heartbeat_at->gte(now()->subMinutes((int) config('inventory.stale_heartbeat_minutes')));
+    }
 
     public function snapshots(): HasMany
     {

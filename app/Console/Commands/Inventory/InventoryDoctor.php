@@ -49,6 +49,11 @@ class InventoryDoctor extends Command
             'GD4',
             'Add the foreach Gate::define loop for the inventory/remote permissions',
         ],
+        'app/Console/Kernel.php' => [
+            'inv:mark-stale',
+            'GD5',
+            'Schedule inv:mark-stale (hourly), inv:prune-heartbeats and inv:prune-snapshots (daily)',
+        ],
     ];
 
     public function handle(): int

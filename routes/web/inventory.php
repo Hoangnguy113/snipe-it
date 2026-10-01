@@ -3,6 +3,7 @@
 use App\Http\Controllers\Inventory\ApprovalController;
 use App\Http\Controllers\Inventory\CatalogController;
 use App\Http\Controllers\Inventory\RemoteControlController;
+use App\Http\Controllers\Inventory\StatusBoardController;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -32,6 +33,13 @@ Route::group(['prefix' => 'inventory', 'middleware' => ['auth']], function () {
         ->breadcrumbs(fn (Trail $trail) => $trail
             ->parent('home')
             ->push(trans('admin/inventory/remote.log_title'), route('inventory.remote.log'))
+        );
+
+    Route::get('status', [StatusBoardController::class, 'index'])
+        ->name('inventory.status')
+        ->breadcrumbs(fn (Trail $trail) => $trail
+            ->parent('home')
+            ->push(trans('admin/inventory/status.title'), route('inventory.status'))
         );
 
     Route::get('removed-parts', [ApprovalController::class, 'removedParts'])

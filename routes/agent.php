@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Agent\HeartbeatController;
 use App\Http\Controllers\Agent\InventoryIngestController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,3 +14,6 @@ use Illuminate\Support\Facades\Route;
  */
 Route::post('inventory', [InventoryIngestController::class, 'store'])
     ->name('agent.inventory');
+
+Route::post('heartbeat', [HeartbeatController::class, 'store'])
+    ->name('agent.heartbeat');
