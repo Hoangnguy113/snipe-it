@@ -37,7 +37,7 @@ class TreeSyncTest extends TestCase
         $this->assertSame('Microsoft Windows 11 Home Single Language', $m['hardware'][0]['os_name']);
         $this->assertSame(32491, $m['hardware'][0]['memory_total_mb']);
         $this->assertSame('PRO H610M-E (MS-7D48)', $m['bios'][0]['mmodel']);
-        $this->assertCount(2, $m['drives']);
+        $this->assertCount(4, $m['drives']);
         $this->assertTrue($m['drives'][0]['is_system_drive']);
         $this->assertStringContainsString('i5-12400', $m['processors'][0]['name']);
         // 2 dong mang cung MAC (IPv4 + IPv6) gop thanh 1 card

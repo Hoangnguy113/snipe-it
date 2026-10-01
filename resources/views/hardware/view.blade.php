@@ -59,6 +59,8 @@
                     <x-tabs.asset-tab count="{{ $asset->assignedAssets()->AssetsForShow()->count() }}"/>
                     <x-tabs.accessory-tab count="{{ $asset->assignedAccessories()->count() }}"/>
                     <x-tabs.maintenance-tab count="{{ $asset->maintenances->count() }}"/>
+                    {{-- QLTS inventory tab (GD2) --}}
+                    <x-tabs.nav-item name="inventory" icon="fas fa-microchip" label="{{ trans('admin/inventory/tree.tab') }}" tooltip="{{ trans('admin/inventory/tree.tab') }}"/>
 
                     <x-tabs.nav-item
                         name="audits"
@@ -360,6 +362,10 @@
 
                     <x-tabs.pane name="components" :count="$asset->components->sum('assigned_qty')">
                         <x-table.components :table_header="trans('general.components')" :presenter="\App\Presenters\ComponentPresenter::checkedOut()" :route="route('api.assets.assigned_components', $asset)"/>
+                    </x-tabs.pane>
+
+                    <x-tabs.pane name="inventory">
+                        @include('inventory.asset-tree', ['asset' => $asset])
                     </x-tabs.pane>
 
                     <x-tabs.pane name="assets" :count="$asset->assignedAssets()->AssetsForShow()->count()">

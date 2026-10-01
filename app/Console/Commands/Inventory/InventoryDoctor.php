@@ -24,6 +24,11 @@ class InventoryDoctor extends Command
             'GD1',
             'Add $this->mapAgentRoutes() to boot() and the mapAgentRoutes() method',
         ],
+        'resources/views/hardware/view.blade.php' => [
+            'inventory.asset-tree',
+            'GD2',
+            "Add the nav-item name=\"inventory\" and <x-tabs.pane name=\"inventory\"> with @include('inventory.asset-tree')",
+        ],
     ];
 
     public function handle(): int
