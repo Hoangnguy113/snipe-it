@@ -6,6 +6,7 @@ use App\Models\Inventory\InvSnapshot;
 use App\Services\Inventory\AssetMatcher;
 use App\Services\Inventory\PayloadDecoder;
 use App\Services\Inventory\SectionReader;
+use App\Services\Inventory\Tree\TreeWriter;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -34,7 +35,7 @@ class ProcessSnapshot implements ShouldQueue
 
     public function __construct(public int $snapshotId) {}
 
-    public function handle(PayloadDecoder $decoder, AssetMatcher $matcher): void
+    public function handle(PayloadDecoder $decoder, AssetMatcher $matcher, TreeWriter $tree): void
     {
         $snapshot = InvSnapshot::with('agent')->find($this->snapshotId);
 
@@ -60,6 +61,11 @@ class ProcessSnapshot implements ShouldQueue
                 'rustdesk_id' => $this->rustdeskId($content),
                 'last_inventory_at' => now(),
             ]);
+
+            // RB-9: máy lạ không có tài sản thì không có cây.
+            if ($assetId !== null) {
+                $tree->syncAll($assetId, $snapshot->id, $content);
+            }
 
             $snapshot->update([
                 'asset_id' => $assetId,
