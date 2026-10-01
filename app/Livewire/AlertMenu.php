@@ -57,10 +57,20 @@ class AlertMenu extends Component
         $alert_items = Helper::checkLowInventory();
         $deprecations = Helper::deprecationCheck();
 
+        // QLTS inventory approvals (GD3)
+        $inv_changes = 0;
+        $inv_tags = 0;
+        if (auth()->user()?->can('update', \App\Models\Asset::class)) {
+            $inv_changes = \App\Models\Inventory\InvChange::where('state', 'pending')->count();
+            $inv_tags = \App\Models\Inventory\InvTagLocation::where('state', 'pending')->count();
+        }
+
         return view('livewire.alert-menu', [
             'alert_items' => $alert_items,
             'deprecations' => $deprecations,
-            'alert_count' => count($alert_items) + count($deprecations),
+            'inv_changes' => $inv_changes,
+            'inv_tags' => $inv_tags,
+            'alert_count' => count($alert_items) + count($deprecations) + $inv_changes + $inv_tags,
         ]);
     }
 }

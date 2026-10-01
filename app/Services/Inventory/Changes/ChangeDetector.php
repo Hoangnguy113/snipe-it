@@ -4,6 +4,8 @@ namespace App\Services\Inventory\Changes;
 
 use App\Models\Inventory\InvChange;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * So báo cáo mới với cây hiện tại. Phần 🟢 trả về để ghi ngay; phần 🔴 được
@@ -93,6 +95,10 @@ class ChangeDetector
                 continue;
             }
             $keep[InvChange::create($d)->id] = true;
+
+            if ($d['severity'] === 'critical') {
+                $this->mailCritical($d);
+            }
         }
 
         // Bản kiểm kê mới không còn khác biệt đó nữa -> huỷ yêu cầu cũ.
@@ -100,6 +106,24 @@ class ChangeDetector
             if (! isset($keep[$p->id])) {
                 $p->update(['state' => 'rejected', 'note' => 'Tự huỷ: bản kiểm kê mới không còn khác biệt.']);
             }
+        }
+    }
+
+    /** Thay đổi critical luôn gửi email ngay (spec §7); lỗi gửi mail không được làm hỏng việc nhận kiểm kê. */
+    private function mailCritical(array $d): void
+    {
+        $to = config('inventory.alert_email');
+        if (! $to) {
+            return;
+        }
+
+        try {
+            Mail::raw(
+                "Tài sản #{$d['asset_id']}: {$d['section']}.{$d['field']} đổi từ '{$d['old_value']}' sang '{$d['new_value']}'. Cần duyệt tại Hàng chờ duyệt kiểm kê.",
+                fn ($m) => $m->to($to)->subject('[Kiểm kê] Thay đổi quan trọng tài sản #'.$d['asset_id'])
+            );
+        } catch (\Throwable $e) {
+            Log::warning('[qlts-agent] critical mail failed: '.$e->getMessage());
         }
     }
 

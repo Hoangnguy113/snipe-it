@@ -29,6 +29,16 @@ class InventoryDoctor extends Command
             'GD2',
             "Add the nav-item name=\"inventory\" and <x-tabs.pane name=\"inventory\"> with @include('inventory.asset-tree')",
         ],
+        'app/Livewire/AlertMenu.php' => [
+            'inv_changes',
+            'GD3',
+            'Add the pending InvChange/InvTagLocation counts to render() and to alert_count',
+        ],
+        'resources/views/livewire/alert-menu.blade.php' => [
+            'inventory.approvals',
+            'GD3',
+            "Add the 'QLTS inventory approvals' header link block inside the alert_count > 0 branch",
+        ],
     ];
 
     public function handle(): int

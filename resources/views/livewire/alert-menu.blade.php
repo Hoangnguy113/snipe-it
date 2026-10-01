@@ -21,7 +21,17 @@
     </a>
     <ul class="dropdown-menu">
 
-        @if ((count($alert_items) + count($deprecations)) > 0)
+        @if (($alert_count ?? 0) > 0)
+
+            {{-- QLTS inventory approvals (GD3) --}}
+            @if (($inv_changes ?? 0) > 0 || ($inv_tags ?? 0) > 0)
+                <li class="header">
+                    <a href="{{ route('inventory.approvals') }}">
+                        @if ($inv_changes > 0) {{ trans('admin/inventory/approvals.alert_changes') }}: {{ $inv_changes }}<br>@endif
+                        @if ($inv_tags > 0) {{ trans('admin/inventory/approvals.alert_tags') }}: {{ $inv_tags }}@endif
+                    </a>
+                </li>
+            @endif
 
             @can('superadmin')
                 @if ($deprecations)
