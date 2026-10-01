@@ -180,4 +180,28 @@ class ChangeApprovalTest extends TestCase
         $this->report([$this->ram('1', 'A')]);
         $this->assertSame($other->id, $this->asset->fresh()->location_id);
     }
+
+    public function test_tag_with_building_creates_child_location_under_building(): void
+    {
+        $this->agent->update(['tag' => 'TOA-A1|PHONG-KE-TOAN']);
+        $this->report([$this->ram('1', 'A')]);
+
+        $row = InvTagLocation::where('tag', 'TOA-A1|PHONG-KE-TOAN')->first();
+        $this->assertSame('pending', $row->state);
+        $this->assertSame(['building' => 'TOA-A1', 'department' => 'PHONG-KE-TOAN'], TagLocationService::parseTag($row->tag));
+
+        app(TagLocationService::class)->createLocationAndAssign($row, 'PHONG-KE-TOAN');
+
+        $dept = Location::where('name', 'PHONG-KE-TOAN')->first();
+        $this->assertSame('TOA-A1', Location::find($dept->parent_id)->name);
+        $this->assertSame($dept->id, $this->asset->fresh()->location_id);
+    }
+
+    public function test_tag_with_unassigned_department_is_ignored_even_with_building(): void
+    {
+        $this->agent->update(['tag' => 'TOA-A1|CHUA-PHAN-NHOM']);
+        $this->report([$this->ram('1', 'A')]);
+
+        $this->assertSame('ignored', InvTagLocation::where('tag', 'TOA-A1|CHUA-PHAN-NHOM')->value('state'));
+    }
 }

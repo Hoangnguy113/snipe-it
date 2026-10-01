@@ -37,7 +37,7 @@ class TagLocationService
 
         $row = InvTagLocation::firstOrCreate(
             ['tag' => $tag],
-            ['state' => $tag === self::UNASSIGNED ? 'ignored' : 'pending', 'first_seen_at' => now()]
+            ['state' => in_array(self::parseTag($tag)['department'], ['', self::UNASSIGNED], true) ? 'ignored' : 'pending', 'first_seen_at' => now()]
         );
         $row->update(['agent_count' => InvAgent::where('tag', $tag)->count()]);
 
@@ -77,11 +77,38 @@ class TagLocationService
         });
     }
 
-    /** QĐ-11: chỉ admin tạo khoa phòng mới, và chỉ từ màn hình duyệt. */
+    /**
+     * Nhãn do bộ cài khai có dạng "TOA-NHA|KHOA-PHONG" (hoặc chỉ "KHOA-PHONG").
+     *
+     * @return array{building: ?string, department: string}
+     */
+    public static function parseTag(string $tag): array
+    {
+        [$building, $department] = array_pad(explode('|', $tag, 2), -2, null);
+
+        return ['building' => $building !== null && trim($building) !== '' ? trim($building) : null, 'department' => trim((string) $department)];
+    }
+
+    /**
+     * QĐ-11: chỉ admin tạo khoa phòng mới, và chỉ từ màn hình duyệt.
+     * Nếu nhãn có tòa nhà thì khoa phòng được tạo làm con của vị trí "tòa nhà" (tạo nếu chưa có).
+     */
     public function createLocationAndAssign(InvTagLocation $row, string $name, ?User $by = null): int
     {
+        $parentId = null;
+        $building = self::parseTag($row->tag)['building'];
+        if ($building !== null) {
+            $parent = Location::where('name', $building)->whereNull('parent_id')->first() ?? tap(new Location, function ($l) use ($building, $by) {
+                $l->name = $building;
+                $l->created_by = $by?->id;
+                $l->save();
+            });
+            $parentId = $parent->id;
+        }
+
         $location = new Location;
         $location->name = $name;
+        $location->parent_id = $parentId;
         $location->created_by = $by?->id;
         $location->save();
 

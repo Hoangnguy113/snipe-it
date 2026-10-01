@@ -66,7 +66,8 @@
                         <tbody>
                             @foreach ($tags as $t)
                                 <tr>
-                                    <td>{{ $t->tag }}</td>
+                                    @php($parts = \App\Services\Inventory\Changes\TagLocationService::parseTag($t->tag))
+                                    <td>@if ($parts['building'])<strong>{{ $parts['building'] }}</strong> › @endif{{ $parts['department'] }}</td>
                                     <td>{{ $t->agent_count }}</td>
                                     <td>
                                         <form method="POST" action="{{ route('inventory.tags.assign', $t) }}" class="form-inline">@csrf
@@ -76,7 +77,7 @@
                                                     <option value="{{ $loc->id }}">{{ $loc->name }}</option>
                                                 @endforeach
                                             </select>
-                                            <input type="text" name="new_location_name" class="form-control" placeholder="{{ trans('admin/inventory/approvals.new_location') }}">
+                                            <input type="text" name="new_location_name" class="form-control" placeholder="{{ trans('admin/inventory/approvals.new_location') }}" value="{{ $parts['department'] }}">
                                             <button class="btn btn-sm btn-success">{{ trans('admin/inventory/approvals.approve') }}</button>
                                         </form>
                                         <form method="POST" action="{{ route('inventory.tags.ignore', $t) }}" style="display:inline">@csrf
