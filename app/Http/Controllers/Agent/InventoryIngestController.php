@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Inventory\ProcessSnapshot;
 use App\Models\Inventory\InvAgent;
+use App\Models\Inventory\InvSnapshot;
 use App\Services\Inventory\ContactResponder;
+use App\Services\Inventory\DecodedPayload;
 use App\Services\Inventory\InvalidPayloadException;
 use App\Services\Inventory\PayloadDecoder;
 use App\Services\Inventory\SectionReader;
@@ -45,6 +48,7 @@ class InventoryIngestController extends Controller
 
         return match ($action) {
             'contact' => $this->handleContact($request, $message),
+            'inventory' => $this->handleInventory($request, $message, $payload),
             default => response('Unsupported action: '.$action, 400),
         };
     }
@@ -73,5 +77,59 @@ class InventoryIngestController extends Controller
         );
 
         return response()->json($this->contactResponder->answer());
+    }
+
+    /**
+     * @param  array<string, mixed>  $message
+     */
+    private function handleInventory(
+        Request $request,
+        array $message,
+        DecodedPayload $payload
+    ): JsonResponse|Response {
+        $deviceid = SectionReader::value($message, 'deviceid');
+
+        if (! is_string($deviceid) || $deviceid === '') {
+            return response('Missing deviceid', 400);
+        }
+
+        $agent = InvAgent::updateOrCreate(
+            ['deviceid' => $deviceid],
+            [
+                'agent_uuid' => $request->header('GLPI-Agent-ID'),
+                'ip' => $request->ip(),
+                'last_contact_at' => now(),
+                'state' => 'active',
+            ]
+        );
+
+        $hash = hash('sha256', $payload->content);
+
+        // The agent resends an identical inventory when nothing changed; skip it
+        // so the table does not balloon (300 machines x 2MB x daily). Compare
+        // against the LATEST snapshot only, so an A -> B -> A change is kept.
+        $latestHash = InvSnapshot::where('inv_agent_id', $agent->id)
+            ->latest('id')
+            ->value('content_hash');
+
+        $exists = $latestHash === $hash;
+
+        if ($exists) {
+            $agent->update(['last_inventory_at' => now()]);
+
+            return response()->json(['status' => 'ok']);
+        }
+
+        $snapshot = InvSnapshot::create([
+            'inv_agent_id' => $agent->id,
+            'payload' => gzcompress($payload->content),
+            'content_hash' => $hash,
+            'protocol' => $payload->protocol,
+            'received_at' => now(),
+        ]);
+
+        ProcessSnapshot::dispatch($snapshot->id);
+
+        return response()->json(['status' => 'ok']);
     }
 }
