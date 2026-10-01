@@ -29,6 +29,13 @@ return [
         ],
     ],
 
+    'Inventory' => [
+        ['permission' => 'inventory.view', 'display' => true],
+        ['permission' => 'inventory.approve', 'display' => true],
+        ['permission' => 'remote.control', 'display' => true],
+        ['permission' => 'remote.deploy', 'display' => true],
+    ],
+
     'Reports' => [
         [
             'permission' => 'reports.view',

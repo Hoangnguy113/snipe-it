@@ -29,6 +29,31 @@ return [
         'note' => 'This will allow users to import even if access to users, assets, etc is denied elsewhere.',
     ],
 
+    'inventory' => [
+        'name' => 'Automated inventory',
+        'note' => 'Permissions for automated inventory and remote control.',
+    ],
+
+    'inventoryview' => [
+        'name' => 'View inventory',
+        'note' => 'View the Inventory tab and workstation status board.',
+    ],
+
+    'inventoryapprove' => [
+        'name' => 'Approve inventory changes',
+        'note' => 'Approve or reject component changes and department tags.',
+    ],
+
+    'remotecontrol' => [
+        'name' => 'Remote control',
+        'note' => 'Open a remote control session to a workstation.',
+    ],
+
+    'remotedeploy' => [
+        'name' => 'Remote software deploy',
+        'note' => 'Send software install jobs to workstations.',
+    ],
+
     'reports' => [
         'name' => 'Reports Access',
         'note' => 'Determines whether the user has access to the Reports section of the application.',

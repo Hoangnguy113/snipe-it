@@ -29,6 +29,31 @@ return [
         'note' => 'This will allow users to import even if access to users, assets, etc is denied elsewhere.',
     ],
 
+    'inventory' => [
+        'name' => 'Kiểm kê tự động',
+        'note' => 'Nhóm quyền cho kiểm kê tự động và điều khiển từ xa.',
+    ],
+
+    'inventoryview' => [
+        'name' => 'Xem kiểm kê',
+        'note' => 'Xem tab Kiểm kê và bảng trạng thái máy trạm.',
+    ],
+
+    'inventoryapprove' => [
+        'name' => 'Duyệt thay đổi kiểm kê',
+        'note' => 'Duyệt hoặc từ chối thay đổi linh kiện và nhãn khoa phòng.',
+    ],
+
+    'remotecontrol' => [
+        'name' => 'Điều khiển từ xa',
+        'note' => 'Mở phiên điều khiển từ xa máy trạm.',
+    ],
+
+    'remotedeploy' => [
+        'name' => 'Cài ứng dụng từ xa',
+        'note' => 'Gửi lệnh cài ứng dụng tới máy trạm.',
+    ],
+
     'reports' => [
         'name' => 'Reports Access',
         'note' => 'Determines whether the user has access to the Reports section of the application.',

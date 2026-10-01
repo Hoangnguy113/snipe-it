@@ -60,7 +60,7 @@ class AlertMenu extends Component
         // QLTS inventory approvals (GD3)
         $inv_changes = 0;
         $inv_tags = 0;
-        if (auth()->user()?->can('update', \App\Models\Asset::class)) {
+        if (auth()->user()?->can('inventory.approve')) {
             $inv_changes = \App\Models\Inventory\InvChange::where('state', 'pending')->count();
             $inv_tags = \App\Models\Inventory\InvTagLocation::where('state', 'pending')->count();
         }

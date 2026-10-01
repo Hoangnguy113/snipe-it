@@ -39,6 +39,16 @@ class InventoryDoctor extends Command
             'GD3',
             "Add the 'QLTS inventory approvals' header link block inside the alert_count > 0 branch",
         ],
+        'config/permissions.php' => [
+            'inventory.approve',
+            'GD4',
+            "Add the 'Inventory' permission group (inventory.view/approve, remote.control/deploy)",
+        ],
+        'app/Providers/AuthServiceProvider.php' => [
+            'remote.control',
+            'GD4',
+            'Add the foreach Gate::define loop for the inventory/remote permissions',
+        ],
     ];
 
     public function handle(): int

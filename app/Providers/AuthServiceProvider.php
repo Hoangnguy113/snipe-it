@@ -211,6 +211,11 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
+        // QLTS inventory & remote control (GD4): superuser (Gate::before), admin, or the specific permission.
+        foreach (['inventory.view', 'inventory.approve', 'remote.control', 'remote.deploy'] as $inventoryPermission) {
+            Gate::define($inventoryPermission, fn ($user) => $user->hasAccess('admin') || $user->hasAccess($inventoryPermission));
+        }
+
         // -----------------------------------------
         // Reports
         // -----------------------------------------

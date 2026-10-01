@@ -5,6 +5,13 @@
     $labels = trans('admin/inventory/tree.columns');
 @endphp
 
+@can('remote.control')
+    <form method="POST" action="{{ route('inventory.remote.start', $asset) }}" style="margin: 10px 0">
+        @csrf
+        <button type="submit" class="btn btn-primary"><i class="fas fa-desktop" aria-hidden="true"></i> {{ trans('admin/inventory/remote.button') }}</button>
+    </form>
+@endcan
+
 @if ($lastSeen === null)
     <p class="text-muted" style="padding: 15px;">{{ trans('admin/inventory/tree.empty') }}</p>
 @else

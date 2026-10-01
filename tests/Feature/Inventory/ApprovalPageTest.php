@@ -48,7 +48,7 @@ class ApprovalPageTest extends TestCase
     {
         $tag = InvTagLocation::create(['tag' => 'PHONG-MOI', 'state' => 'pending']);
 
-        $this->actingAs(User::factory()->editAssets()->create())
+        $this->actingAs(User::factory()->create(['permissions' => json_encode(['inventory.approve' => '1'])]))
             ->post(route('inventory.tags.assign', $tag), ['new_location_name' => 'Phòng Mới'])
             ->assertRedirect();
 
