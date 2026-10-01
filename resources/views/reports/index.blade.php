@@ -12,6 +12,8 @@
     {{-- Row: Report Links --}}
     <div class="row" style="padding-bottom: 10px;">
 
+        @include('inventory.reports.links')
+
         <div class="col-md-3 col-sm-6">
             <a href="{{ route('reports.activity') }}" class="btn btn-theme btn-block" style="margin-bottom: 10px; white-space: normal; text-align: left; padding-left: 15px;">
                 <x-icon type="history" class="fa-fw"/> {{ trans('general.activity_report') }}

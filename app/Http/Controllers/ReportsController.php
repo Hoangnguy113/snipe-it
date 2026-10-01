@@ -757,6 +757,8 @@ class ReportsController extends Controller
                 }
             }
 
+            \App\Services\Inventory\Reports\ColumnExtension::appendHeader($header, $request);
+
             $executionTime = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
             Log::debug('Starting headers: '.$executionTime);
             fputcsv($handle, $header);
@@ -1230,6 +1232,8 @@ class ReportsController extends Controller
                             $row[] = $value;
                         }
                     }
+
+                    \App\Services\Inventory\Reports\ColumnExtension::appendRow($row, $asset, $request);
 
                     // CSV_ESCAPE_FORMULAS is set to false in the .env
                     if (config('app.escape_formulas') === false) {

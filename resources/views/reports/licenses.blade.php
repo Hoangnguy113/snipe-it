@@ -38,6 +38,7 @@
                                 <th scope="col" class="col-sm-1">{{ trans('general.depreciation') }}</th>
                                 <th scope="col" class="col-sm-1 text-right">{{ trans('admin/hardware/table.book_value') }}</th>
                                 <th scope="col" class="col-sm-1 text-right">{{ trans('admin/hardware/table.diff') }}</th>
+                                @include('inventory.reports.license-columns')
                             </tr>
                         </thead>
 
@@ -75,6 +76,7 @@
                                 <td class="text-right">
                                     -{{ $snipeSettings->default_currency }}{{ Helper::formatCurrencyOutput(($license->purchase_cost - $license->getDepreciatedValue())) }}
                                 </td>
+                                @include('inventory.reports.license-columns')
                             </tr>
                             @endforeach
                         </tbody>

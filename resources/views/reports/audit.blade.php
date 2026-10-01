@@ -38,6 +38,7 @@
                             <th scope="col" class="col-sm-2" data-field="next_audit_date" data-sortable="true" data-formatter="dateDisplayFormatter">{{ trans('general.next_audit_date') }}</th>
                             <th scope="col" class="col-sm-1" data-field="days_to_next_audit" data-sortable="true">{{ trans('general.days_to_next_audit') }}</th>
                             <th scope="col" class="col-sm-2" data-field="note" data-sortable="true" data-searchable="true">{{ trans('general.notes') }}</th>
+                            @include('inventory.reports.audit-columns')
                         </tr>
                         </thead>
                     </table>

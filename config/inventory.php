@@ -20,6 +20,9 @@ return [
     'deploy_enabled' => (bool) env('INVENTORY_DEPLOY_ENABLED', false),
     'deploy_allow_http' => (bool) env('INVENTORY_DEPLOY_ALLOW_HTTP', false),
 
+    // Báo cáo sức khỏe: HĐH chứa chuỗi nào thì coi là cũ (Windows 10 hết hỗ trợ 10/2025).
+    'old_os_patterns' => ['Windows 7', 'Windows 8', 'Windows 10', 'Vista', 'XP'],
+
     // Default thresholds - spec section 6.2
     'inventory_interval_hours' => (int) env('INVENTORY_INTERVAL_HOURS', 24),
     'deploy_poll_hours' => (int) env('INVENTORY_DEPLOY_POLL_HOURS', 4),

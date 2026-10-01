@@ -216,6 +216,8 @@
                 {{ trans('general.url') }}
               </label>
 
+              @include('inventory.reports.asset-columns')
+
 
             <!-- User fields -->
 

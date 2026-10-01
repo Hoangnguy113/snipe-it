@@ -54,6 +54,31 @@ class InventoryDoctor extends Command
             'GD5',
             'Schedule inv:mark-stale (hourly), inv:prune-heartbeats and inv:prune-snapshots (daily)',
         ],
+        'resources/views/reports/index.blade.php' => [
+            'inventory.reports.links',
+            'GD7',
+            "Add @include('inventory.reports.links') at the start of the report-links row",
+        ],
+        'resources/views/reports/custom/asset.blade.php' => [
+            'inventory.reports.asset-columns',
+            'GD7',
+            "Add @include('inventory.reports.asset-columns') after the 'url' checkbox",
+        ],
+        'app/Http/Controllers/ReportsController.php' => [
+            'ColumnExtension::appendRow',
+            'GD7',
+            'Call ColumnExtension::appendHeader and appendRow in postCustom()',
+        ],
+        'resources/views/reports/licenses.blade.php' => [
+            'inventory.reports.license-columns',
+            'GD7',
+            "Add @include('inventory.reports.license-columns') after the last th and the last td of each row",
+        ],
+        'resources/views/reports/audit.blade.php' => [
+            'inventory.reports.audit-columns',
+            'GD7',
+            "Add @include('inventory.reports.audit-columns') after the notes th",
+        ],
     ];
 
     public function handle(): int

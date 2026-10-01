@@ -3,6 +3,7 @@
 use App\Http\Controllers\Inventory\ApprovalController;
 use App\Http\Controllers\Inventory\CatalogController;
 use App\Http\Controllers\Inventory\DeployController;
+use App\Http\Controllers\Inventory\InventoryReportController;
 use App\Http\Controllers\Inventory\RemoteControlController;
 use App\Http\Controllers\Inventory\StatusBoardController;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,10 @@ Route::group(['prefix' => 'inventory', 'middleware' => ['auth']], function () {
             ->push(trans('admin/inventory/deploy.jobs_title'), route('inventory.deploy'))
         );
     Route::post('deploy', [DeployController::class, 'storeJob'])->name('inventory.deploy.store');
+
+    Route::get('reports/{key}', [InventoryReportController::class, 'show'])
+        ->where('key', 'changes|lost|software|health')
+        ->name('inventory.reports');
 
     Route::get('removed-parts', [ApprovalController::class, 'removedParts'])
         ->name('inventory.removed_parts')
