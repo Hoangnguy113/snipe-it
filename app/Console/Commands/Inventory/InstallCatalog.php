@@ -16,7 +16,10 @@ class InstallCatalog extends Command
     {
         $creator = $this->option('user')
             ? User::find($this->option('user'))
-            : User::where('permissions->superuser', '1')->first();
+            : User::where(function ($query) {
+                $query->where('permissions', 'LIKE', '%"superuser":"1"%')
+                    ->orWhere('permissions', 'LIKE', '%"superuser":1%');
+            })->first();
 
         if (! $creator) {
             $this->error('Không tìm thấy người dùng để ghi làm người tạo. Tạo một superuser hoặc truyền --user=ID.');
@@ -24,7 +27,12 @@ class InstallCatalog extends Command
             return self::FAILURE;
         }
 
-        $result = (new CatalogInstaller(config('inventory_catalog')))->install($creator);
+        $installer = new CatalogInstaller(config('inventory_catalog'));
+        $result = $installer->install($creator);
+
+        foreach ($installer->warnings() as $warning) {
+            $this->warn($warning);
+        }
 
         foreach ($result as $what => $count) {
             $this->line("{$what}: {$count}");

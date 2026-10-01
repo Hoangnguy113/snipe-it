@@ -8,6 +8,7 @@ use App\Models\CustomField;
 use App\Models\CustomFieldset;
 use App\Models\User;
 use App\Services\Inventory\Catalog\CatalogInstaller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use RuntimeException;
 use Tests\TestCase;
@@ -82,6 +83,51 @@ class CatalogInstallerTest extends TestCase
         $this->assertSame(2, $result['fields']);
         $fieldset = CustomFieldset::where('name', CatalogInstaller::FIELDSET_PREFIX.'Máy in thử')->firstOrFail();
         $this->assertTrue($fieldset->fields->contains('id', $existing->id));
+    }
+
+    public function test_rerun_does_not_reset_pivot_settings_changed_by_hand(): void
+    {
+        $installer = new CatalogInstaller($this->definition());
+        $admin = User::factory()->superuser()->create();
+        $installer->install($admin);
+
+        $fieldset = CustomFieldset::where('name', CatalogInstaller::FIELDSET_PREFIX.'Máy in thử')->firstOrFail();
+        $field = CustomField::where('name', 'Cổng thử')->firstOrFail();
+        $fieldset->fields()->updateExistingPivot($field->id, ['required' => 1, 'order' => 99]);
+
+        $second = $installer->install($admin);
+
+        $pivot = $fieldset->fresh()->fields()->whereKey($field->id)->firstOrFail()->pivot;
+        $this->assertEquals(1, $pivot->required);
+        $this->assertEquals(99, $pivot->order);
+        $this->assertSame(['categories' => 0, 'fields' => 0, 'fieldsets' => 0, 'models' => 0], $second);
+    }
+
+    public function test_reusing_a_field_whose_column_is_missing_throws(): void
+    {
+        DB::table('custom_fields')->insert([
+            'name' => 'Kỹ thuật viên thử',
+            'element' => 'text',
+            'format' => 'ANY',
+            'db_column' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $this->expectException(RuntimeException::class);
+
+        (new CatalogInstaller($this->definition()))->install(User::factory()->superuser()->create());
+    }
+
+    public function test_reusing_a_field_that_differs_from_the_definition_warns_and_leaves_it_untouched(): void
+    {
+        $existing = CustomField::factory()->create(['name' => 'Kỹ thuật viên thử', 'element' => 'textarea']);
+        $installer = new CatalogInstaller($this->definition());
+
+        $installer->install(User::factory()->superuser()->create());
+
+        $this->assertNotEmpty($installer->warnings());
+        $this->assertSame('textarea', $existing->fresh()->element);
     }
 
     public function test_an_invalid_definition_throws_instead_of_silently_skipping(): void

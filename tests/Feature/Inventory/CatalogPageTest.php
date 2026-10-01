@@ -34,7 +34,7 @@ class CatalogPageTest extends TestCase
             ->assertSee('Điện thoại thử');
     }
 
-    public function test_installed_category_links_to_the_category_page_and_shows_its_count(): void
+    public function test_installed_category_links_to_the_category_page(): void
     {
         $this->useMiniCatalog();
         $category = Category::factory()->create(['name' => 'Máy in thử', 'category_type' => 'asset']);
