@@ -5,6 +5,7 @@ namespace App\Jobs\Inventory;
 use App\Models\Inventory\InvSnapshot;
 use App\Services\Inventory\AssetMatcher;
 use App\Services\Inventory\PayloadDecoder;
+use App\Services\Inventory\Changes\TagLocationService;
 use App\Services\Inventory\SectionReader;
 use App\Services\Inventory\Tree\TreeWriter;
 use Illuminate\Bus\Queueable;
@@ -66,6 +67,8 @@ class ProcessSnapshot implements ShouldQueue
             if ($assetId !== null) {
                 $tree->syncAll($assetId, $snapshot->id, $content);
             }
+
+            app(TagLocationService::class)->observe($agent->fresh());
 
             $snapshot->update([
                 'asset_id' => $assetId,

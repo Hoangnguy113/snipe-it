@@ -2,6 +2,7 @@
 
 namespace App\Services\Inventory\Tree;
 
+use App\Services\Inventory\Changes\ChangeDetector;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -45,6 +46,41 @@ class TreeWriter
         }
     }
 
+    /** Ghi/đè đúng 1 hàng (dùng khi duyệt thay đổi). @param array<string, mixed> $row */
+    public function put(string $table, int $assetId, int $snapshotId, array $row): void
+    {
+        $this->sync1($table, $assetId, $snapshotId, $row);
+    }
+
+    public function retire(string $table, int $assetId, string $partKey): void
+    {
+        DB::table($table)->where('asset_id', $assetId)->where('part_key', $partKey)->where('is_current', true)
+            ->update(['is_current' => false]);
+    }
+
+    /** @param array<string, mixed> $values */
+    public function patch(string $table, int $assetId, string $partKey, array $values, int $snapshotId): void
+    {
+        DB::table($table)->where('asset_id', $assetId)->where('part_key', $partKey)->where('is_current', true)
+            ->update($values + ['inv_snapshot_id' => $snapshotId, 'last_seen_at' => now()]);
+    }
+
+    /** @param array<string, mixed> $row */
+    private function sync1(string $table, int $assetId, int $snapshotId, array $row): void
+    {
+        $id = DB::table($table)->where('asset_id', $assetId)->where('part_key', $row['part_key'])
+            ->where('is_current', true)->value('id');
+        $values = $row + ['asset_id' => $assetId];
+        $values['inv_snapshot_id'] = $snapshotId;
+        $values['last_seen_at'] = now();
+
+        if ($id) {
+            DB::table($table)->where('id', $id)->update($values);
+        } else {
+            DB::table($table)->insert($values + ['first_seen_at' => now(), 'is_current' => true]);
+        }
+    }
+
     /**
      * @param  array<string, mixed>  $content
      */
@@ -53,8 +89,11 @@ class TreeWriter
         $mapped = TreeSections::map($content);
 
         DB::transaction(function () use ($assetId, $snapshotId, $mapped) {
+            $detector = app(ChangeDetector::class);
+
             foreach (TreeSections::tables() as $section => $table) {
-                $this->sync($table, $assetId, $snapshotId, $mapped[$section] ?? []);
+                $rows = $detector->filter($assetId, $snapshotId, $section, $table, $mapped[$section] ?? []);
+                $this->sync($table, $assetId, $snapshotId, $rows);
             }
         });
     }

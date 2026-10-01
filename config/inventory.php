@@ -6,6 +6,12 @@ return [
     'agent_user' => env('INVENTORY_AGENT_USER', 'qlts-agent'),
     'agent_secret' => env('INVENTORY_AGENT_SECRET'),
 
+    // QĐ-14: Kho là 1 bản ghi locations do quản trị tự tạo; máy chưa có vị trí được điền vào đây.
+    'stock_location_id' => env('INVENTORY_STOCK_LOCATION_ID'),
+
+    // Thay đổi critical (đổi serial máy / mainboard) luôn gửi email ngay tới địa chỉ này (bỏ trống = không gửi).
+    'alert_email' => env('INVENTORY_ALERT_EMAIL'),
+
     // Default thresholds - spec section 6.2
     'inventory_interval_hours' => (int) env('INVENTORY_INTERVAL_HOURS', 24),
     'deploy_poll_hours' => (int) env('INVENTORY_DEPLOY_POLL_HOURS', 4),
