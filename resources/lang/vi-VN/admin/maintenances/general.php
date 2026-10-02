@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'asset_maintenances' => 'Tài sản đang bảo trì', // not used anymore
+    'asset_maintenances' => 'Tài sản đang bảo trì',
     'maintenances' => 'Bảo trì',
-    'edit' => 'Chỉnh sửa tài sản đang bảo trì',
-    'delete' => 'Xóa tài sản đang bảo trì',
-    'view' => 'Chi tiết tài sản đang bảo trì',
+    'edit' => 'Sửa bảo trì',
+    'delete' => 'Xóa bảo trì',
+    'view' => 'Xem chi tiết bảo trì',
     'repair' => 'Sửa chữa',
     'maintenance' => 'Bảo trì',
     'upgrade' => 'Nâng cấp',
@@ -13,11 +13,13 @@ return [
     'software_support' => 'Hỗ trợ phần mềm',
     'hardware_support' => 'Hỗ trợ phần cứng',
     'configuration_change' => 'Thay đổi cấu hình',
-    'pat_test' => 'PAT Test',
-    'checked_out_to_help' => 'The user, etc that the asset was checked out to at the time of maintenance creation. This is for historical reference and does not affect the current checkout status of the asset.',
-    'show_completed' => 'Show Completed',
-    'show_active' => 'Show Active',
-    'due' => 'Due',
-    'overdue' => 'Overdue',
-    'completed' => 'Completed',
+    'pat_test' => 'Kiểm định an toàn điện (PAT)',
+    'checked_out_to_help' => 'Người dùng, vị trí,... mà tài sản đang được cấp phát tại thời điểm tạo bảo trì. Dùng để tham khảo lịch sử và không ảnh hưởng đến trạng thái cấp phát hiện tại của tài sản.',
+    'show_completed' => 'Hiện đã hoàn thành',
+    'show_active' => 'Hiện đang hoạt động',
+    'due' => 'Đến hạn',
+    'overdue' => 'Quá hạn',
+    'completed' => 'Đã hoàn tất',
+    'asset_maintenance' => 'Bảo trì tài sản',
+    'create' => 'Tạo bảo trì tài sản',
 ];

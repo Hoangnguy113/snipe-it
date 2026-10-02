@@ -1,20 +1,20 @@
 <?php
 
 return [
-    'about' => 'About Status Types',
+    'about' => 'Giới thiệu về Nhãn trạng thái',
     'archived' => 'Đã lưu trữ',
     'create' => 'Tạo tình trạng nhãn',
     'color' => 'Màu đồ thị',
     'default_label' => 'Nhãn mặc định',
     'default_label_help' => 'Điều này được sử dụng để đảm bảo thông dụng nhất của tình trạng nhãn xuất hiện ở phía trên hộp chọn khi tạo/chỉnh sửa tài sản.',
     'deployable' => 'Cho phép cấp phát',
-    'info' => 'Status label types are used to describe the various states your assets could be in. They may be out for repair, lost/stolen, etc. You can create new status labels for your deployable, pending and archived assets according to your own workflow. For more information, <a href="https://snipe-it.readme.io/docs/overview#status-labels" target="_blank">see the documentation <i class="fa fa-external-link"></i></a>.',
+    'info' => 'Các loại nhãn trạng thái được sử dụng để mô tả các trạng thái khác nhau của tài sản.',
     'name' => 'Tên tình trạng',
-    'pending' => 'Đang chờ',
+    'pending' => 'Kho (Tài sản mới/còn sử dụng được)',
     'status_type' => 'Loại tình trạng',
     'show_in_nav' => 'Hiển thị trong trình đơn bên cạnh',
-    'status_label' => 'Status Label',
+    'status_label' => 'Nhãn trạng thái',
     'title' => 'Nhãn tình trạng',
-    'undeployable' => 'Không cho phép cấp phát',
+    'undeployable' => 'Tài sản đã hỏng hoặc đã Thanh lý',
     'update' => 'Cập nhật tình trạng nhãn',
 ];

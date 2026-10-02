@@ -1,34 +1,38 @@
 <?php
 
 return [
-
-    'does_not_exist' => 'Địa phương không tồn tại.',
-    'assoc_users' => 'This location is not currently deletable because it is the location of record for at least one item or user, has assets assigned to it, or is the parent location of another location. Please update your records to no longer reference this location and try again ',
-    'assoc_assets' => 'Địa phương này hiện tại đã được liên kết với ít nhất một tài sản và không thể xóa. Xin vui lòng cập nhật tài sản của bạn để không còn liên kết với địa phương này nữa và thử lại. ',
-    'assoc_child_loc' => 'Địa phương này hiện tại là cấp parent của ít nhật một địa phương con và không thể xóa. Xin vui lòng cập nhật địa phương của bạn để không liên kết đến địa phương này và thử lại. ',
+    'does_not_exist' => 'Vị trí không tồn tại.',
+    'assoc_users' => 'Vị trí này hiện đang liên kết với ít nhất một người dùng và không thể xóa. Vui lòng cập nhật người dùng để không còn tham chiếu đến vị trí này và thử lại.',
+    'assoc_assets' => 'Vị trí này hiện đang liên kết với ít nhất một tài sản và không thể xóa. Vui lòng cập nhật tài sản để không còn tham chiếu đến vị trí này và thử lại.',
+    'assoc_child_loc' => 'Vị trí này hiện là vị trí cha của ít nhất một vị trí con và không thể xóa. Vui lòng cập nhật các vị trí của bạn để không còn tham chiếu đến vị trí này và thử lại.',
     'assigned_assets' => 'Tài sản được giao',
     'current_location' => 'Vị trí hiện tại',
-    'deleted_warning' => 'This location has been deleted. Please restore it before attempting to make any changes.',
-
+    'deleted_warning' => 'Vị trí này đã bị xóa. Vui lòng khôi phục trước khi thực hiện thao tác.',
     'create' => [
-        'error' => 'Địa phương chưa tạo, xin vui lòng thử lại.',
-        'success' => 'Địa phương đã tạo thành công.',
+        'error' => 'Vị trí chưa được tạo, xin vui lòng thử lại.',
+        'success' => 'Vị trí đã được tạo thành công.',
     ],
-
     'update' => [
-        'error' => 'Địa phương chưa cập nhật, xin vui lòng thử lại',
-        'success' => 'Địa phương đã cập nhật thành công.',
+        'error' => 'Vị trí chưa được cập nhật, xin vui lòng thử lại.',
+        'success' => 'Vị trí đã được cập nhật thành công.',
     ],
-
     'restore' => [
-        'error' => 'Location was not restored, please try again',
-        'success' => 'Location restored successfully.',
+        'error' => 'Vị trí chưa được khôi phục, vui lòng thử lại.',
+        'success' => 'Vị trí đã được khôi phục thành công.',
     ],
-
     'delete' => [
-        'confirm' => 'Bạn có chắc muốn xóa địa phương này?',
-        'error' => 'Có vấn đề xảy ra khi xóa địa phương. Xin vui lòng thử lại.',
-        'success' => 'Địa phương đã xóa thành công.',
+        'confirm' => 'Bạn có chắc muốn xóa vị trí này?',
+        'error' => 'Có vấn đề xảy ra khi xóa vị trí. Xin vui lòng thử lại.',
+        'success' => 'Vị trí đã được xóa thành công.',
     ],
-
+    'bulkedit' => [
+        'error' => 'Không có trường nào thay đổi, nên không có gì được cập nhật.',
+        'success' => 'Cập nhật vị trí thành công.|Cập nhật thành công :count vị trí.',
+        'warn' => 'Chỉnh sửa các trường bên dưới để cập nhật vị trí này. Các trường bạn để trống sẽ không thay đổi trên vị trí.|Chỉnh sửa các trường bên dưới để cập nhật tất cả :count vị trí đã chọn. Các trường bạn để trống sẽ không thay đổi trên bất kỳ vị trí nào.',
+        'show_selected' => '1 vị trí đã chọn|:count vị trí đã chọn',
+        'company_scope_mismatch_partial' => 'Đơn vị/Cơ quan không được thay đổi trên 1 vị trí vì các tài sản hoặc người dùng tại vị trí đó thuộc các đơn vị/cơ quan khác nhau. Hãy cập nhật hoặc chuyển các đối tượng đó trước.|Đơn vị/Cơ quan không được thay đổi trên :count vị trí vì các tài sản hoặc người dùng tại các vị trí đó thuộc các đơn vị/cơ quan khác nhau. Hãy cập nhật hoặc chuyển các đối tượng đó trước.',
+        'company_scope_mismatch_all' => 'Không có vị trí nào được gán lại. Đơn vị/Cơ quan yêu cầu không khớp với các tài sản hoặc người dùng tại vị trí đã chọn.|Không có vị trí nào được gán lại. Đơn vị/Cơ quan yêu cầu không khớp với các tài sản hoặc người dùng tại bất kỳ vị trí nào trong :count vị trí đã chọn.',
+        'parent_company_mismatch_partial' => 'Vị trí cha hoặc đơn vị/cơ quan không được thay đổi trên 1 vị trí vì điều đó sẽ khiến vị trí này khác đơn vị/cơ quan với vị trí cha của nó.|Vị trí cha hoặc đơn vị/cơ quan không được thay đổi trên :count vị trí vì điều đó sẽ khiến các vị trí này khác đơn vị/cơ quan với vị trí cha của chúng.',
+        'parent_company_mismatch_all' => 'Không có thay đổi nào được lưu. Vị trí cha hoặc đơn vị/cơ quan được yêu cầu sẽ khiến vị trí khác đơn vị/cơ quan với vị trí cha.|Không có thay đổi nào được lưu. Vị trí cha hoặc đơn vị/cơ quan được yêu cầu sẽ khiến từng vị trí trong :count vị trí đã chọn khác đơn vị/cơ quan với vị trí cha.',
+    ],
 ];

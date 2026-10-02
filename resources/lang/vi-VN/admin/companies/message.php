@@ -1,22 +1,23 @@
 <?php
 
 return [
-    'does_not_exist' => 'Công ty này không tồn tại.',
-    'deleted' => 'Deleted company',
-    'assoc_users' => 'Công ty này hiện đang liên kết với ít nhất một mô hình và không thể bị xóa. Hãy cập nhật mô hình của bạn để không còn tham khảo công ty này nữa và thử lại.',
+    'does_not_exist' => 'Đơn vị/Cơ quan không tồn tại.',
+    'deleted' => 'Đơn vị/Cơ quan đã xóa',
+    'assoc_users' => 'Đơn vị/Cơ quan này hiện đang liên kết với ít nhất một kiểu tài sản và không thể xóa. Vui lòng cập nhật các kiểu tài sản của bạn để không còn tham chiếu đến đơn vị/cơ quan này và thử lại.',
     'create' => [
-        'error' => 'Công ty chưa được tạo, hãy thử lại.',
-        'success' => 'Công ty thành công.',
+        'error' => 'Đơn vị/Cơ quan chưa được tạo, hãy thử lại.',
+        'success' => 'Tạo đơn vị/cơ quan thành công.',
     ],
     'update' => [
-        'error' => 'Công ty không được cập nhật, vui lòng thử lại',
-        'success' => 'Công ty đã được cập nhật thành công.',
+        'error' => 'Đơn vị/Cơ quan không được cập nhật, vui lòng thử lại',
+        'success' => 'Đơn vị/Cơ quan đã được cập nhật thành công.',
     ],
     'delete' => [
-        'confirm' => 'Bạn có chắc chắn muốn xóa công ty này?',
-        'error' => 'Đã xảy ra sự cố khi xóa công ty. Vui lòng thử lại.',
-        'success' => 'Công ty đã bị xóa thành công.',
-        'bulk_success' => 'Company deleted successfully.|:count companies were deleted successfully.',
-        'partial_success' => 'Company deleted successfully. See additional information below. | :count companies were deleted successfully. See additional information below.',
+        'confirm' => 'Bạn có chắc chắn muốn xóa đơn vị/cơ quan này?',
+        'error' => 'Đã xảy ra sự cố khi xóa đơn vị/cơ quan. Vui lòng thử lại.',
+        'success' => 'Đơn vị/Cơ quan đã bị xóa thành công.',
+        'bulk_success' => 'Đã xóa đơn vị/cơ quan thành công.|Đã xóa thành công :count đơn vị/cơ quan.',
+        'partial_success' => 'Đã xóa đơn vị/cơ quan thành công. Xem thêm thông tin bên dưới.|Đã xóa thành công :count đơn vị/cơ quan.',
     ],
+    'assoc_locations' => 'Đơn vị/Cơ quan này hiện đang liên kết với ít nhất một vị trí và không thể xóa. Vui lòng cập nhật các vị trí của bạn để không còn tham chiếu đến đơn vị/cơ quan này và thử lại.',
 ];

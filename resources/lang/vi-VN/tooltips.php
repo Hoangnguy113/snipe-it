@@ -1,24 +1,21 @@
 <?php
 
 return [
-
     'disabled_assoc' => [
-        'accessory' => 'This accessory cannot be deleted because it still has items, users, or locations associated with it',
-        'asset' => 'This asset cannot be deleted because it still has items associated with it',
-        'category' => 'This category cannot be deleted because it still has items associated with it',
-        'company' => 'This company cannot be deleted because it still has items or users associated with it',
-        'component' => 'This component cannot be deleted because it still has items associated with it',
-        'custom_field' => 'This custom field cannot be deleted because it is still associated with at least one fieldset',
-        'department' => 'This department cannot be deleted because it still has users associated with it',
-        'location' => 'This location cannot be deleted because it still has items or users associated with it',
-        'manufacturer' => 'This manufacturer cannot be deleted because it still has items associated with it',
-        'supplier' => 'This supplier cannot be deleted because it still has items associated with it',
-        'user' => 'This user cannot be deleted because it still has items associated with it',
-        'user_self' => 'You cannot delete yourself',
+        'accessory' => 'Không thể xóa phụ kiện này vì vẫn còn các mục, người dùng hoặc vị trí liên kết với nó',
+        'asset' => 'Không thể xóa tài sản này vì vẫn còn các mục liên kết với nó',
+        'category' => 'Không thể xóa danh mục này vì vẫn còn các mục liên kết với nó',
+        'company' => 'Không thể xóa đơn vị/cơ quan này vì vẫn còn các mục hoặc người dùng liên kết với nó',
+        'component' => 'Không thể xóa linh kiện này vì vẫn còn các mục liên kết với nó',
+        'custom_field' => 'Không thể xóa trường tùy chỉnh này vì nó vẫn đang được liên kết với ít nhất một bộ trường',
+        'department' => 'Không thể xóa phòng ban này vì vẫn còn người dùng liên kết với nó',
+        'location' => 'Không thể xóa vị trí này vì vẫn còn các mục hoặc người dùng liên kết với nó',
+        'manufacturer' => 'Không thể xóa nhà sản xuất này vì vẫn còn các mục liên kết với nó',
+        'supplier' => 'Không thể xóa nhà cung cấp này vì vẫn còn các mục liên kết với nó',
+        'user' => 'Không thể xóa người dùng này vì vẫn còn các mục được cấp phát cho họ',
+        'user_self' => 'Bạn không thể tự xóa chính mình',
     ],
-
     'checkin_all' => [
-        'user' => 'Checkin all items for this user and optionally delete them. You will be able to confirm this on the next page.',
+        'user' => 'Thu hồi tất cả các mục đã cấp phát cho người dùng này và tùy chọn xóa người dùng. Bạn có thể xác nhận điều này ở trang tiếp theo.',
     ],
-
 ];

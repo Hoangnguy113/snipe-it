@@ -1,22 +1,26 @@
 <?php
 
 return [
-    'not_found' => 'Maintenance type not found.',
+    'not_found' => 'Không tìm thấy loại bảo trì.',
     'create' => [
-        'error' => 'Maintenance type was not created, please try again.',
-        'success' => 'Maintenance type created successfully.',
+        'error' => 'Loại bảo trì chưa được tạo, vui lòng thử lại.',
+        'success' => 'Loại bảo trì đã được tạo thành công.',
     ],
     'update' => [
-        'error' => 'Maintenance type was not updated, please try again.',
-        'success' => 'Maintenance type updated successfully.',
+        'error' => 'Loại bảo trì chưa được cập nhật, vui lòng thử lại.',
+        'success' => 'Loại bảo trì đã được cập nhật thành công.',
     ],
     'delete' => [
-        'confirm' => 'Are you sure you wish to delete this maintenance type?',
-        'error' => 'There was an issue deleting this maintenance type. Please try again.',
-        'success' => 'The maintenance type was deleted successfully.',
+        'confirm' => 'Bạn có chắc chắn muốn xóa loại bảo trì này không?',
+        'error' => 'Có sự cố khi xóa loại bảo trì. Vui lòng thử lại.',
+        'success' => 'Loại bảo trì đã được xóa thành công.',
+        'bulk_success' => 'Đã xóa loại bảo trì thành công.|Đã xóa thành công :count loại bảo trì.',
+        'partial_success' => 'Đã xóa loại bảo trì thành công. Xem thêm thông tin bên dưới.|Đã xóa thành công :count loại bảo trì. Xem thêm thông tin bên dưới.',
     ],
     'complete' => [
-        'success' => 'Maintenance marked as complete.',
-        'error' => 'There was an issue marking this maintenance as complete. Please try again.',
+        'success' => 'Đã đánh dấu hoàn thành thành công.',
+        'error' => 'Có sự cố khi đánh dấu hoàn thành.',
     ],
+    'does_not_exist' => 'Loại bảo trì không tồn tại.',
+    'assoc_maintenances' => 'Loại bảo trì này hiện đang được liên kết với ít nhất một bảo trì tài sản và không thể xóa. Vui lòng cập nhật các bảo trì tài sản của bạn để không còn tham chiếu đến loại này và thử lại.',
 ];

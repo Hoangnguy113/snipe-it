@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'select_type' => 'Select Maintenance Type',
-    'asset_maintenance_type' => 'Lại duy trì tài sản',
+    'select_type' => 'Chọn loại bảo trì',
+    'asset_maintenance_type' => 'Loại bảo trì',
     'title' => 'Tiêu đề',
     'start_date' => 'Ngày Bắt Đầu',
     'completion_date' => 'Ngày hoàn thành',

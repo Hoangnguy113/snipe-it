@@ -2,7 +2,7 @@
 
 return [
     'about_manufacturers_title' => 'Giới thiệu về nhà sản xuất',
-    'about_manufacturers_text' => 'Các nhà sản xuất là những công ty tạo ra tài sản của bạn. Bạn có thể lưu trữ thông tin liên hệ hỗ trợ quan trọng về họ tại đây, sẽ được hiển thị trên trang chi tiết tài sản của bạn.',
+    'about_manufacturers_text' => 'Nhà sản xuất là các công ty tạo ra tài sản của bạn. Bạn có thể lưu trữ thông tin liên hệ hỗ trợ quan trọng về họ ở đây, thông tin này sẽ được hiển thị trên trang chi tiết tài sản của bạn.',
     'asset_manufacturers' => 'Hãng sản xuất',
     'create' => 'Tạo hãng sản xuất',
     'id' => 'ID',
@@ -10,7 +10,6 @@ return [
     'support_email' => 'Hỗ trợ Email',
     'support_phone' => 'Điện thoại hỗ trợ',
     'support_url' => 'URL Hỗ trợ',
-    'warranty_lookup_url' => 'Warranty Lookup URL',
+    'warranty_lookup_url' => 'URL tra cứu bảo hành',
     'update' => 'Cập nhật hãng sản xuất',
-
 ];

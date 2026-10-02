@@ -1,10 +1,9 @@
 <?php
 
 return [
-
-    'does_not_exist' => 'Bộ không tồn tại.',
-    'department_already_exists' => 'Đã tồn tại bộ phận trong vị trí công ty này. Hoặc bạn có thể chọn một tên cụ thể hơn cho bộ phận này. ',
-    'assoc_users' => 'Bộ phận này hiện đang kết hợp với ít nhất một người dùng và không thể bị xóa. Hãy cập nhật người dùng của bạn để không tham khảo bộ phận này nữa và thử lại.',
+    'does_not_exist' => 'Phòng ban không tồn tại.',
+    'department_already_exists' => 'Đã tồn tại bộ phận trong vị trí đơn vị/cơ quan này. Hoặc bạn có thể chọn một tên cụ thể hơn cho bộ phận này. ',
+    'assoc_users' => 'Phòng ban này hiện đang liên kết với ít nhất một người dùng và không thể xóa. Vui lòng cập nhật người dùng của bạn để không còn tham chiếu đến phòng ban này và thử lại.',
     'create' => [
         'error' => 'Phòng không được tạo, vui lòng thử lại.',
         'success' => 'Bộ tạo thành công.',
@@ -17,8 +16,7 @@ return [
         'confirm' => 'Bạn có chắc chắn muốn xóa bộ phận này?',
         'error' => 'Đã xảy ra sự cố khi xóa bộ phận. Vui lòng thử lại.',
         'success' => 'Bộ đã bị xóa thành công.',
-        'bulk_success' => 'Department deleted successfully.|:count departments were deleted successfully.',
-        'partial_success' => 'Department deleted successfully. See additional information below. | :count departments were deleted successfully. See additional information below.',
+        'bulk_success' => 'Đã xóa phòng ban thành công.|Đã xóa thành công :count phòng ban.',
+        'partial_success' => 'Đã xóa phòng ban thành công. Xem chi tiết bên dưới.',
     ],
-
 ];

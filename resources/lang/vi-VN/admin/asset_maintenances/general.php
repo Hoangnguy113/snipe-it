@@ -12,5 +12,5 @@ return [
     'software_support' => 'Hỗ trợ phần mềm',
     'hardware_support' => 'Hỗ trợ phần cứng',
     'configuration_change' => 'Thay đổi cấu hình',
-    'pat_test' => 'PAT Test',
+    'pat_test' => 'Kiểm định an toàn điện (PAT)',
 ];

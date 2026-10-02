@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'component_name' => 'Tên thành phần',
-    'checkin' => 'Hợp phần Checkin',
-    'checkout' => 'Hợp phần thanh toán',
+    'component_name' => 'Tên linh kiện',
+    'checkin' => 'Thu hồi linh kiện',
+    'checkout' => 'Cấp phát linh kiện',
     'cost' => 'Chi phí mua hàng',
     'create' => 'Tạo thành phần',
     'edit' => 'Chỉnh sửa Hợp phần',
@@ -13,7 +13,7 @@ return [
     'total' => 'Tổng số',
     'update' => 'Cập nhật Hợp phần',
     'checkin_limit' => 'Số lượng kiểm tra phải bằng hoặc tháp hơn giá trị :assigned_qty',
-    'exclude_deleted' => 'Exclude Deleted Components',
-    'include_deleted' => 'Include Deleted Components',
-    'only_deleted' => 'Only Deleted Components',
+    'exclude_deleted' => 'Loại trừ linh kiện đã xóa',
+    'include_deleted' => 'Bao gồm linh kiện đã xóa',
+    'only_deleted' => 'Chỉ linh kiện đã xóa',
 ];

@@ -1,80 +1,63 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
-    'week_start_select' => 'Select Day of Week',
-    'week_start' => 'Day the Week Starts On',
-    'today' => 'Today',
-    'clear' => 'Clear',
+    'week_start_select' => 'Chọn ngày bắt đầu tuần',
+    'week_start' => 'Ngày bắt đầu của tuần',
+    'today' => 'Hôm nay',
+    'clear' => 'Xóa trắng',
     'days' => [
-        'sunday' => 'Sunday',
-        'monday' => 'Monday',
-        'tuesday' => 'Tuesday',
-        'wednesday' => 'Wednesday',
-        'thursday' => 'Thursday',
-        'friday' => 'Friday',
-        'saturday' => 'Saturday',
+        'sunday' => 'Chủ nhật',
+        'monday' => 'Thứ hai',
+        'tuesday' => 'Thứ ba',
+        'wednesday' => 'Thứ tư',
+        'thursday' => 'Thứ năm',
+        'friday' => 'Thứ sáu',
+        'saturday' => 'Thứ bảy',
     ],
-
     'short_days' => [
-        'sunday' => 'Sun',
-        'monday' => 'Mon',
-        'tuesday' => 'Tue',
-        'wednesday' => 'Wed',
-        'thursday' => 'Thu',
-        'friday' => 'Fri',
-        'saturday' => 'Sat',
+        'sunday' => 'CN',
+        'monday' => 'T2',
+        'tuesday' => 'T3',
+        'wednesday' => 'T4',
+        'thursday' => 'T5',
+        'friday' => 'T6',
+        'saturday' => 'T7',
     ],
-
     'min_days' => [
-        'sunday' => 'Su',
-        'monday' => 'Mo',
-        'tuesday' => 'Tu',
-        'wednesday' => 'We',
-        'thursday' => 'Th',
-        'friday' => 'Fr',
-        'saturday' => 'Sa',
+        'sunday' => 'CN',
+        'monday' => 'T2',
+        'tuesday' => 'T3',
+        'wednesday' => 'T4',
+        'thursday' => 'T5',
+        'friday' => 'T6',
+        'saturday' => 'T7',
     ],
-
     'months' => [
-        'january' => 'January',
-        'february' => 'February',
-        'march' => 'March',
-        'april' => 'April',
-        'may' => 'May',
-        'june' => 'June',
-        'july' => 'July',
-        'august' => 'August',
-        'september' => 'September',
-        'october' => 'October',
-        'november' => 'November',
-        'december' => 'December',
+        'january' => 'Tháng một',
+        'february' => 'Tháng hai',
+        'march' => 'Tháng ba',
+        'april' => 'Tháng tư',
+        'may' => 'Tháng năm',
+        'june' => 'Tháng sáu',
+        'july' => 'Tháng bảy',
+        'august' => 'Tháng tám',
+        'september' => 'Tháng chín',
+        'october' => 'Tháng mười',
+        'november' => 'Tháng mười một',
+        'december' => 'Tháng mười hai',
     ],
-
     'months_short' => [
-        'january' => 'Jan',
-        'february' => 'Feb',
-        'march' => 'Mar',
-        'april' => 'Apr',
-        'may' => 'May',
-        'june' => 'Jun',
-        'july' => 'Jul',
-        'august' => 'Aug',
-        'september' => 'Sep',
-        'october' => 'Oct',
-        'november' => 'Nov',
-        'december' => 'Dec',
+        'january' => 'Thg 1',
+        'february' => 'Thg 2',
+        'march' => 'Thg 3',
+        'april' => 'Thg 4',
+        'may' => 'Thg 5',
+        'june' => 'Thg 6',
+        'july' => 'Thg 7',
+        'august' => 'Thg 8',
+        'september' => 'Thg 9',
+        'october' => 'Thg 10',
+        'november' => 'Thg 11',
+        'december' => 'Thg 12',
     ],
-
 ];

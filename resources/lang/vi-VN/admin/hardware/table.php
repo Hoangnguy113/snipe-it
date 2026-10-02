@@ -1,10 +1,9 @@
 <?php
 
 return [
-
     'asset_tag' => 'Thẻ tài sản',
     'asset_model' => 'Loại',
-    'assigned_to' => 'Bàn giao cho',
+    'assigned_to' => 'Đã cấp phát cho',
     'book_value' => 'Giá trị hiện tại',
     'change' => 'Vào/Ra',
     'checkout_date' => 'Ngày checkout',
@@ -13,7 +12,7 @@ return [
     'current_value' => 'Giá trị hiện tại',
     'diff' => 'Khác nhau',
     'dl_csv' => 'Tải tập tin CSV xuống',
-    'eol' => 'EOL',
+    'eol' => 'Hết hạn sử dụng (EOL)',
     'id' => 'Định danh',
     'last_checkin_date' => 'Ngày cuối cùng đăng ký đưa vào',
     'location' => 'Vị trí',
@@ -28,5 +27,7 @@ return [
     'requesting_user' => 'Người dùng đang yêu cầu',
     'requested_date' => 'Ngày yêu cầu',
     'changed' => 'Đã thay đổi',
-    'icon' => 'Icon',
+    'icon' => 'Biểu tượng',
+    'byod' => 'BYOD',
+    'pending_requesters' => 'Cũng được yêu cầu bởi',
 ];
