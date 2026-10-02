@@ -1,0 +1,83 @@
+# Bản dịch tiếng Việt cho GLPI Agent Toolbox Configuration - Quản lý tài sản công & CNTT
+
+ToolBox plugin Configuration: Cấu hình tiện ích ToolBox
+
+Credentials YAML file: Tệp YAML thông tin xác thực:
+IP Ranges YAML file: Tệp YAML các dải địa chỉ IP:
+Scheduling YAML file: Tệp YAML lịch kiểm kê:
+Navigation: Điều hướng hệ thống:
+Default page: Trang mặc định:
+Navigation bar: Thanh điều hướng:
+Show Credentials in navigation bar: Hiển thị Thông tin xác thực trên thanh điều hướng:
+Show Inventory tasks in navigation bar: Hiển thị Nhiệm vụ kiểm kê trên thanh điều hướng:
+Show IP Ranges in navigation bar: Hiển thị Dải địa chỉ IP trên thanh điều hướng:
+Show Results in navigation bar: Hiển thị Kết quả kiểm kê trên thanh điều hướng:
+Show Scheduling in navigation bar: Hiển thị Lịch kiểm kê trên thanh điều hướng:
+Show Raw YAML navigation: Hiển thị mục cấu hình YAML gốc:
+Show agent home navigation: Hiển thị mục Trang chủ tác tử:
+Network task: Tác vụ kiểm kê mạng:
+Base folder to save inventory files: Thư mục lưu trữ tệp dữ liệu kiểm kê:
+Network task threads number options: Tùy chọn số luồng xử lý quét mạng:
+Network task SNMP timeout options: Tùy chọn thời gian chờ SNMP của tác vụ mạng:
+Defaut columns for results list view: Các cột mặc định cho bảng danh sách kết quả:
+ToolBox User Interface: Giao diện người dùng ToolBox:
+Number of row to display options: Tùy chọn số hàng hiển thị:
+Header background color: Màu nền tiêu đề:
+Language: Ngôn ngữ hiển thị:
+Supported languages: Các ngôn ngữ hỗ trợ:
+Logo: Biểu trưng / Logo:
+Toolbox plugin configuration: Cấu hình plugin Toolbox:
+Configuration update authorized: Cho phép cập nhật cấu hình:
+YAML configuration file (default YAML file): Tệp cấu hình YAML (tệp mặc định):
+YAML edition: Chỉnh sửa YAML:
+Raw YAML edition authorization: Cấp quyền chỉnh sửa YAML trực tiếp:
+Inventories: Danh mục kiểm kê tài sản:
+List of tags: Danh sách các thẻ phân loại (Tags):
+Exported archive format: Định dạng tệp nén xuất dữ liệu:
+Custom fields YAML file: Tệp YAML định nghĩa trường tùy chỉnh:
+Show MibSupport in navigation bar: Hiển thị Hỗ trợ MIB trên thanh điều hướng:
+Disable MibSupport in agent: Vô hiệu hóa Hỗ trợ MIB trong tác tử:
+MibSupport YAML file: Tệp YAML định nghĩa hỗ trợ MIB:
+Session timeout: Thời gian hết hạn phiên làm việc:
+Other fields to show in dedicated section: Các trường khác hiển thị trong mục riêng:
+
+Backup YAML: Sao lưu cấu hình YAML:
+
+default from CSS: mặc định từ CSS:
+[default]: [mặc định]:
+
+// Tips
+Defaults to first page of the options list: Mặc định là trang đầu tiên trong danh mục tùy chọn:
+Defaults to first language of the supported languages: Mặc định là ngôn ngữ đầu tiên trong danh mục hỗ trợ:
+threads number options separated by pipes,: danh sách tùy chọn số luồng phân tách bằng dấu gạch đứng (|),:
+first value used as default threads: giá trị đầu tiên dùng làm số luồng mặc định:
+(default=1|5|10|20|40): (mặc định=1|5|10|20|40):
+SNMP timeout options separated by pipes,: danh sách tùy chọn thời gian chờ SNMP phân tách bằng dấu gạch đứng (|),:
+first value used as default timeout: giá trị đầu tiên dùng làm thời gian chờ mặc định:
+(default=1|10|30|60): (mặc định=1|10|30|60):
+Base folder may be relative to the agent folder: Thư mục gốc có thể là đường dẫn tương đối so với thư mục tác tử:
+Numbers separated by pipes,: Các số phân tách bằng dấu gạch đứng (|),:
+first value used as default,: giá trị đầu tiên được chọn làm mặc định,:
+0=no limit: 0=không giới hạn:
+(default=30|0|5|10|20|40|50|100|500): (mặc định=30|0|5|10|20|40|50|100|500):
+Ordered columns list separated by pipes: Danh sách các cột hiển thị theo thứ tự phân tách bằng dấu gạch đứng (|):
+(default=name|mac|ip|serial|source|type): (mặc định=name|mac|ip|serial|source|type):
+list of languages separated by pipes: danh sách ngôn ngữ phân tách bằng dấu gạch đứng (|):
+first language is used as default: ngôn ngữ đầu tiên được dùng làm mặc định:
+(default=en|fr): (mặc định=vi|en|fr):
+Tags separated by commas: Các thẻ phân loại phân tách bằng dấu phẩy:
+You can use it to separate inventory files by site: Bạn có thể sử dụng thẻ này để phân loại dữ liệu kiểm kê theo từng cơ quan/đơn vị/địa điểm:
+Defaults to 86400 seconds (1 day): Mặc định là 86400 giây (1 ngày):
+List of fields to show in 'Other fields' section with a field definition by line: Danh sách trường hiển thị trong mục 'Trường khác' với mỗi định nghĩa trên một dòng:
+A line definition should be in the following format: Cấu trúc mỗi dòng theo định dạng sau:
+NAME;TEXT;NODE;FILTER: TÊN;TIÊU_ĐỀ;NODE;BỘ_LỌC:
+NAME is the simple reference string you may need set in default columns to list configuration: NAME là chuỗi định danh tham chiếu bạn có thể cài đặt trong cấu hình cột danh sách mặc định:
+TEXT is the text to show as field name in the sections: TEXT là nhãn hiển thị tên trường trong các mục thông tin:
+NODE is a list of node names separated by commas which should: NODE là danh sách các nút phân tách bằng dấu phẩy,:
+be the path to the XML node in inventory XML file: biểu diễn đường dẫn đến nút XML trong tệp kiểm kê tài sản:
+FILTER can be set to select a node when the NODE match on a node list: FILTER được dùng để chọn nút khi NODE khớp trong danh sách nút:
+In that case, FILTER could be a test like KEY=VALUE where KEY is another value name of the nodes: Khi đó, FILTER có dạng KEY=VALUE với KEY là giá trị thuộc tính khác của nút:
+and VALUE the expected value and it is interpreted as a perl regex: và VALUE là giá trị mong đợi được diễn giải dưới dạng biểu thức chính quy (Perl regex):
+NODE can match on any kind of XML: NODE có thể khớp với bất kỳ cấu trúc XML nào:
+NODE path is expect to be under the first 'REQUEST' node: Đường dẫn NODE thường nằm dưới nút 'REQUEST' đầu tiên:
+As examples, 'DEVICEID' and 'CONTENT,VERSIONCLIENT' are valid paths: Ví dụ: 'DEVICEID' và 'CONTENT,VERSIONCLIENT' là các đường dẫn hợp lệ:

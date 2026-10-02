@@ -1,23 +1,12 @@
-Name,Tag Color,EULA,Use Default EULA,Require Acceptance,Alert on Response,Category Type,Send Checkin Email,Notes
-Frozen Asian Meals,#af347f,,true,true,true,accessory,false,contextually-based
-Tank Tops,#3c120e,"Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.
-
-Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.
-
-Fusce consequat. Nulla nisl. Nunc nisl.",true,false,false,license,true,Networked
-Health & Wellness Tools,,,false,false,false,asset,true,Managed
-Health & Wellness Tools,#c66c5d,,false,false,false,asset,false,capacity
-Pet Accessories,#627e35,"Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.
-
-Phasellus in felis. Donec semper sapien a libero. Nam dui.
-
-Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",true,true,false,consumable,true,Organic
-Savory Nuts,,,false,false,true,asset,true,algorithm
-Supplements,#d9585c,,true,false,true,accessory,false,demand-driven
-Home Footwear,#a556d3,"Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.
-
-Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.
-
-Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",true,true,false,component,false,Triple-buffered
-Wellness & Relaxation,#123774,,false,false,false,component,true,Operative
-Breakfast Cereals,#e90eb5,,true,false,false,consumable,false,hybrid
+﻿Tên danh mục,Màu nhãn,Văn bản EULA,Sử dụng EULA mặc định,Yêu cầu xác nhận,Cảnh báo khi phản hồi,Loại danh mục,Gửi email khi thu hồi,Ghi chú
+Máy tính để bàn,#007bff,Quy chế quản lý và sử dụng máy tính làm việc tại Bệnh viện đa khoa Bắc Kạn,true,true,true,asset,true,Máy tính để bàn PC phục vụ công tác chuyên môn
+Máy tính xách tay (Laptop),#28a745,Quy định bàn giao và bảo quản laptop cơ quan,true,true,true,asset,true,Laptop dành cho ban giám đốc và bác sĩ trưởng khoa
+Máy in & Máy quét,#fd7e14,,true,false,false,asset,false,Máy in laser đơn năng đa năng và máy scan tài liệu
+Máy chủ & Lưu trữ,#6f42c1,,false,true,true,asset,true,Server lưu trữ cơ sở dữ liệu bệnh viện PACS/HIS
+Thiết bị mạng & Viễn thông,#20c997,,false,false,false,asset,false,Router switch firewall và wifi chuyên dụng
+Màn hình máy tính,#17a2b8,,true,false,false,asset,false,Màn hình hiển thị LCD/LED từ 21.5 đến 27 inch
+Bộ lưu điện (UPS),#ffc107,,false,false,false,asset,false,Bộ lưu điện dự phòng cho máy chủ và trạm làm việc
+Bản quyền phần mềm,#e83e8c,Thỏa thuận cấp phép bản quyền phần mềm y tế,true,true,true,license,false,Hệ điều hành phần mềm văn phòng và phần mềm chuyên dụng
+Linh kiện máy tính,#6c757d,,false,false,false,component,false,RAM ổ cứng SSD nguồn card mạng mainboard
+Vật tư tiêu hao in ấn,#343a40,,false,false,false,consumable,false,Hộp mực ruy băng giấy in hạt mạng cáp mạng
+Phụ kiện máy tính,#17a2b8,,false,false,false,accessory,false,Chuột bàn phím tai nghe webcam bộ chuyển đổi

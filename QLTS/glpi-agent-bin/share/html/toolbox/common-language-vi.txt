@@ -1,0 +1,85 @@
+# Bản dịch tiếng Việt cho GLPI Agent Toolbox - Chuyên ngành Quản lý tài sản công & CNTT
+
+Home: Trang chủ
+GLPI Agent: Tác tử GLPI (GLPI Agent)
+ToolBox GLPI Agent plugin: Tiện ích mở rộng ToolBox GLPI Agent
+Inventory: Kiểm kê tài sản
+Results: Kết quả kiểm kê
+Raw YAML: Dữ liệu YAML gốc
+Raw YAML edition: Chỉnh sửa cấu hình YAML gốc
+Configuration: Cấu hình hệ thống
+IP range: Dải địa chỉ IP
+IP Ranges: Các dải địa chỉ IP
+Credentials: Thông tin xác thực / Mật khẩu truy cập
+Scheduling: Lập lịch kiểm kê
+Tag: Thẻ phân loại tài sản (Tag)
+DeviceID: Mã định danh thiết bị (DeviceID)
+AgentID: Mã định danh tác tử (AgentID)
+Inventory tasks: Nhiệm vụ kiểm kê tài sản
+Agent home: Trang quản trị tác tử
+
+Edit: Chỉnh sửa
+Update: Cập nhật
+Delete: Xóa bỏ
+Rename: Đổi tên
+Revert selection: Đảo ngược lựa chọn
+
+Anonymous: Ẩn danh
+
+yes: Có
+no: Không
+
+From %d to %d of %s: Từ %d đến %d trong tổng số %s:
+
+Display (number of items): Hiển thị (số lượng mục):
+no limit: Không giới hạn
+empty list: Danh sách trống
+
+Add: Thêm mới
+Name: Tên
+Description: Mô tả
+Cancel: Hủy bỏ
+Go back to list: Quay lại danh sách
+
+Reset: Đặt lại
+Reverse selection: Đảo ngược vùng chọn
+
+Type: Loại thiết bị / Phân loại
+Disable: Vô hiệu hóa
+Enable: Kích hoạt
+First ip: Địa chỉ IP bắt đầu
+Last ip: Địa chỉ IP kết thúc
+
+Delay: Khoảng trễ
+delay: khoảng trễ
+timeslot: khung thời gian
+Timeslot: Khung thời gian
+Timeslots: Các khung thời gian
+second: giây
+seconds: giây
+minute: phút
+minutes: phút
+hour: giờ
+hours: giờ
+day: ngày
+days: ngày
+week: tuần
+weeks: tuần
+start: bắt đầu
+duration: thời lượng
+Duration: Thời lượng
+all: tất cả
+mon: Thứ 2
+tue: Thứ 3
+wed: Thứ 4
+thu: Thứ 5
+fri: Thứ 6
+sat: Thứ 7
+sun: Chủ nhật
+monday: Thứ Hai
+tuesday: Thứ Ba
+wednesday: Thứ Tư
+thursday: Thứ Năm
+friday: Thứ Sáu
+saturday: Thứ Bảy
+sunday: Chủ Nhật

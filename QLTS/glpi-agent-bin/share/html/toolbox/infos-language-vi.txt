@@ -1,0 +1,7 @@
+# Bản dịch tiếng Việt cho GLPI Agent Infos - Quản lý tài sản công & CNTT
+
+INFO: THÔNG TIN:
+
+New credential: Thêm thông tin xác thực mới:
+Credential update: Cập nhật thông tin xác thực:
+No password for ssh remote inventory type involves you installed public key authentication: Không dùng mật khẩu cho kiểm kê từ xa qua SSH yêu cầu bạn đã cài đặt xác thực khóa công khai (public key):

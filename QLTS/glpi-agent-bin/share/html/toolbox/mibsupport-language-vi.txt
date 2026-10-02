@@ -1,0 +1,49 @@
+# Bản dịch tiếng Việt cho GLPI Agent MIB Support - Quản lý tài sản công & CNTT
+
+MibSupport Configuration: Cấu hình hỗ trợ MIB:
+Infos: Thông tin:
+SysobjectID: Mã định danh hệ thống (SysObjectID):
+MibSupport: Hỗ trợ MIB:
+
+# Alias
+Alias: Bí danh (Alias):
+Aliases: Danh sách bí danh:
+OID: Mã định danh đối tượng (OID):
+Here is the list of known aliases: Dưới đây là danh sách các bí danh đã biết:
+Alias must be uniq, begin by a letter or digit and only contain letters, digits or eventually tirets, dots and underscores: Bí danh phải là duy nhất, bắt đầu bằng chữ cái hoặc chữ số và chỉ chứa chữ cái, chữ số, dấu gạch nối, dấu chấm và dấu gạch dưới:
+Aliases are used to fully resolve symbolic OID to plain numeric OID: Bí danh được dùng để phân giải OID dạng ký hiệu sang OID dạng số:
+Agent still supports following aliases: Tác tử hiện hỗ trợ các bí danh sau:
+Add new alias: Thêm bí danh mới:
+Edit &laquo;&nbsp;%s&nbsp;&raquo; alias: Chỉnh sửa bí danh &laquo;&nbsp;%s&nbsp;&raquo;:
+OID can begin by a letter, a digit or a dot and only contain letters, digits, tirets and dots: OID có thể bắt đầu bằng chữ cái, chữ số hoặc dấu chấm và chỉ chứa chữ cái, chữ số, gạch ngang và dấu chấm:
+
+# Rules
+Rules: Các quy tắc:
+Rule name: Tên quy tắc:
+Rule type: Loại quy tắc:
+Value: Giá trị:
+Value type: Loại giá trị:
+Add new rule: Thêm quy tắc mới:
+Rule name must be uniq, begin by a letter or digit and only contain letters, digits or eventually tirets, dots and underscores: Tên quy tắc phải là duy nhất, bắt đầu bằng chữ cái hoặc chữ số và chỉ chứa chữ cái, chữ số, dấu gạch nối, dấu chấm và dấu gạch dưới:
+Edit &laquo;&nbsp;%s&nbsp;&raquo; rule: Chỉnh sửa quy tắc &laquo;&nbsp;%s&nbsp;&raquo;:
+
+# SysObjectID
+OID to match: OID cần so khớp:
+Ruleset: Tập quy tắc:
+Add new sysObjectID match: Thêm quy tắc so khớp sysObjectID mới:
+Add sysObjectID match: Thêm quy tắc so khớp sysObjectID:
+Edit &laquo;&nbsp;%s&nbsp;&raquo; sysObjectID match: Chỉnh sửa quy tắc so khớp sysObjectID &laquo;&nbsp;%s&nbsp;&raquo;:
+Name must be uniq, begin by a letter or digit and only contain letters, digits or eventually tirets, dots and underscores: Tên phải là duy nhất, bắt đầu bằng chữ cái hoặc số và chỉ chứa chữ cái, số, gạch ngang, chấm và gạch dưới:
+Associated rules: Các quy tắc liên kết:
+Add rule: Thêm quy tắc:
+Remove rule: Gỡ bỏ quy tắc:
+
+# MIB Support
+MIB Support name: Tên hỗ trợ MIB:
+MIB OID: OID của MIB:
+Add new MIB support: Thêm mới hỗ trợ MIB:
+Add MIB support match: Thêm so khớp hỗ trợ MIB:
+Edit &laquo;&nbsp;%s&nbsp;&raquo; MIB support match: Chỉnh sửa so khớp hỗ trợ MIB &laquo;&nbsp;%s&nbsp;&raquo;:
+
+# Ruleset
+Update MIBSupport ruleset: Cập nhật tập quy tắc MIBSupport:

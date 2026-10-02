@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ ($snipeSettings) && ($snipeSettings->site_name) ? $snipeSettings->site_name : 'Snipe-IT' }}</title>
+    <title>{{ ($snipeSettings) && ($snipeSettings->site_name) ? $snipeSettings->site_name : 'Phần mềm quản lý thiết bị CNTT' }}</title>
 
     <link rel="shortcut icon" type="image/ico" href="{{ ($snipeSettings) && ($snipeSettings->favicon!='') ?  Storage::disk('public')->url(e($snipeSettings->favicon)) : config('app.url').'/favicon.ico' }}">
 
@@ -71,16 +71,20 @@
             <a href="{{ config('app.url') }}" class="basic-page-header__link">
                 @if (($snipeSettings) && ($snipeSettings->logo!=''))
                     <img id="login-logo" src="{{ Storage::disk('public')->url('').e($snipeSettings->logo) }}" alt="{{ $snipeSettings->site_name }}">
+                @elseif (($snipeSettings) && ($snipeSettings->brand == 1))
+                    <span class="basic-page-header__site-name">{{ $snipeSettings->site_name ?? 'Phần mềm quản lý thiết bị CNTT' }}</span>
                 @else
-                    <span class="basic-page-header__site-name">{{ $snipeSettings->site_name ?? 'Snipe-IT' }}</span>
+                    <img id="login-logo" src="{{ config('app.url') }}/img/logo.png" alt="{{ $snipeSettings->site_name ?? 'Phần mềm quản lý thiết bị CNTT' }}">
                 @endif
             </a>
         @else
             <span class="basic-page-header__link">
                 @if (($snipeSettings) && ($snipeSettings->logo!=''))
                     <img id="login-logo" src="{{ Storage::disk('public')->url('').e($snipeSettings->logo) }}" alt="{{ $snipeSettings->site_name }}">
+                @elseif (($snipeSettings) && ($snipeSettings->brand == 1))
+                    <span class="basic-page-header__site-name">{{ $snipeSettings->site_name ?? 'Phần mềm quản lý thiết bị CNTT' }}</span>
                 @else
-                    <span class="basic-page-header__site-name">{{ $snipeSettings->site_name ?? 'Snipe-IT' }}</span>
+                    <img id="login-logo" src="{{ config('app.url') }}/img/logo.png" alt="{{ $snipeSettings->site_name ?? 'Phần mềm quản lý thiết bị CNTT' }}">
                 @endif
             </span>
         @endauth

@@ -1,11 +1,7 @@
-Name,Category,Location,Supplier,Company,Quantity,Minimum Quantity,Model Number,Item Number,Notes,Manufacturer,Purchase Date,Purchase Cost,Order Number
-Organic Baby Spinach,Food - Produce,,Demivee,Trudoo,5,55,883583296-9,028242181-5,"Fresh baby spinach leaves, great for salads and smoothies.",Voolith,2025-05-12,47.81,071121963
-Juice Extractor,Kitchen,Xinwan,Viva,,9,40,028310766-9,075603430-2,Efficient juicer for fresh fruit and vegetable juices.,Gigazoom,2026-01-21,66.85,064101673
-Portable Charger with Solar Panel,Electronics,Neofbaun,Wikizz,Jetwire,79,87,325056853-8,708119213-0,,Yodo,2025-09-10,43.92,063211726
-Cucumber,Food - Produce,Ringin Kembar,Skibox,Skinte,20,19,307089206-X,309818522-8,,Skinder,2025-05-07,99.82,091001322
-Scented Candle Set,Home,Luján,Npath,Kwinu,23,74,444763378-7,265535717-5,Set of soothing scented candles for relaxation and ambiance.,Quimba,,47.03,284272780
-Baked Falafel Balls,Food - Frozen Vegetables,Tatebayashi,Livepath,Divape,31,70,,840631382-X,"Frozen falafel balls made from chickpeas and herbs, perfect for quick meals or salads.",Wikizz,2025-11-21,87.88,
-Electric Hot Water Dispenser,Kitchen,,Yakidoo,Edgeclub,74,83,548103391-7,524997287-X,Instant hot water dispenser for tea and cooking.,InnoZ,2025-06-14,95.27,
-Toy Building Set,Toys,,Bubblemix,Devpulse,75,25,317959667-8,512147821-6,,,2025-05-28,63.26,067013700
-Over-Ear Headphones,Audio,Chóra,Jabbersphere,Twinder,87,66,,109936885-5,Comfortable over-ear headphones with deep bass.,Tanoodle,2025-05-21,41.88,267091250
-Rice Noodles,Food - Grains,Novovasylivka,Photobean,Skiba,71,23,698609219-9,930631559-7,"Thin rice noodles, ideal for stir-fries and soups.",Divavu,2025-05-25,2.16,061212727
+﻿Công ty,Tên,Danh mục,Nhà cung cấp,Nhà sản xuất,Số lượng,Vị trí,Số đơn hàng,Số lượng tối thiểu,Mã kiểu máy,Ghi chú,Ngày mua,Giá mua
+Bệnh viện đa khoa Bắc Kạn,Hộp mực in Canon Cartridge 303,Vật tư tiêu hao in ấn,Công ty TNHH Thiết bị Y tế & Tin học An Phát,Canon Inc,60,Khoa Dược,DH-2023-019,15,CART-303,Hộp mực in cho máy Canon LBP2900/3000 in đơn thuốc,2023-01-20,380000
+Bệnh viện đa khoa Bắc Kạn,Hộp mực in Brother TN-2385,Vật tư tiêu hao in ấn,Công ty TNHH Thiết bị Y tế & Tin học An Phát,Brother Industries,30,Khoa Dược,DH-2023-019,10,TN-2385,Hộp mực in 2600 trang cho máy in đa năng MFC-L2701DW,2023-01-20,520000
+Bệnh viện đa khoa Bắc Kạn,Thùng cáp mạng Cat6 UTP CommScope 305m,Vật tư tiêu hao in ấn,Công ty Cổ phần Công nghệ Sao Bắc Đẩu,CommScope,10,Phòng Công nghệ thông tin,DH-2023-020,2,CS-CAT6-305M,Cáp mạng chính hãng lõi đồng nguyên chất chạy hệ thống mạng khoa phòng,2023-02-25,2850000
+Bệnh viện đa khoa Bắc Kạn,Hộp 100 hạt mạng RJ45 Cat6 CommScope,Vật tư tiêu hao in ấn,Công ty Cổ phần Công nghệ Sao Bắc Đẩu,CommScope,25,Phòng Công nghệ thông tin,DH-2023-020,5,RJ45-CAT6-100P,Đầu bấm mạng chân đồng mạ vàng bấm dây mạng LAN,2023-02-25,350000
+Bệnh viện đa khoa Bắc Kạn,Thùng giấy in A4 Double A 70gsm (5 ram),Vật tư tiêu hao in ấn,Công ty TNHH Thiết bị Y tế & Tin học An Phát,Canon Inc,100,Khoa Khám bệnh,DH-2023-021,20,DOUBLE-A-70,Giấy in phiếu khám bệnh đơn thuốc hồ sơ bệnh án,2023-03-01,365000
+Bệnh viện đa khoa Bắc Kạn,Dây nhảy mạng Cat6 Patch Cord 2m đúc sẵn,Vật tư tiêu hao in ấn,Công ty Cổ phần Công nghệ Sao Bắc Đẩu,CommScope,150,Phòng Công nghệ thông tin,DH-2023-021,30,PATCH-CAT6-2M,Dây nhảy nối từ ổ cắm mạng âm tường vào máy tính làm việc,2023-03-01,45000

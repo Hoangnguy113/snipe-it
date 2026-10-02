@@ -1,11 +1,11 @@
-Asset Tag,Name,Email,Checkout Date,Checkin Date
-ICC-2065556,rtenant0,rtenant0@example.org,2024-01-15,2024-06-10
-ICC-2065556,klefeuvre1,klefeuvre1@example.org,2024-07-01,2024-11-20
-NNH-3656031,keland2,keland2@example.org,2024-02-05,2024-08-14
-BOL-0305383,skinneally3,skinneally3@example.org,2024-03-22,
-YVN-3440973,rtenant0,rtenant0@example.org,2024-04-10,2024-09-30
-YOO-5936907,klefeuvre1,klefeuvre1@example.org,2024-05-18,
-EJS-7488052,keland2,keland2@example.org,2024-06-25,2024-10-05
-WBH-2841795,skinneally3,skinneally3@example.org,2023-11-08,2024-01-15
-WBH-2841795,rtenant0,rtenant0@example.org,2024-02-01,2024-07-22
-WBH-2841795,klefeuvre1,klefeuvre1@example.org,2024-08-10,2099-12-31
+﻿Mã tài sản,Loại thao tác,Loại đối tượng cấp phát,Đối tượng nhận,Ngày thực hiện,Quản trị viên,Ghi chú
+BV-PC-001,checkout,user,user001,2023-01-16 08:30:00,admin,Bàn giao máy tính để bàn làm việc quản trị mạng
+BV-PC-002,checkout,location,Khoa Cấp cứu,2023-01-16 09:00:00,admin,Bàn giao lắp đặt máy tính phòng tiếp nhận cấp cứu
+BV-LT-001,checkout,user,user002,2023-02-11 09:30:00,admin,Cấp phát laptop làm việc chuyên môn lãnh đạo khoa
+BV-PR-001,checkout,location,Khoa Khám bệnh,2023-02-21 14:00:00,admin,Lắp đặt máy in đơn thuốc phòng khám bệnh số 1
+BV-PR-002,checkout,location,Khoa Cấp cứu,2023-02-21 14:30:00,admin,Lắp đặt máy in phiếu chỉ định cận lâm sàng cấp cứu
+BV-SRV-001,checkout,location,Trung tâm Dữ liệu Server,2023-03-06 10:00:00,admin,Đưa vào vận hành máy chủ CSDL HIS trung tâm
+BV-SW-001,checkout,location,Trung tâm Dữ liệu Server,2023-03-16 11:00:00,admin,Đưa vào vận hành switch mạng lõi tòa nhà A
+BV-MN-001,checkout,user,user003,2023-04-02 08:30:00,admin,Cấp phát màn hình chuyên dụng kỹ thuật viên
+BV-UPS-001,checkout,location,Trung tâm Dữ liệu Server,2023-04-11 15:00:00,admin,Lắp đặt bộ lưu điện bảo vệ máy chủ CSDL
+BV-LT-002,checkout,user,user005,2023-05-03 09:00:00,admin,Cấp phát laptop trực ban bác sĩ hồi sức tích cực

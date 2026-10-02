@@ -4,7 +4,7 @@
     <head>
       <title>
         @section('title')
-         Snipe-IT {{ trans('general.setup') }}
+         {{ trans('general.setup') }} - Phần mềm quản lý thiết bị CNTT
         @show
       </title>
         <link rel="stylesheet" href="{{ url(mix('css/dist/all.css')) }}">
@@ -80,7 +80,7 @@
           <main id="main" class="container">
               <div class="row">
                   <div class="col-lg-10 col-lg-offset-1">
-                    <h1 class="page-header"><img src="../img/logo.png" style="height: 65px;" alt="Snipe-IT logo"> {{ trans('general.pre_flight') }}</h1>
+                    <h1 class="page-header"><img src="{{ url('img/logo.png') }}" style="height: 65px; margin-right: 15px; vertical-align: middle;" alt="Logo"> Phần mềm quản lý thiết bị CNTT</h1>
                   </div>
                   <div class="col-lg-12">
 
@@ -138,8 +138,7 @@
                         </div>
                     </div>
 
-                      <strong>Snipe-IT {{ trans('general.version') }}</strong> {{ config('version.app_version') }} -
-                      {{ trans('general.build') }} {{ config('version.build_version') }} ({{ config('version.branch') }})
+                      <strong>Phần mềm quản lý thiết bị CNTT</strong> - {{ trans('general.version') }} {{ config('version.app_version') }}
 
                   </div>
               </div>

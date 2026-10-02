@@ -1,11 +1,13 @@
-name,company,address,address2,city,state,country,zip,notes,phone,fax,currency,tag color
-Shizi,"Awesomesauce, Inc",811 Algoma Center,1690,Shimen,,CN,,ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus,280-997-3795,673-737-7438,CNY,#ffffff
-Takum,"Failsauce, LTD",354 Sugar Way,88222,Old Shinyanga,,NG,,proin risus praesent lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum ante,810-325-0609,746-868-1843,NGN,
-Unaizah,,56243 Lawn Drive,14,Irecê,,SA,,in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris,841-568-9664,419-246-9966,SAR,
-Pontarlier,,80411 Lyons Alley,0,Colinas,Franche-Comté,FR,25304,enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae,927-638-2175,683-361-5521,EUR,#454545
-Inongo,,377 Nancy Lane,236,Placencia,,CD,,nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis,278-277-8326,744-879-3383,CDF,
-San Diego,,294 Spohn Center,04,Yanmen,,CO,202038,quis orci eget orci vehicula condimentum curabitur in libero ut,255-785-7948,874-491-7898,COP,
-Lewotola,Very Midco,22308 Oriole Way,505,Celso Ramos,,ID,,nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare,431-503-0615,960-849-7404,IDR,
-Pieńsk,,7 Maryland Junction,77656,Cela,,PL,59-930,ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae,723-739-7799,431-889-4342,PLN,
-Mataguži,,5 Mayfield Drive,0,Zhaogezhuang,,ME,,nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum,356-728-4662,689-866-7531,EUR,
-Xixiang,,2540 Rockefeller Place,2,Alegria,,CN,,vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus,388-760-0441,110-938-9032,CNY,
+﻿Tên,Tiền tệ,Địa chỉ,Địa chỉ 2,Thành phố,Tỉnh,Quốc gia,Mã bưu điện,Quản lý,Vị trí cha,Số điện thoại
+Trụ sở chính Bệnh viện đa khoa Bắc Kạn,VND,Tổ 10 Phường Minh Khai,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user001,,02093870115
+Phòng Công nghệ thông tin,VND,Tầng 3 Nhà A - Bệnh viện đa khoa Bắc Kạn,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user001,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870115
+Trung tâm Dữ liệu Server,VND,Phòng 305 Nhà A - Phòng CNTT,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user001,Phòng Công nghệ thông tin,02093870115
+Khoa Khám bệnh,VND,Tầng 1 Nhà B,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user002,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870116
+Khoa Cấp cứu,VND,Tầng 1 Nhà A,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user003,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870117
+Khoa Hồi sức tích cực - Chống độc,VND,Tầng 2 Nhà A,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user004,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870118
+Khoa Ngoại tổng hợp,VND,Tầng 3 Nhà B,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user005,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870119
+Khoa Chẩn đoán hình ảnh,VND,Tầng 1 Nhà C,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user006,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870120
+Khoa Xét nghiệm,VND,Tầng 2 Nhà C,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user007,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870121
+Khoa Dược,VND,Tầng 1 Nhà D,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user008,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870122
+Phòng Tài chính kế toán,VND,Tầng 2 Nhà Hiệu bộ,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user009,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870123
+Phòng Điều dưỡng,VND,Tầng 3 Nhà Hiệu bộ,,Thành phố Bắc Kạn,Bắc Kạn,Việt Nam,23000,user010,Trụ sở chính Bệnh viện đa khoa Bắc Kạn,02093870124

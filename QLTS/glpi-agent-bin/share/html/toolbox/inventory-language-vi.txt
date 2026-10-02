@@ -1,0 +1,68 @@
+# Bản dịch tiếng Việt cho GLPI Agent Inventory - Quản lý tài sản công & CNTT
+
+#Create a new inventory task: Tạo tác vụ kiểm kê tài sản mới:
+Local inventory: Kiểm kê tài sản máy cục bộ:
+Run local inventory for this computer: Thực hiện kiểm kê tài sản cho máy vi tính này:
+Network scan: Quét mạng phát hiện thiết bị:
+Choose IP range: Chọn dải địa chỉ IP:
+Options: Tùy chọn nâng cao:
+Threads: Số luồng xử lý:
+Connection timeout: Thời gian chờ kết nối:
+Run network scan: Chạy tác vụ quét mạng:
+Inventory tag: Thẻ phân loại kiểm kê (Tag):
+Use a tag: Sử dụng thẻ phân loại:
+None: Không dùng
+New tag: Thẻ phân loại mới:
+New tag will be automatically selected: Thẻ mới sẽ tự động được chọn:
+Add new tag: Thêm thẻ phân loại mới:
+tag: thẻ phân loại:
+netdiscovery task not installed: Tác vụ dò quét mạng (netdiscovery) chưa được cài đặt:
+netinventory task not installed: Tác vụ kiểm kê mạng (netinventory) chưa được cài đặt:
+netdiscovery and netinventory tasks not installed: Cả hai tác vụ dò quét và kiểm kê mạng đều chưa được cài đặt:
+Agent folder: Thư mục tác tử:
+Configured folder: Thư mục đã cấu hình:
+Target: Mục tiêu / Máy chủ GLPI đích:
+
+Created inventories: Các bản kiểm kê tài sản đã tạo:
+Should match devices with SNMP support count: Khớp với số lượng thiết bị hỗ trợ SNMP:
+Show task progress: Hiện tiến độ tác vụ:
+Hide task progress: Ẩn tiến độ tác vụ:
+Show task report: Xem báo cáo tác vụ:
+Hide task report: Ẩn báo cáo tác vụ:
+Show &laquo;&nbsp;%s&nbsp;&raquo; task log: Xem nhật ký tác vụ &laquo;&nbsp;%s&nbsp;&raquo;:
+Scanned IPs: Các địa chỉ IP đã quét:
+Devices with SNMP support: Các thiết bị CNTT hỗ trợ SNMP:
+IPs without SNMP response: Địa chỉ IP không phản hồi SNMP:
+IPs without PING response: Địa chỉ IP không phản hồi PING:
+Scanned IPs for this IP range: Địa chỉ IP đã quét thuộc dải IP này:
+IPs for which we found a device supporting SNMP with provided credentials: Các địa chỉ IP tìm thấy thiết bị hỗ trợ SNMP với thông tin xác thực đã cung cấp:
+These IPs are responding to ping or are found in ARP table: Các IP này phản hồi ping hoặc tìm thấy trong bảng ARP:
+But we didn't find any device supporting SNMP with provided credentials: Nhưng không tìm thấy thiết bị nào hỗ trợ SNMP khớp với thông tin xác thực đã cấp:
+IPs not responding to ping and not seen in ARP table: Các IP không phản hồi ping và không xuất hiện trong bảng ARP:
+Verbosity: Mức độ chi tiết nhật ký:
+Completed: Đã hoàn thành:
+Abort: Hủy bỏ tiến trình:
+Aborted: Đã hủy bỏ:
+%s network scan: Quét mạng %s:
+Freeze log output: Tạm dừng cuộn nhật ký:
+Failure: Thất bại / Lỗi:
+
+Only for remote inventory and ESX tasks: Chỉ áp dụng cho kiểm kê từ xa và máy chủ ảo hóa ESX:
+Add new inventory task: Thêm tác vụ kiểm kê tài sản mới:
+Edit &laquo;&nbsp;%s&nbsp;&raquo; inventory task: Chỉnh sửa tác vụ kiểm kê &laquo;&nbsp;%s&nbsp;&raquo;:
+Create inventory task: Tạo tác vụ kiểm kê:
+Run task: Chạy tác vụ:
+Task name: Tên tác vụ:
+Configuration: Cấu hình:
+Scheduling: Lịch thực thi:
+Last run date: Thời điểm chạy gần nhất:
+Next run date: Thời điểm chạy tiếp theo:
+Add ip range: Thêm dải địa chỉ IP:
+Remove ip range: Gỡ bỏ dải địa chỉ IP:
+Disabled task: Tác vụ bị vô hiệu hóa:
+Timeout: Thời gian chờ tối đa (Timeout):
+Associated ip range: Dải IP liên kết:
+
+Scheduling type: Loại lịch thực thi:
+
+No inventory task defined: Chưa có tác vụ kiểm kê nào được thiết lập:

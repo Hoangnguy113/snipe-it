@@ -23,9 +23,13 @@
     <div class="row">
       <div class="form-group col-lg-12 required {{ $errors->has('site_name') ? 'error' : '' }}">
         <label for="site_name">
-          {{ trans('general.site_name') }}
+          Đơn vị sử dụng (Tên phần mềm sẽ hiển thị: <em>Phần mềm quản lý thiết bị CNTT tại [Tên đơn vị]</em>)
         </label>
-        <input class="form-control" placeholder="Snipe-IT Asset Management" required="" name="site_name" type="text" value="{{ old('site_name') }}">
+        <div class="input-group">
+          <span class="input-group-addon" style="background-color: #eee; font-weight: 600;">Phần mềm quản lý thiết bị CNTT tại</span>
+          <input class="form-control" placeholder="Bệnh viện đa khoa Bắc Kạn" required="" name="site_name" type="text" id="site_name" value="{{ old('site_name', 'Bệnh viện đa khoa Bắc Kạn') }}">
+        </div>
+        <p class="help-block"><small>Bạn có thể giữ nguyên <strong>Bệnh viện đa khoa Bắc Kạn</strong> hoặc chỉnh sửa theo tên đơn vị của mình.</small></p>
 
         <x-form.error name="site_name" />
       </div>
@@ -134,14 +138,14 @@
       <label for="locale">
         {{ trans('admin/settings/general.default_language') }}
       </label>
-      <x-input.locale-select name="locale" :selected="old('locale', 'en-US')" />
+      <x-input.locale-select name="locale" :selected="old('locale', 'vi-VN')" />
       <x-form.error name="locale" />
     </div>
 
     <!-- Currency -->
     <div class="form-group col-lg-6{{$errors->has('default_currency') ? ' error' : ''}}">
       <label for="default_currency">{{ trans('admin/settings/general.default_currency') }}</label>
-      <input class="form-control" placeholder="USD" maxlength="3" style="width: 60px;" name="default_currency" type="text" id="default_currency" value="{{ old('default_currency') }}">
+      <input class="form-control" placeholder="VND" maxlength="3" style="width: 70px;" name="default_currency" type="text" id="default_currency" value="{{ old('default_currency', 'VND') }}">
 
       <x-form.error name="default_currency" />
     </div>

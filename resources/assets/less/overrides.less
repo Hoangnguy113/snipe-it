@@ -326,8 +326,45 @@ level and threads through the dot centers as designed.
   text-align: left;
   color: white;
   padding: 0px;
-  /* adjust based on your layout */
+  max-width: none;
 
+  .navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px 0 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    width: auto !important;
+    max-width: calc(100vw - 520px);
+    overflow: visible;
+
+    @media (min-width: 1400px) {
+      max-width: none;
+      font-size: 17px;
+    }
+
+    img.navbar-brand-img {
+      max-height: 38px;
+      width: auto;
+      height: 38px;
+      padding: 0;
+      margin-right: 10px;
+      border-radius: 6px;
+      float: none;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .site-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+  }
 }
 
 .main-header

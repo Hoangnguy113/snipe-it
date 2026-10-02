@@ -1,11 +1,11 @@
-Name,Model Number,Minimum Amount,Manufacturer,Category,Require Serial,Depreciation,EOL,Notes,Fieldset,Requestable
-Sharp GX17,907256155-4,67,Layo,Food - Deli,true,justo nec condimentum neque sapien,,Customer-focused,Laptops and Desktops,false
-Huawei P40 Pro,053748423-X,356,Blognation,Food - Condiments,false,cras in,191,frame,Laptops and Desktops,true
-alcatel OT-202,562855245-3,151,Twitterbeat,Electronics,true,mi,31,Team-oriented,Mobile Devices,false
-Plum Z710,089298795-2,300,Tekfly,Food - Meat,false,tempus semper,160,Up-sized,Mobile Devices,true
-vivo NEX 3S 5G,259040851-X,125,Eadel,Food - Frozen Meals,false,quis augue luctus tincidunt nulla,44,software,Laptops and Desktops,false
-Asus Fonepad Note FHD6,209112897-X,304,Voolia,Food - Condiments,true,amet nunc,178,Object-based,Mobile Devices,false
-ZTE Axon M,996666326-6,50,Midel,Kitchen,false,duis at velit eu,220,Ergonomic,Mobile Devices,false
-Samsung T219,869365429-2,122,Skyba,Food - Breakfast,true,magna vestibulum aliquet,135,hub,Laptops and Desktops,false
-Panasonic X68/X77,193470835-6,73,Devify,Pets,true,et magnis dis parturient montes,104,24 hour,Laptops and Desktops,false
-verykool sl5029 Bolt Pro LTE,275088473-X,377,Oyonder,Food - Condiments,true,vehicula consequat morbi,47,,Mobile Devices,false
+﻿Tên,Nhà sản xuất,Danh mục,Mã kiểu máy,Khấu hao,Thời hạn sử dụng (tháng),Ghi chú,Cho phép yêu cầu
+Dell OptiPlex 7090 MT,Dell Technologies,Máy tính để bàn,OPT-7090-MT,,60,Máy tính đồng bộ Core i5-11500 / 16GB RAM / 512GB SSD,true
+Dell OptiPlex 3080 SFF,Dell Technologies,Máy tính để bàn,OPT-3080-SFF,,60,Máy tính để bàn văn phòng nhỏ gọn Core i3-10100 / 8GB / 256GB SSD,true
+HP ProBook 450 G9,HP Inc,Máy tính xách tay (Laptop),HP-PB-450G9,,36,Laptop Core i7-1255U / 16GB / 512GB SSD / 15.6 inch FHD,true
+Lenovo ThinkPad T14 Gen 3,Lenovo Group,Máy tính xách tay (Laptop),TP-T14-G3,,36,Laptop kỹ thuật Core i5-1240P / 16GB / 512GB SSD / 14 inch WUXGA,true
+Máy in Canon LBP2900,Canon Inc,Máy in & Máy quét,CANON-LBP2900,,60,Máy in laser đơn năng đen trắng A4 tốc độ 12 trang/phút,true
+Máy in đa năng Brother MFC-L2701DW,Brother Industries,Máy in & Máy quét,MFC-L2701DW,,36,Máy in laser đa chức năng in 2 mặt / Scan / Copy / Wifi,true
+Màn hình Dell UltraSharp U2422H,Dell Technologies,Màn hình máy tính,DELL-U2422H,,36,Màn hình 23.8 inch Full HD IPS chuẩn màu chuyên nghiệp,true
+Máy chủ Dell PowerEdge R740,Dell Technologies,Máy chủ & Lưu trữ,PE-R740-2U,,60,Máy chủ rack 2U chạy 2 CPU Intel Xeon Silver 4210R / 64GB ECC,false
+Switch Cisco Catalyst 2960L 24 Port,Cisco Systems,Thiết bị mạng & Viễn thông,WS-C2960L-24TS-LL,,60,Switch mạng 24 cổng Gigabit + 4 cổng uplink SFP 1G,false
+Bộ lưu điện APC Smart-UPS 1500VA LCD,Schneider Electric (APC),Bộ lưu điện (UPS),SMT1500I,,36,Bộ lưu điện line-interactive 1500VA / 1000W sóng sin chuẩn,false

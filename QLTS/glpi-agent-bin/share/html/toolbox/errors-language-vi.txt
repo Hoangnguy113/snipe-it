@@ -1,0 +1,114 @@
+# Bản dịch tiếng Việt cho GLPI Agent Errors - Quản lý tài sản công & CNTT
+
+ERROR: LỖI:
+
+New IP range: Thêm dải địa chỉ IP mới:
+Rename IP range: Đổi tên dải địa chỉ IP:
+No ip range provided name: Chưa nhập tên dải địa chỉ IP:
+An entry still exists with that name: Đã tồn tại một mục có tên này:
+Start ip is mandatory: Bắt buộc phải có địa chỉ IP bắt đầu:
+Wrong start ip format: Sai định dạng địa chỉ IP bắt đầu:
+End ip is mandatory: Bắt buộc phải có địa chỉ IP kết thúc:
+Wrong end ip format: Sai định dạng địa chỉ IP kết thúc:
+Can't create entry without name: Không thể tạo mục khi chưa có tên:
+IP range credential adding: Thêm thông tin xác thực cho dải IP:
+Invalid credential: Thông tin xác thực không hợp lệ:
+Not existing credential: Thông tin xác thực không tồn tại:
+No credential selected: Chưa chọn thông tin xác thực nào:
+Deleting IP range: Xóa dải địa chỉ IP:
+No credentials: Không có thông tin xác thực:
+IP range credential removing: Gỡ bỏ thông tin xác thực của dải IP:
+IP range update: Cập nhật dải địa chỉ IP:
+
+No IP range selected: Chưa chọn dải địa chỉ IP nào:
+No such IP range: Không tìm thấy dải địa chỉ IP này:
+A network scan is still running for an IP on that range: Đang có tiến trình quét mạng chạy trên một địa chỉ IP thuộc dải này:
+A network scan is still running for that IP range: Đang có tiến trình quét mạng chạy trên dải địa chỉ IP này:
+No such credentials: Không tìm thấy thông tin xác thực:
+Missing version on credentials: Thiếu thông tin phiên bản xác thực:
+Missing username on credentials: Thiếu tên người dùng xác thực:
+Missing password on credentials: Thiếu mật khẩu xác thực:
+A local inventory is still running: Tiến trình kiểm kê tài sản cục bộ đang chạy:
+Unsupported IP range: Dải địa chỉ IP không được hỗ trợ:
+Can't delete used IP range: Không thể xóa dải địa chỉ IP đang được sử dụng:
+
+New credential: Thêm thông tin xác thực mới:
+SNMP version is mandatory: Bắt buộc phải chọn phiên bản SNMP:
+Wrong SNMP version: Phiên bản SNMP không hợp lệ:
+Community is mandatory with version: Bắt buộc phải có chuỗi cộng đồng (Community) với phiên bản này:
+Username is mandatory with SNMP v3: Bắt buộc phải có tên người dùng với SNMP v3:
+Credential update: Cập nhật thông tin xác thực:
+Rename credential: Đổi tên thông tin xác thực:
+Delete credential: Xóa thông tin xác thực:
+No credential selected: Chưa chọn thông tin xác thực nào:
+Can't delete used credential: Không thể xóa thông tin xác thực đang được sử dụng:
+
+No archiving software available: Không có phần mềm nén lưu trữ khả dụng:
+Deleting results: Đang xóa kết quả kiểm kê:
+No result selected: Chưa chọn kết quả nào:
+Can't remove file: Không thể xóa tệp tin:
+
+Can't prepare archive: Không thể tạo gói tệp nén:
+Missing base folder: Thiếu thư mục lưu trữ gốc:
+
+New MIBSupport alias: Thêm bí danh (alias) MIBSupport mới:
+Update MIBSupport alias: Cập nhật bí danh MIBSupport:
+Wrong alias format: Sai định dạng bí danh:
+No OID provided: Chưa cung cấp mã định danh OID:
+Can't match to a full numeric OID: Không thể ánh xạ sang mã OID dạng số hoàn chỉnh:
+Can't update entry without alias name: Không thể cập nhật mục khi thiếu tên bí danh:
+Deleting MIBSupport entries: Xóa các mục MIBSupport:
+No entry selected: Chưa chọn mục nào:
+New MIBSupport rule: Thêm quy tắc MIBSupport mới:
+Wrong rule name format: Sai định dạng tên quy tắc:
+Rule type is missing: Thiếu loại quy tắc:
+No value provided: Chưa nhập giá trị:
+Update MIBSupport rule: Cập nhật quy tắc MIBSupport:
+Update MIBSupport ruleset: Cập nhật tập quy tắc MIBSupport:
+No rule selected: Chưa chọn quy tắc nào:
+Not existing rule: Quy tắc không tồn tại:
+New MIBSupport sysobjectid: Thêm sysObjectID MIBSupport mới:
+Update MIBSupport sysobjectid: Cập nhật sysObjectID MIBSupport:
+New MIBSupport match: Thêm quy tắc so khớp MIBSupport mới:
+Update MIBSupport match: Cập nhật quy tắc so khớp MIBSupport:
+Update ruleset: Cập nhật tập quy tắc:
+Remove ruleset: Xóa bỏ tập quy tắc:
+
+Unsupported remote inventory type: Loại kiểm kê tài sản từ xa không được hỗ trợ:
+Username is mandatory for remote inventory types: Bắt buộc phải có tên người dùng đối với kiểm kê từ xa:
+Password is mandatory for this remote inventory type: Bắt buộc phải có mật khẩu đối với loại kiểm kê từ xa này:
+
+Invalid SNMP port: Cổng SNMP không hợp lệ:
+Invalid SSH port: Cổng SSH không hợp lệ:
+Invalid WINRM port: Cổng WinRM không hợp lệ:
+Invalid SNMP protocol: Giao thức SNMP không hợp lệ:
+Port definition ignored: Bỏ qua khai báo cổng kết nối:
+Unsupported mode for SSH removeinventory: Chế độ không hỗ trợ cho kiểm kê từ xa qua SSH:
+Unsupported mode for WINRM removeinventory: Chế độ không hỗ trợ cho kiểm kê từ xa qua WinRM:
+
+Task has no type: Tác vụ chưa được chỉ định loại:
+Task has not a supported type: Tác vụ có loại không được hỗ trợ:
+New task: Thêm tác vụ mới:
+Update task: Cập nhật tác vụ:
+Unsupported task type: Loại tác vụ không được hỗ trợ:
+Can't delete enabled task: Không thể xóa tác vụ đang kích hoạt:
+Rename task: Đổi tên tác vụ:
+No such task: Không tìm thấy tác vụ này:
+Unsupported target: Đối tượng đích không được hỗ trợ:
+Start task: Bắt đầu thực thi tác vụ:
+
+New scheduling: Thêm lịch kiểm kê mới:
+Scheduling update: Cập nhật lịch kiểm kê:
+Rename scheduling: Đổi tên lịch kiểm kê:
+No such scheduling: Không tìm thấy lịch kiểm kê này:
+Delete scheduling: Xóa lịch kiểm kê:
+No scheduling selected: Chưa chọn lịch kiểm kê nào:
+Scheduling type is mandatory: Bắt buộc phải chọn loại lịch kiểm kê:
+Unsupported scheduling type: Loại lịch kiểm kê không được hỗ trợ:
+Can't delete used scheduling: Không thể xóa lịch kiểm kê đang được gán sử dụng:
+Unsupported delay time: Khoảng trễ không được hỗ trợ:
+Unsupported delay time unit: Đơn vị thời gian trễ không được hỗ trợ:
+Minimum delay time is one minute: Thời gian trễ tối thiểu là 1 phút:
+Unsupported week day: Ngày trong tuần không hợp lệ:
+Invalid timeslot start time: Thời điểm bắt đầu khung thời gian không hợp lệ:
+Invalid timeslot duration: Thời lượng khung thời gian không hợp lệ:

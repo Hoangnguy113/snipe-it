@@ -1,0 +1,60 @@
+# Bản dịch tiếng Việt cho GLPI Agent Results - Quản lý tài sản công & CNTT
+
+Field name: Tên trường:
+
+Device name or IP: Tên thiết bị hoặc IP:
+SerialNumber: Số sê-ri (Số khung/Số hiệu tài sản):
+OS Name: Tên hệ điều hành:
+Location: Vị trí / Địa điểm / Phòng ban:
+Manufacturer: Nhà sản xuất:
+Model: Kiểu mẫu (Model):
+
+UUID: Mã định danh UUID:
+Source: Nguồn dữ liệu:
+IP: Địa chỉ IP:
+IPs: Các địa chỉ IP:
+MAC: Địa chỉ MAC:
+Contact: Cán bộ quản lý / Liên hệ:
+Credential: Thông tin xác thực:
+IP Range: Dải địa chỉ IP:
+
+Networking: Thiết bị mạng:
+Networking scan datas: Dữ liệu quét mạng thiết bị:
+
+IPs seen by Network Scan: Các IP phát hiện qua quét mạng:
+Network Scan Inventory count: Số lượng kiểm kê qua quét mạng:
+Local Inventory count: Số lượng kiểm kê cục bộ:
+Number of devices seen by network scan compared to all known IPs: Số thiết bị phát hiện qua quét mạng so với tổng IP đã biết:
+A seen device is identified by its IPs and tag: Thiết bị phát hiện được định danh bởi địa chỉ IP và thẻ phân loại:
+A local inventory can be included as seen if its IP has been scanned by a network scan task: Bản kiểm kê cục bộ được tính là đã phát hiện nếu IP của máy được quét bởi tác vụ mạng:
+Number of Network Inventory other all scanned IPs: Số lượng kiểm kê mạng trên tổng số IP đã quét:
+Number of local inventory other all scanned IPs: Số lượng kiểm kê cục bộ trên tổng số IP đã quét:
+
+NETWORKING: Thiết bị mạng
+PRINTER: Máy in văn phòng
+STORAGE: Thiết bị lưu trữ
+COMPUTER: Máy vi tính
+
+Local: Kiểm kê cục bộ
+NetDiscovery: Phát hiện thiết bị qua mạng
+NetInventory: Kiểm kê thiết bị qua mạng
+Edition: Đã chỉnh sửa thủ công
+
+Other fields: Các trường thông tin khác:
+Custom fields YAML file: Tệp YAML trường tùy chỉnh:
+Custom fields: Các trường tùy chỉnh:
+
+Download results: Tải về kết quả kiểm kê:
+Download full scan datas: Tải về toàn bộ dữ liệu quét:
+Filter results by tag: Lọc kết quả theo thẻ:
+Go to next device after deletion: Chuyển tới thiết bị tiếp theo sau khi xóa:
+Results will be filtered by tag if set: Kết quả sẽ được lọc theo thẻ nếu được chỉ định:
+No filtering by tag will be applied: Không áp dụng bộ lọc theo thẻ:
+Scan again: Quét lại thiết bị:
+Scan this device: Quét thiết bị này:
+See %s task: Xem tác vụ %s:
+
+Select fields for propagation: Chọn trường để kế thừa dữ liệu:
+Save the selection: Lưu lựa chọn:
+Apply selected fields: Áp dụng các trường đã chọn:
+Fields selected for propagation: Các trường được chọn để kế thừa:

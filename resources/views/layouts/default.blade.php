@@ -6,7 +6,7 @@
     <title>
         @section('title')
         @show
-        :: {{ $snipeSettings->site_name }}
+        :: {{ ($snipeSettings && $snipeSettings->site_name) ? $snipeSettings->site_name : 'Phần mềm quản lý thiết bị CNTT tại Bệnh viện đa khoa Bắc Kạn' }}
     </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -15,9 +15,9 @@
 
 
     <link rel="apple-touch-icon"
-          href="{{ ($snipeSettings) && ($snipeSettings->favicon!='') ?  Storage::disk('public')->url(e($snipeSettings->logo)) :  config('app.url').'/img/snipe-logo-bug.png' }}">
+          href="{{ ($snipeSettings) && ($snipeSettings->favicon!='') ?  Storage::disk('public')->url(e($snipeSettings->favicon)) :  config('app.url').'/img/snipe-logo-bug.png' }}">
     <link rel="apple-touch-startup-image"
-          href="{{ ($snipeSettings) && ($snipeSettings->favicon!='') ?  Storage::disk('public')->url(e($snipeSettings->logo)) :  config('app.url').'/img/snipe-logo-bug.png' }}">
+          href="{{ ($snipeSettings) && ($snipeSettings->favicon!='') ?  Storage::disk('public')->url(e($snipeSettings->favicon)) :  config('app.url').'/img/snipe-logo-bug.png' }}">
     <link rel="shortcut icon" type="image/ico"
           href="{{ ($snipeSettings) && ($snipeSettings->favicon!='') ?  Storage::disk('public')->url(e($snipeSettings->favicon)) : config('app.url').'/favicon.ico' }}">
 
@@ -42,6 +42,59 @@
 
 
     @include('partials.theme-mode-tenant-vars')
+
+    <style>
+        .left-navblock {
+            display: inline-block;
+            float: left;
+            text-align: left;
+            color: #fff;
+            padding: 0;
+            max-width: none !important;
+        }
+        .left-navblock .navbar-brand {
+            display: inline-flex !important;
+            align-items: center;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 15px 0 10px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            width: auto !important;
+            max-width: calc(100vw - 520px);
+            overflow: visible !important;
+        }
+        .left-navblock .navbar-brand img.navbar-brand-img {
+            max-height: 38px;
+            width: auto;
+            height: 38px;
+            padding: 0;
+            margin-right: 10px;
+            border-radius: 6px;
+            float: none;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        .left-navblock .navbar-brand .site-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+        }
+        @media (min-width: 1400px) {
+            .left-navblock .navbar-brand {
+                max-width: none;
+                font-size: 17px;
+            }
+        }
+        @media (max-width: 768px) {
+            .left-navblock .navbar-brand {
+                max-width: calc(100vw - 120px);
+                font-size: 14px;
+            }
+        }
+    </style>
 
     {{-- Custom CSS --}}
     @if (($snipeSettings) && ($snipeSettings->custom_css))
@@ -85,27 +138,35 @@
                     </a>
                     <div class="nav navbar-nav navbar-left">
                         <div class="left-navblock">
-                            @if ($snipeSettings->brand == '3')
-                                <a class="logo navbar-brand no-hover" href="{{ config('app.url') }}">
+                            @if ($snipeSettings && $snipeSettings->brand == '3')
+                                <a class="logo navbar-brand no-hover" href="{{ config('app.url') }}" title="{{ $snipeSettings->site_name }}">
                                     @if ($snipeSettings->logo!='')
                                         <img class="navbar-brand-img"
                                              src="{{ Storage::disk('public')->url($snipeSettings->logo) }}"
                                              alt="{{ $snipeSettings->site_name }} logo">
+                                    @else
+                                        <img class="navbar-brand-img"
+                                             src="{{ config('app.url') }}/img/logo.png"
+                                             alt="{{ $snipeSettings->site_name ?? 'Phần mềm quản lý thiết bị CNTT' }} logo">
                                     @endif
-                                    {{ $snipeSettings->site_name }}
+                                    <span class="site-name">{{ $snipeSettings->site_name }}</span>
                                 </a>
-                            @elseif ($snipeSettings->brand == '2')
-                                <a class="logo navbar-brand no-hover" href="{{ config('app.url') }}">
+                            @elseif ($snipeSettings && $snipeSettings->brand == '2')
+                                <a class="logo navbar-brand no-hover" href="{{ config('app.url') }}" title="{{ $snipeSettings->site_name }}">
                                     @if ($snipeSettings->logo!='')
                                         <img class="navbar-brand-img"
                                              src="{{ Storage::disk('public')->url($snipeSettings->logo) }}"
                                              alt="{{ $snipeSettings->site_name }} logo">
+                                    @else
+                                        <img class="navbar-brand-img"
+                                             src="{{ config('app.url') }}/img/logo.png"
+                                             alt="{{ $snipeSettings->site_name ?? 'Phần mềm quản lý thiết bị CNTT' }} logo">
                                     @endif
                                     <span class="sr-only">{{ $snipeSettings->site_name }}</span>
                                 </a>
                             @else
-                                <a class="logo navbar-brand no-hover" href="{{ config('app.url') }}">
-                                    {{ $snipeSettings->site_name }}
+                                <a class="logo navbar-brand no-hover" href="{{ config('app.url') }}" title="{{ ($snipeSettings && $snipeSettings->site_name) ? $snipeSettings->site_name : 'Phần mềm quản lý thiết bị CNTT tại Bệnh viện đa khoa Bắc Kạn' }}">
+                                    <span class="site-name">{{ ($snipeSettings && $snipeSettings->site_name) ? $snipeSettings->site_name : 'Phần mềm quản lý thiết bị CNTT tại Bệnh viện đa khoa Bắc Kạn' }}</span>
                                 </a>
                             @endif
                         </div>

@@ -1,0 +1,13 @@
+Địa chỉ giao diện Web: http://localhost:8080/
+Cơ sở dữ liệu: MariaDB 11.8 (Tên CSDL: glpi, Người dùng: glpi)
+
+Cách khởi động:
+- Cách 1: Bấm đúp vào "start-all.bat" (thu nhỏ cửa sổ xuống Taskbar để duy trì máy chủ)
+- Cách 2: Bấm đúp vào "start-chay-ngam.vbs" (chạy ngầm hoàn toàn không hiện cửa sổ)
+- Tắt máy chủ: Bấm đúp vào "stop-all.bat"
+
+Tài khoản đăng nhập mặc định:
+- Quản trị viên tối cao (Super-Admin): glpi / glpi
+- Quản trị viên kỹ thuật (Admin): tech / tech
+- Cán bộ quản trị tài sản / chuyên viên (Normal): normal / normal
+- Tài khoản gửi phiếu yêu cầu (Post-only): post-only / postonly

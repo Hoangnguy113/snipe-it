@@ -1,32 +1,17 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Permissions
-    |--------------------------------------------------------------------------
-    | The following language lines are used in the user permissions system.
-    | Each permission has a 'name' and a 'note' that describes
-    | the permission in detail.
-    |
-    | DO NOT edit the keys (left-hand side) of each permission as these are
-    | used throughout the system for translations.
-    |---------------------------------------------------------------------------
-    */
-
     'superuser' => [
-        'name' => 'Super User',
-        'note' => 'Determines whether the user has full access to all aspects of the admin. This setting overrides ALL more specific and restrictive permissions throughout the system. ',
+        'name' => 'Quản trị tối cao (Super User)',
+        'note' => 'Xác định người dùng có toàn quyền truy cập vào tất cả các phần của hệ thống. Cài đặt này ghi đè TẤT CẢ các quyền hạn chế khác trong toàn hệ thống.',
     ],
     'admin' => [
-        'name' => 'Admin Access',
-        'note' => 'Determines whether the user has access to most aspects of the system EXCEPT the System Admin Settings. These users will be able to manage users, locations, categories, etc, but ARE constrained by Full Multiple Company Support if it is enabled.',
+        'name' => 'Quyền Quản trị viên',
+        'note' => 'Xác định người dùng có quyền truy cập vào hầu hết các khía cạnh của hệ thống NGOẠI TRỪ Cài đặt Quản trị Hệ thống. Những người dùng này sẽ có thể quản lý người dùng, vị trí, danh mục, v.v., nhưng bị giới hạn bởi Hỗ trợ đa đơn vị/cơ quan (FMCS) nếu được bật.',
     ],
-
     'import' => [
-        'name' => 'CSV Import',
-        'note' => 'This will allow users to import even if access to users, assets, etc is denied elsewhere.',
+        'name' => 'Nhập dữ liệu CSV',
+        'note' => 'Cho phép người dùng thực hiện nhập dữ liệu ngay cả khi quyền truy cập người dùng, tài sản, v.v. bị từ chối ở nơi khác.',
     ],
 
     'inventory' => [
@@ -55,435 +40,498 @@ return [
     ],
 
     'reports' => [
-        'name' => 'Reports Access',
-        'note' => 'Determines whether the user has access to the Reports section of the application.',
+        'name' => 'Xem báo cáo',
+        'note' => 'Xác định người dùng có quyền truy cập vào phần Báo cáo của ứng dụng.',
     ],
-
     'assets' => [
-        'name' => 'Tài sản',
-        'note' => 'Grants access to the Assets section of the application. ',
+        'name' => 'Quản lý Tài sản',
+        'note' => 'Cấp quyền truy cập vào phần Quản lý Tài sản của ứng dụng.',
     ],
-
     'assetsview' => [
-        'name' => 'View Assets',
-        'note' => 'Note that users with this permission will also be able to see (not modify or delete) files uploaded to the asset model as well. This is to make it easier to share common documents like user manuals across assets without having to upload them to every asset, and to avoid having to grant the user permission to modify asset files.',
+        'name' => 'Xem tài sản',
+        'note' => 'Người dùng có quyền này cũng có thể xem (không sửa hoặc xóa) các tệp đính kèm được tải lên kiểu tài sản để chia sẻ tài liệu chung như hướng dẫn sử dụng.',
     ],
-
     'assetscreate' => [
-        'name' => 'Create New Assets',
+        'name' => 'Tạo mới tài sản',
     ],
-
     'assetsedit' => [
-        'name' => 'Edit Assets',
+        'name' => 'Chỉnh sửa tài sản',
     ],
-
     'assetsdelete' => [
-        'name' => 'Delete Assets',
+        'name' => 'Xóa tài sản',
     ],
-
     'assetscheckin' => [
-        'name' => 'Check In',
-        'note' => 'Check assets back into inventory that are currently checked out.',
+        'name' => 'Thu hồi tài sản',
+        'note' => 'Thu hồi tài sản đang được cấp phát trở lại kho.',
     ],
-
     'assetscheckout' => [
-        'name' => 'Check Out',
-        'note' => 'Assign assets in inventory by checking them out.',
+        'name' => 'Cấp phát tài sản',
+        'note' => 'Cấp phát tài sản trong kho cho người dùng, vị trí hoặc tài sản khác.',
     ],
-
     'assetsaudit' => [
-        'name' => 'Audit Assets',
-        'note' => 'Allows the user to mark an asset as physically inventoried.',
+        'name' => 'Kiểm kê tài sản',
+        'note' => 'Cho phép người dùng đánh dấu tài sản đã được kiểm kê thực tế.',
     ],
-
     'assetsviewrequestable' => [
         'name' => 'View Requestable Assets',
-        'note' => 'Allows the user to view assets that are marked as requestable.',
+        'note' => 'Cho phép người dùng xem các tài sản được đánh dấu là có thể yêu cầu.',
     ],
-
     'assetsviewencrypted-custom-fields' => [
-        'name' => 'View Encrypted Custom Fields',
-        'note' => 'Allows the user to view and modify encrypted custom fields on assets.',
+        'name' => 'Xem trường tùy chỉnh đã mã hóa',
+        'note' => 'Cho phép người dùng xem và chỉnh sửa các trường tùy chỉnh được mã hóa trên tài sản.',
     ],
-
     'accessories' => [
         'name' => 'Phụ kiện',
-        'note' => 'Grants access to the Accessories section of the application.',
+        'note' => 'Cấp quyền truy cập vào phần Quản lý Phụ kiện của ứng dụng.',
     ],
-
     'accessoriesview' => [
-        'name' => 'View Accessories',
+        'name' => 'Xem phụ kiện',
     ],
     'accessoriescreate' => [
-        'name' => 'Create New Accessories',
+        'name' => 'Tạo phụ kiện',
     ],
     'accessoriesedit' => [
-        'name' => 'Edit Accessories',
+        'name' => 'Sửa phụ kiện',
     ],
     'accessoriesdelete' => [
-        'name' => 'Delete Accessories',
+        'name' => 'Xóa phụ kiện',
     ],
     'accessoriescheckout' => [
-        'name' => 'Check Out Accessories',
-        'note' => 'Assign accessories in inventory by checking them out.',
+        'name' => 'Cấp phát phụ kiện',
+        'note' => 'Cấp phát phụ kiện trong kho.',
     ],
     'accessoriescheckin' => [
-        'name' => 'Check In Accessories',
-        'note' => 'Check accessories back into inventory that are currently checked out.',
+        'name' => 'Thu hồi phụ kiện',
+        'note' => 'Thu hồi phụ kiện đang được cấp phát trở lại kho.',
     ],
     'accessoriesfiles' => [
-        'name' => 'Manage Accessory Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with accessories. (This only makes sense with view privileges or higher.)',
+        'name' => 'Quản lý tệp phụ kiện',
+        'note' => 'Cho phép người dùng tải lên, tải xuống và xóa các tệp đính kèm với phụ kiện.',
     ],
-
     'assetsfiles' => [
-        'name' => 'Manage Asset Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with assets. (This only makes sense with view privileges or higher.)',
+        'name' => 'Quản lý tệp tài sản',
+        'note' => 'Cho phép người dùng tải lên, tải xuống và xóa các tệp đính kèm liên quan đến tài sản. (Chỉ có tác dụng khi có quyền xem trở lên.)',
     ],
-
     'usersfiles' => [
-        'name' => 'Manage User Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with users. (This only makes sense with view privileges or higher.)',
+        'name' => 'Quản lý tệp người dùng',
+        'note' => 'Cho phép tải lên, tải xuống và xóa tệp đính kèm của người dùng.',
     ],
-
     'modelsfiles' => [
-        'name' => 'Manage Model Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with asset models on both the model view and the asset view screens. (This only makes sense with view privileges or higher.)',
+        'name' => 'Quản lý tệp kiểu máy (model)',
+        'note' => 'Cho phép người dùng tải lên, tải xuống và xóa các tệp gắn với kiểu máy tài sản trên cả màn hình xem kiểu máy và xem tài sản. (Chỉ có tác dụng khi có quyền xem trở lên.)',
     ],
-
     'departmentsfiles' => [
-        'name' => 'Manage Department Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with departments. (This only makes sense with view privileges or higher.)',
+        'name' => 'Quản lý tệp phòng ban',
+        'note' => 'Cho phép tải lên, tải xuống và xóa tệp đính kèm của phòng ban.',
     ],
-
     'suppliersfiles' => [
-        'name' => 'Manage Supplier Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with suppliers. (This only makes sense with view privileges or higher.)',
+        'name' => 'Quản lý tệp nhà cung cấp',
+        'note' => 'Cho phép tải lên, tải xuống và xóa tệp đính kèm của nhà cung cấp.',
     ],
-
     'locationsfiles' => [
-        'name' => 'Manage Location Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with locations.(This only makes sense with view privileges or higher.)',
+        'name' => 'Quản lý tệp vị trí',
+        'note' => 'Cho phép tải lên, tải xuống và xóa tệp đính kèm của vị trí.',
     ],
-
     'companiesfiles' => [
-        'name' => 'Manage Company Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with companies. (This only makes sense with view privileges or higher.)',
+        'name' => 'Quản lý tệp đơn vị/cơ quan',
+        'note' => 'Cho phép tải lên, tải xuống và xóa tệp đính kèm của đơn vị/cơ quan.',
     ],
-
     'consumablesfiles' => [
-        'name' => 'Manage Consumable Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with consumables. (This only makes sense with view privileges or higher.)',
+        'name' => 'Quản lý tệp vật tư tiêu hao',
+        'note' => 'Cho phép người dùng tải lên, tải xuống và xóa các tệp đính kèm vật tư tiêu hao.',
     ],
-
     'consumables' => [
-        'name' => 'Vật tư phụ',
-        'note' => 'Grants access to the Consumables section of the application.',
+        'name' => 'Vật tư tiêu hao',
+        'note' => 'Cấp quyền truy cập vào phần Vật tư tiêu hao của ứng dụng.',
     ],
     'consumablesview' => [
-        'name' => 'View Consumables',
+        'name' => 'Xem vật tư tiêu hao',
     ],
     'consumablescreate' => [
-        'name' => 'Create New Consumables',
+        'name' => 'Tạo vật tư tiêu hao',
     ],
     'consumablesedit' => [
-        'name' => 'Edit Consumables',
+        'name' => 'Sửa vật tư tiêu hao',
     ],
     'consumablesdelete' => [
-        'name' => 'Delete Consumables',
+        'name' => 'Xóa vật tư tiêu hao',
     ],
     'consumablescheckout' => [
-        'name' => 'Check Out Consumables',
-        'note' => 'Assign consumables in inventory by checking them out.',
+        'name' => 'Cấp phát vật tư tiêu hao',
+        'note' => 'Cấp phát vật tư tiêu hao cho người dùng.',
     ],
-
     'licenses' => [
-        'name' => 'Bản quyền',
-        'note' => 'Grants access to the Licenses section of the application.',
+        'name' => 'Bản quyền phần mềm',
+        'note' => 'Cấp quyền truy cập vào phần Bản quyền của ứng dụng.',
     ],
     'licensesview' => [
-        'name' => 'View Licenses',
+        'name' => 'Xem bản quyền',
     ],
     'licensescreate' => [
-        'name' => 'Create New Licenses',
+        'name' => 'Tạo mới bản quyền',
     ],
     'licensesedit' => [
-        'name' => 'Edit Licenses',
+        'name' => 'Sửa bản quyền',
     ],
     'licensesdelete' => [
-        'name' => 'Delete Licenses',
+        'name' => 'Xóa bản quyền',
     ],
     'licensescheckout' => [
-        'name' => 'Assign Licenses',
-        'note' => 'Allows the user to assign licenses to assets or users.',
+        'name' => 'Cấp phát bản quyền',
+        'note' => 'Cấp phát chỗ bản quyền cho người dùng hoặc tài sản.',
     ],
     'licensescheckin' => [
-        'name' => 'Unassign Licenses',
-        'note' => 'Allows the user to unassign licenses from assets or users.',
+        'name' => 'Thu hồi bản quyền',
+        'note' => 'Thu hồi chỗ bản quyền phần mềm.',
     ],
     'licensesfiles' => [
-        'name' => 'Manage License Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with licenses.',
+        'name' => 'Quản lý tệp bản quyền',
+        'note' => 'Cho phép người dùng tải lên, tải xuống và xóa các tệp đính kèm bản quyền.',
     ],
     'componentsfiles' => [
-        'name' => 'Manage Component Files',
-        'note' => 'Allows the user to upload, download, and delete files associated with components.',
+        'name' => 'Quản lý tệp linh kiện',
+        'note' => 'Cho phép người dùng tải lên, tải xuống và xóa các tệp đính kèm linh kiện.',
     ],
-
     'licenseskeys' => [
-        'name' => 'Manage License Keys',
-        'note' => 'Allows the user to view product keys associated with licenses.',
+        'name' => 'Xem mã bản quyền (License Keys)',
+        'note' => 'Cho phép người dùng xem các mã bản quyền phần mềm thực tế.',
     ],
     'components' => [
-        'name' => 'Các thành phần',
-        'note' => 'Grants access to the Components section of the application.',
+        'name' => 'Linh kiện',
+        'note' => 'Cấp quyền truy cập vào phần Linh kiện của ứng dụng.',
     ],
     'componentsview' => [
-        'name' => 'View Components',
+        'name' => 'Xem linh kiện',
     ],
     'componentscreate' => [
-        'name' => 'Create New Components',
+        'name' => 'Tạo mới linh kiện',
     ],
     'componentsedit' => [
-        'name' => 'Edit Components',
+        'name' => 'Sửa linh kiện',
     ],
     'componentsdelete' => [
-        'name' => 'Delete Components',
+        'name' => 'Xóa linh kiện',
     ],
-
     'componentscheckout' => [
-        'name' => 'Check Out Components',
-        'note' => 'Assign components in inventory by checking them out.',
+        'name' => 'Cấp phát linh kiện',
+        'note' => 'Cấp phát linh kiện cho tài sản.',
     ],
     'componentscheckin' => [
-        'name' => 'Check In Components',
-        'note' => 'Check components back into inventory that are currently checked out.',
+        'name' => 'Thu hồi linh kiện',
+        'note' => 'Thu hồi linh kiện từ tài sản về kho.',
     ],
     'kits' => [
-        'name' => 'Bộ dụng cụ đã tạo sẵn',
-        'note' => 'Grants access to the Predefined Kits section of the application.',
+        'name' => 'Gói cấu hình sẵn',
+        'note' => 'Cấp quyền truy cập vào phần Gói cấu hình sẵn.',
     ],
     'kitsview' => [
-        'name' => 'View Predefined Kits',
+        'name' => 'Xem gói cấu hình sẵn',
     ],
     'kitscreate' => [
-        'name' => 'Create New Predefined Kits',
+        'name' => 'Tạo mới gói cấu hình sẵn',
     ],
     'kitsedit' => [
-        'name' => 'Edit Predefined Kits',
+        'name' => 'Sửa gói cấu hình sẵn',
     ],
     'kitsdelete' => [
-        'name' => 'Delete Predefined Kits',
+        'name' => 'Xóa gói cấu hình sẵn',
     ],
     'users' => [
         'name' => 'Người dùng',
-        'note' => 'Grants access to the Users section of the application.',
+        'note' => 'Cấp quyền truy cập vào phần Người dùng của ứng dụng.',
     ],
     'usersview' => [
-        'name' => 'Xem Người dùng',
+        'name' => 'Xem người dùng',
     ],
     'userscreate' => [
-        'name' => 'Create New Users',
+        'name' => 'Tạo mới người dùng',
     ],
     'usersedit' => [
-        'name' => 'Edit Users',
+        'name' => 'Sửa người dùng',
     ],
     'usersdelete' => [
-        'name' => 'Delete Users',
+        'name' => 'Xóa người dùng',
     ],
     'models' => [
-        'name' => 'Models',
-        'note' => 'Grants access to the Models section of the application.',
+        'name' => 'Kiểu tài sản (Model)',
+        'note' => 'Cấp quyền truy cập vào phần Kiểu tài sản.',
     ],
     'modelsview' => [
-        'name' => 'Xem model',
+        'name' => 'Xem kiểu tài sản',
     ],
-
     'modelscreate' => [
-        'name' => 'Create New Models',
+        'name' => 'Tạo mới kiểu tài sản',
     ],
     'modelsedit' => [
-        'name' => 'Edit Models',
+        'name' => 'Sửa kiểu tài sản',
     ],
     'modelsdelete' => [
-        'name' => 'Delete Models',
+        'name' => 'Xóa kiểu tài sản',
     ],
     'categories' => [
         'name' => 'Danh mục',
-        'note' => 'Grants access to the Categories section of the application.',
+        'note' => 'Cấp quyền truy cập vào phần Danh mục.',
     ],
     'categoriesview' => [
-        'name' => 'View Categories',
+        'name' => 'Xem danh mục',
     ],
     'categoriescreate' => [
-        'name' => 'Create New Categories',
+        'name' => 'Tạo mới danh mục',
     ],
     'categoriesedit' => [
-        'name' => 'Edit Categories',
+        'name' => 'Sửa danh mục',
     ],
     'categoriesdelete' => [
-        'name' => 'Delete Categories',
+        'name' => 'Xóa danh mục',
     ],
     'departments' => [
         'name' => 'Phòng ban',
-        'note' => 'Grants access to the Departments section of the application.',
+        'note' => 'Cấp quyền truy cập vào phần Phòng ban.',
     ],
     'departmentsview' => [
-        'name' => 'View Departments',
+        'name' => 'Xem phòng ban',
     ],
     'departmentscreate' => [
-        'name' => 'Create New Departments',
+        'name' => 'Tạo mới phòng ban',
     ],
     'departmentsedit' => [
-        'name' => 'Edit Departments',
+        'name' => 'Sửa phòng ban',
     ],
     'departmentsdelete' => [
-        'name' => 'Delete Departments',
+        'name' => 'Xóa phòng ban',
     ],
     'locations' => [
-        'name' => 'Địa phương',
-        'note' => 'Grants access to the Locations section of the application.',
+        'name' => 'Vị trí',
+        'note' => 'Cấp quyền truy cập vào phần Vị trí.',
     ],
     'locationsview' => [
-        'name' => 'View Locations',
+        'name' => 'Xem vị trí',
     ],
     'locationscreate' => [
-        'name' => 'Create New Locations',
+        'name' => 'Tạo mới vị trí',
     ],
     'locationsedit' => [
-        'name' => 'Edit Locations',
+        'name' => 'Sửa vị trí',
     ],
     'locationsdelete' => [
-        'name' => 'Delete Locations',
+        'name' => 'Xóa vị trí',
     ],
     'status-labels' => [
         'name' => 'Nhãn tình trạng',
-        'note' => 'Grants access to the Status Labels section of the application used by Assets.',
+        'note' => 'Cấp quyền truy cập vào phần Nhãn trạng thái của ứng dụng được sử dụng bởi Tài sản.',
     ],
     'statuslabelsview' => [
-        'name' => 'View Status Labels',
+        'name' => 'Xem nhãn trạng thái',
     ],
     'statuslabelscreate' => [
-        'name' => 'Create New Status Labels',
+        'name' => 'Tạo mới nhãn trạng thái',
     ],
     'statuslabelsedit' => [
-        'name' => 'Edit Status Labels',
+        'name' => 'Sửa nhãn trạng thái',
     ],
     'statuslabelsdelete' => [
-        'name' => 'Delete Status Labels',
+        'name' => 'Xóa nhãn trạng thái',
     ],
     'custom-fields' => [
         'name' => 'Trường tùy chỉnh',
-        'note' => 'Grants access to the Custom Fields section of the application used by Assets.',
+        'note' => 'Cấp quyền truy cập vào phần Trường tùy chỉnh của ứng dụng được sử dụng bởi Tài sản.',
     ],
     'customfieldsview' => [
-        'name' => 'View Custom Fields',
+        'name' => 'Xem trường tùy chỉnh',
     ],
     'customfieldscreate' => [
-        'name' => 'Create New Custom Fields',
+        'name' => 'Tạo trường tùy chỉnh mới',
     ],
     'customfieldsedit' => [
-        'name' => 'Edit Custom Fields',
+        'name' => 'Chỉnh sửa trường tùy chỉnh',
     ],
     'customfieldsdelete' => [
-        'name' => 'Delete Custom Fields',
+        'name' => 'Xóa trường tùy chỉnh',
     ],
     'suppliers' => [
         'name' => 'Nhà cung cấp',
-        'note' => 'Grants access to the Suppliers section of the application.',
+        'note' => 'Cấp quyền truy cập vào phần Nhà cung cấp.',
     ],
     'suppliersview' => [
-        'name' => 'View Suppliers',
+        'name' => 'Xem nhà cung cấp',
     ],
     'supplierscreate' => [
-        'name' => 'Create New Suppliers',
+        'name' => 'Tạo mới nhà cung cấp',
     ],
     'suppliersedit' => [
-        'name' => 'Edit Suppliers',
+        'name' => 'Sửa nhà cung cấp',
     ],
     'suppliersdelete' => [
-        'name' => 'Delete Suppliers',
+        'name' => 'Xóa nhà cung cấp',
     ],
     'manufacturers' => [
         'name' => 'Nhà sản xuất',
-        'note' => 'Grants access to the Manufacturers section of the application.',
+        'note' => 'Cấp quyền truy cập vào phần Nhà sản xuất.',
     ],
     'manufacturersview' => [
-        'name' => 'View Manufacturers',
+        'name' => 'Xem nhà sản xuất',
     ],
     'manufacturerscreate' => [
-        'name' => 'Create New Manufacturers',
+        'name' => 'Tạo mới nhà sản xuất',
     ],
     'manufacturersedit' => [
-        'name' => 'Edit Manufacturers',
+        'name' => 'Sửa nhà sản xuất',
     ],
     'manufacturersdelete' => [
-        'name' => 'Delete Manufacturers',
+        'name' => 'Xóa nhà sản xuất',
     ],
     'companies' => [
-        'name' => 'Các công ty',
-        'note' => 'Grants access to the Companies section of the application.',
+        'name' => 'Đơn vị/Cơ quan',
+        'note' => 'Cấp quyền truy cập vào phần Đơn vị/Cơ quan.',
     ],
     'companiesview' => [
-        'name' => 'View Companies',
+        'name' => 'Xem đơn vị/cơ quan',
     ],
     'companiescreate' => [
-        'name' => 'Create New Companies',
+        'name' => 'Tạo mới đơn vị/cơ quan',
     ],
     'companiesedit' => [
-        'name' => 'Edit Companies',
+        'name' => 'Sửa đơn vị/cơ quan',
     ],
     'companiesdelete' => [
-        'name' => 'Delete Companies',
+        'name' => 'Xóa đơn vị/cơ quan',
     ],
     'user-self-accounts' => [
-        'name' => 'User Self Accounts',
-        'note' => 'Grants non-admin users the ability to manage certain aspects of their own user accounts.',
+        'name' => 'Tự quản lý tài khoản cá nhân',
+        'note' => 'Cấp cho người dùng thông thường (không phải admin) khả năng tự quản lý một số khía cạnh của tài khoản của chính họ.',
     ],
     'selftwo-factor' => [
-        'name' => 'Manage Two-Factor Authentication',
-        'note' => 'Allows users to enable, disable, and manage two-factor authentication for their own accounts.',
+        'name' => 'Quản lý xác thực hai yếu tố (2FA)',
+        'note' => 'Cho phép người dùng tự bật, tắt và quản lý xác thực hai yếu tố cho tài khoản của họ.',
     ],
     'selfapi' => [
-        'name' => 'Manage API Tokens',
-        'note' => 'Allows users to create, view, and revoke their own API tokens. User tokens will have the same permissions as the user who created them.',
+        'name' => 'Quản lý mã token API',
+        'note' => 'Cho phép người dùng tự tạo, xem và thu hồi mã token API của chính mình. Token của người dùng sẽ có cùng quyền với người dùng đã tạo ra chúng.',
     ],
     'selfedit-location' => [
-        'name' => 'Edit Location',
-        'note' => 'Allows users to edit the location associated with their own user account.',
+        'name' => 'Sửa vị trí cá nhân',
+        'note' => 'Cho phép người dùng tự chỉnh sửa vị trí gắn liền với tài khoản của họ.',
     ],
     'selfcheckout-assets' => [
-        'name' => 'Self Check Out Assets',
-        'note' => 'Allows users to check out assets to themselves without admin intervention.',
+        'name' => 'Tự mượn / cấp phát tài sản',
+        'note' => 'Cho phép người dùng tự mượn tài sản cho chính mình mà không cần admin can thiệp.',
     ],
     'selfview-purchase-cost' => [
-        'name' => 'View Purchase Cost',
-        'note' => 'Allows users to view the purchase cost of items in their account view.',
+        'name' => 'Xem giá mua tài sản',
+        'note' => 'Cho phép người dùng xem giá mua của các mục trong màn hình xem tài khoản của họ.',
     ],
-
     'depreciations' => [
-        'name' => 'Depreciation Management',
-        'note' => 'Allows users to manage and view asset depreciation details.',
+        'name' => 'Khấu hao',
+        'note' => 'Cấp quyền truy cập vào phần Khấu hao.',
     ],
     'depreciationsview' => [
-        'name' => 'View Depreciation Details',
+        'name' => 'Xem khấu hao',
     ],
     'depreciationsedit' => [
-        'name' => 'Edit Depreciation Settings',
+        'name' => 'Sửa khấu hao',
     ],
     'depreciationsdelete' => [
-        'name' => 'Delete Depreciation Records',
+        'name' => 'Xóa khấu hao',
     ],
     'depreciationscreate' => [
-        'name' => 'Create Depreciation Records',
+        'name' => 'Tạo mới khấu hao',
     ],
-
-    'grant_all' => 'Grant all permissions for :area',
-    'deny_all' => 'Deny all permissions for :area',
-    'inherit_all' => 'Inherit all permissions for :area from permission groups',
-    'grant' => 'Grant Permission for :area',
-    'deny' => 'Deny Permission for :area',
-    'inherit' => 'Inherit Permission for :area from permission groups',
-    'use_groups' => 'We strongly suggest using Permission Groups instead of assigning individual permissions for easier management.',
-
+    'grant_all' => 'Cấp tất cả các quyền cho :area',
+    'deny_all' => 'Từ chối tất cả các quyền cho :area',
+    'inherit_all' => 'Kế thừa tất cả các quyền cho :area từ nhóm quyền',
+    'grant' => 'Cấp quyền cho :area',
+    'deny' => 'Từ chối quyền cho :area',
+    'inherit' => 'Kế thừa quyền cho :area từ nhóm quyền',
+    'use_groups' => 'Chúng tôi khuyến nghị nên sử dụng Nhóm quyền thay vì gán quyền cá nhân để quản lý dễ dàng hơn.',
+    'consumablescheckin' => [
+        'name' => 'Thu hồi vật tư tiêu hao',
+        'note' => 'Thu hồi vật tư tiêu hao trở lại kho.',
+    ],
+    'usersreset_password' => [
+        'name' => 'Đặt lại mật khẩu người dùng',
+    ],
+    'usersprint' => [
+        'name' => 'In danh mục tài sản của người dùng',
+    ],
+    'usersview_all' => [
+        'name' => 'Xem tất cả người dùng',
+        'note' => 'Khi Hỗ trợ đa đơn vị/cơ quan được bật, cho phép người dùng xem danh sách người dùng trên tất cả các đơn vị/cơ quan.',
+    ],
+    'statuslabels' => [
+        'name' => 'Nhãn trạng thái',
+        'note' => 'Cấp quyền truy cập vào phần Nhãn trạng thái.',
+    ],
+    'custom_fields' => [
+        'name' => 'Trường tùy chỉnh',
+        'note' => 'Cấp quyền truy cập vào phần Trường tùy chỉnh.',
+    ],
+    'custom_fieldsview' => [
+        'name' => 'Xem trường tùy chỉnh',
+    ],
+    'custom_fieldscreate' => [
+        'name' => 'Tạo mới trường tùy chỉnh',
+    ],
+    'custom_fieldsedit' => [
+        'name' => 'Sửa trường tùy chỉnh',
+    ],
+    'custom_fieldsdelete' => [
+        'name' => 'Xóa trường tùy chỉnh',
+    ],
+    'kitscheckout' => [
+        'name' => 'Cấp phát gói cấu hình sẵn',
+    ],
+    'maintenances' => [
+        'name' => 'Bảo trì tài sản',
+        'note' => 'Cấp quyền truy cập vào phần Bảo trì tài sản.',
+    ],
+    'maintenancesview' => [
+        'name' => 'Xem bảo trì tài sản',
+    ],
+    'maintenancescreate' => [
+        'name' => 'Tạo mới bảo trì tài sản',
+    ],
+    'maintenancesedit' => [
+        'name' => 'Sửa bảo trì tài sản',
+    ],
+    'maintenancesdelete' => [
+        'name' => 'Xóa bảo trì tài sản',
+    ],
+    'self' => [
+        'two_factor' => [
+            'name' => 'Tự quản lý xác thực hai yếu tố (2FA)',
+            'note' => 'Cho phép người dùng tự quản lý và thiết lập xác thực 2FA cho tài khoản của chính mình.',
+        ],
+        'profile' => [
+            'name' => 'Tự quản lý hồ sơ cá nhân',
+            'note' => 'Cho phép người dùng tự chỉnh sửa thông tin hồ sơ của chính mình.',
+        ],
+        'password' => [
+            'name' => 'Tự đổi mật khẩu',
+            'note' => 'Cho phép người dùng tự thay đổi mật khẩu của chính mình.',
+        ],
+        'api' => [
+            'name' => 'Tự quản lý mã API cá nhân',
+            'note' => 'Cho phép người dùng tự tạo và quản lý mã API cá nhân.',
+        ],
+        'checkout' => [
+            'name' => 'Tự cấp phát tài sản',
+            'note' => 'Cho phép người dùng tự cấp phát tài sản cho chính mình.',
+        ],
+        'checkin' => [
+            'name' => 'Tự thu hồi tài sản',
+            'note' => 'Cho phép người dùng tự thu hồi tài sản của chính mình.',
+        ],
+    ],
+    'manufacturersfiles' => [
+        'name' => 'Quản lý tệp nhà sản xuất',
+        'note' => 'Cho phép tải lên, tải xuống và xóa tệp đính kèm của nhà sản xuất.',
+    ],
+    'kitsfiles' => [
+        'name' => 'Quản lý tệp gói cấu hình sẵn',
+        'note' => 'Cho phép tải lên, tải xuống và xóa tệp đính kèm của gói cấu hình sẵn.',
+    ],
+    'maintenancesfiles' => [
+        'name' => 'Quản lý tệp bảo trì',
+        'note' => 'Cho phép tải lên, tải xuống và xóa tệp đính kèm của bảo trì tài sản.',
+    ],
 ];

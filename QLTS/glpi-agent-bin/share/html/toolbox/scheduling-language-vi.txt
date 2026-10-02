@@ -1,0 +1,16 @@
+# Bản dịch tiếng Việt cho GLPI Agent Scheduling - Quản lý tài sản công & CNTT
+
+Scheduling name: Tên lịch kiểm kê:
+
+Add new scheduling: Thêm lịch kiểm kê mới:
+Edit &laquo;&nbsp;%s&nbsp;&raquo; scheduling: Chỉnh sửa lịch kiểm kê &laquo;&nbsp;%s&nbsp;&raquo;:
+
+Time unit: Đơn vị thời gian:
+Week day: Ngày trong tuần:
+Start: Thời điểm bắt đầu:
+Day time: Giờ trong ngày:
+
+The approximate delay time between two tasks runs: Khoảng thời gian ước tính giữa hai lần thực thi tác vụ:
+Week day, day time and duration of a time slot during which a task will be executed once: Ngày trong tuần, giờ trong ngày và thời lượng của khung thời gian tác vụ sẽ chạy một lần:
+
+No scheduling defined: Chưa có lịch kiểm kê nào được thiết lập:

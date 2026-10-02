@@ -1,0 +1,18 @@
+# Bản dịch tiếng Việt cho GLPI Agent IP Range - Quản lý tài sản công & CNTT
+
+IP range name: Tên dải địa chỉ IP:
+
+Add IP range: Thêm dải địa chỉ IP:
+Add new IP range: Thêm mới dải địa chỉ IP:
+Edit &laquo;&nbsp;%s&nbsp;&raquo; ip range: Chỉnh sửa dải IP &laquo;&nbsp;%s&nbsp;&raquo;:
+IP range start: Địa chỉ IP bắt đầu:
+IP range end: Địa chỉ IP kết thúc:
+Associated credentials: Thông tin xác thực liên kết:
+Add credential: Thêm thông tin xác thực:
+Remove credential: Gỡ bỏ thông tin xác thực:
+
+SNMP version: Phiên bản SNMP:
+Community: Chuỗi cộng đồng (Community):
+Username: Tên người dùng:
+
+No IP range defined: Chưa có dải địa chỉ IP nào được định nghĩa:

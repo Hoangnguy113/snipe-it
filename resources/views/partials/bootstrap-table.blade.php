@@ -2470,11 +2470,11 @@
                 var icon_style;
                 var text_help;
                 var status_meta = {
-                  'deployed': '{{ strtolower(trans('general.deployed')) }}',
-                  'deployable': '{{ strtolower(trans('admin/hardware/general.deployable')) }}',
-                  'archived': '{{ strtolower(trans('general.archived')) }}',
-                  'undeployable': '{{ strtolower(trans('general.undeployable')) }}',
-                  'pending': '{{ strtolower(trans('general.pending')) }}'
+                  'deployed': '{{ trans('general.deployed') }}',
+                  'deployable': '{{ trans('admin/hardware/general.deployable') }}',
+                  'archived': '{{ trans('general.archived') }}',
+                  'undeployable': '{{ trans('general.undeployable') }}',
+                  'pending': '{{ trans('general.pending') }}'
                 }
 
                 switch (value.status_meta) {
