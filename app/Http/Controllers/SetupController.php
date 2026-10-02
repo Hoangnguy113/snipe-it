@@ -162,11 +162,23 @@ class SetupController extends Controller
 
         $settings = new Setting;
         $settings->full_multiple_companies_support = $request->input('full_multiple_companies_support', 0);
-        $settings->site_name = $request->input('site_name');
+
+        $rawSiteName = trim($request->input('site_name', ''));
+        $prefix = 'Phần mềm quản lý thiết bị CNTT tại ';
+        if (str_starts_with($rawSiteName, $prefix)) {
+            $settings->site_name = $rawSiteName;
+        } elseif (!empty($rawSiteName)) {
+            $settings->site_name = $prefix . $rawSiteName;
+        } else {
+            $settings->site_name = $prefix . 'Bệnh viện đa khoa Bắc Kạn';
+        }
+
         $settings->alert_email = $request->input('email');
         $settings->alerts_enabled = 1;
         $settings->pwd_secure_min = 10;
-        $settings->brand = 1;
+        $settings->brand = 3;
+        $settings->logo = 'it_equipment_management_logo.png';
+        $settings->favicon = 'favicon.ico';
         $request->validate([
             'link_light_color' => ['nullable', new CssColor],
             'link_dark_color' => ['nullable', new CssColor],
@@ -176,8 +188,9 @@ class SetupController extends Controller
         $settings->link_light_color = $request->input('link_light_color', '#296282');
         $settings->link_dark_color = $request->input('link_dark_color', '#296282');
         $settings->nav_link_color = $request->input('nav_link_color', '#FFFFFF');
-        $settings->locale = $request->input('locale', 'en-US');
-        $settings->default_currency = $request->input('default_currency', 'USD');
+        $settings->locale = $request->input('locale', 'vi-VN');
+        $settings->default_currency = $request->input('default_currency', 'VND');
+        $user->locale = $settings->locale;
         $settings->created_by = 1;
         $settings->email_domain = $request->input('email_domain');
         $settings->email_format = $request->input('email_format');
