@@ -1,0 +1,142 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="1000" height="680">
+  <defs>
+    <style>
+      .font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+      .shadow { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)); }
+      .badge-step { fill: #dc2626; font-weight: bold; font-size: 13px; }
+      .step-text { fill: #ffffff; font-weight: bold; font-size: 12px; text-anchor: middle; dominant-baseline: central; }
+    </style>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1000" height="680" fill="#f1f5f9"/>
+
+  <!-- Browser Frame -->
+  <rect x="20" y="15" width="960" height="650" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" class="shadow"/>
+
+  <!-- Browser Header Bar -->
+  <path d="M 20 25 Q 20 15 30 15 L 970 15 Q 980 15 980 25 L 980 55 L 20 55 Z" fill="#e2e8f0"/>
+  <circle cx="45" cy="35" r="6" fill="#ef4444"/>
+  <circle cx="65" cy="35" r="6" fill="#f59e0b"/>
+  <circle cx="85" cy="35" r="6" fill="#10b981"/>
+  <rect x="120" y="24" width="700" height="24" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="140" y="40" class="font-sans" font-size="12" fill="#64748b">🔒 https://muasamcong.mpi.gov.vn/web/guest/search-bid-result</text>
+
+  <!-- Content Header -->
+  <rect x="40" y="70" width="920" height="40" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+  <text x="55" y="95" class="font-sans" font-size="14" font-weight="bold" fill="#0f172a">📋 KẾT QUẢ TÌM KIẾM: KẾT QUẢ LỰA CHỌN NHÀ THẦU</text>
+  <text x="790" y="95" class="font-sans" font-size="12" fill="#475569">Tìm thấy: <tspan font-weight="bold" fill="#0054a6">24 kết quả</tspan></text>
+
+  <!-- Search Filter Summary Bar -->
+  <rect x="40" y="120" width="920" height="36" fill="#f1f5f9" rx="4"/>
+  <text x="55" y="143" class="font-sans" font-size="12" fill="#475569">Từ khóa: <tspan font-weight="bold" fill="#1e293b">"máy vi tính"</tspan> | Lĩnh vực: <tspan font-weight="bold" fill="#1e293b">Hàng hóa</tspan> | Phân loại: <tspan font-weight="bold" fill="#1e293b">Đấu thầu rộng rãi qua mạng</tspan></text>
+  <rect x="830" y="125" width="115" height="26" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="887" y="142" class="font-sans" font-size="11" fill="#334155" text-anchor="middle">Sắp xếp: Mới nhất ▾</text>
+
+  <!-- Table Header -->
+  <g transform="translate(40, 165)">
+    <rect x="0" y="0" width="920" height="42" fill="#0054a6" rx="4"/>
+    <text x="25" y="26" class="font-sans" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">STT</text>
+    <text x="110" y="26" class="font-sans" font-size="12" font-weight="bold" fill="#ffffff">Mã TBMT / Gói thầu</text>
+    <text x="260" y="26" class="font-sans" font-size="12" font-weight="bold" fill="#ffffff">Tên gói thầu &amp; Bên mời thầu</text>
+    <text x="610" y="26" class="font-sans" font-size="12" font-weight="bold" fill="#ffffff">Giá gói thầu (VND)</text>
+    <text x="750" y="26" class="font-sans" font-size="12" font-weight="bold" fill="#ffffff">Giá trúng thầu (VND)</text>
+    <text x="865" y="26" class="font-sans" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Trạng thái</text>
+  </g>
+
+  <!-- Table Row 1 (Highlight / Click Target) -->
+  <g transform="translate(40, 212)">
+    <rect x="0" y="0" width="920" height="85" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" rx="4"/>
+    <text x="25" y="47" class="font-sans" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">1</text>
+    
+    <!-- Code -->
+    <text x="60" y="32" class="font-sans" font-size="12" font-weight="bold" fill="#0054a6">IB2400085942-00</text>
+    <rect x="60" y="42" width="75" height="20" rx="3" fill="#dbeafe"/>
+    <text x="97" y="56" class="font-sans" font-size="10" font-weight="bold" fill="#1e40af" text-anchor="middle">Hàng hóa</text>
+
+    <!-- Tender Name (Clickable link) -->
+    <text x="260" y="30" class="font-sans" font-size="13" font-weight="bold" fill="#0284c7" text-decoration="underline">Gói thầu số 01: Mua sắm máy vi tính, máy in văn phòng năm 2024</text>
+    <text x="260" y="52" class="font-sans" font-size="11" fill="#475569">Bên mời thầu: Văn phòng Cục Công nghệ Thông tin</text>
+    <text x="260" y="70" class="font-sans" font-size="11" fill="#64748b">Ngày phê duyệt KQLCNT: 15/11/2024</text>
+
+    <!-- Package Price -->
+    <text x="610" y="48" class="font-sans" font-size="13" font-weight="bold" fill="#475569">1.250.000.000</text>
+
+    <!-- Awarded Winning Price -->
+    <text x="750" y="40" class="font-sans" font-size="14" font-weight="bold" fill="#dc2626">1.180.500.000</text>
+    <text x="750" y="58" class="font-sans" font-size="11" fill="#16a34a">Tiết kiệm: 5,56%</text>
+
+    <!-- Status Badge -->
+    <rect x="825" y="32" width="80" height="22" rx="11" fill="#dcfce7"/>
+    <text x="865" y="47" class="font-sans" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">Đã có KQLCNT</text>
+
+    <!-- Mouse Pointer / Click Indicator -->
+    <g transform="translate(480, 25)">
+      <path d="M 0 0 L 14 14 L 8 16 L 13 26 L 9 28 L 4 18 L -1 22 Z" fill="#0f172a" stroke="#ffffff" stroke-width="1.5"/>
+      <circle cx="2" cy="2" r="16" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+    </g>
+  </g>
+
+  <!-- Table Row 2 -->
+  <g transform="translate(40, 303)">
+    <rect x="0" y="0" width="920" height="75" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+    <text x="25" y="42" class="font-sans" font-size="12" fill="#64748b" text-anchor="middle">2</text>
+    
+    <text x="60" y="28" class="font-sans" font-size="12" font-weight="bold" fill="#0054a6">IB2400072311-00</text>
+    <rect x="60" y="38" width="75" height="20" rx="3" fill="#dbeafe"/>
+    <text x="97" y="52" class="font-sans" font-size="10" fill="#1e40af" text-anchor="middle">Hàng hóa</text>
+
+    <text x="260" y="28" class="font-sans" font-size="13" font-weight="bold" fill="#334155">Mua sắm thiết bị phòng họp trực tuyến và máy tính xách tay</text>
+    <text x="260" y="48" class="font-sans" font-size="11" fill="#475569">Bên mời thầu: Trung tâm Y tế Huyện Đông Anh</text>
+    <text x="260" y="65" class="font-sans" font-size="11" fill="#64748b">Ngày phê duyệt KQLCNT: 10/11/2024</text>
+
+    <text x="610" y="43" class="font-sans" font-size="13" fill="#475569">890.000.000</text>
+    <text x="750" y="35" class="font-sans" font-size="14" font-weight="bold" fill="#dc2626">865.200.000</text>
+    <text x="750" y="52" class="font-sans" font-size="11" fill="#16a34a">Tiết kiệm: 2,78%</text>
+
+    <rect x="825" y="28" width="80" height="22" rx="11" fill="#dcfce7"/>
+    <text x="865" y="43" class="font-sans" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">Đã có KQLCNT</text>
+  </g>
+
+  <!-- Table Row 3 -->
+  <g transform="translate(40, 384)">
+    <rect x="0" y="0" width="920" height="75" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+    <text x="25" y="42" class="font-sans" font-size="12" fill="#64748b" text-anchor="middle">3</text>
+    
+    <text x="60" y="28" class="font-sans" font-size="12" font-weight="bold" fill="#0054a6">IB2400064190-01</text>
+    <rect x="60" y="38" width="75" height="20" rx="3" fill="#dbeafe"/>
+    <text x="97" y="52" class="font-sans" font-size="10" fill="#1e40af" text-anchor="middle">Hàng hóa</text>
+
+    <text x="260" y="28" class="font-sans" font-size="13" font-weight="bold" fill="#334155">Nâng cấp trang thiết bị CNTT phục vụ chuyển đổi số năm 2024</text>
+    <text x="260" y="48" class="font-sans" font-size="11" fill="#475569">Bên mời thầu: Sở Tài chính Tỉnh Bắc Ninh</text>
+    <text x="260" y="65" class="font-sans" font-size="11" fill="#64748b">Ngày phê duyệt KQLCNT: 02/11/2024</text>
+
+    <text x="610" y="43" class="font-sans" font-size="13" fill="#475569">3.400.000.000</text>
+    <text x="750" y="35" class="font-sans" font-size="14" font-weight="bold" fill="#dc2626">3.280.000.000</text>
+    <text x="750" y="52" class="font-sans" font-size="11" fill="#16a34a">Tiết kiệm: 3,53%</text>
+
+    <rect x="825" y="28" width="80" height="22" rx="11" fill="#dcfce7"/>
+    <text x="865" y="43" class="font-sans" font-size="10" font-weight="bold" fill="#15803d" text-anchor="middle">Đã có KQLCNT</text>
+  </g>
+
+  <!-- Pagination Bar -->
+  <g transform="translate(40, 470)">
+    <text x="10" y="20" class="font-sans" font-size="12" fill="#64748b">Hiển thị 1 - 10 trong tổng số 24 gói thầu</text>
+    <rect x="740" y="3" width="28" height="26" rx="3" fill="#0054a6"/>
+    <text x="754" y="20" class="font-sans" font-size="12" fill="#ffffff" text-anchor="middle">1</text>
+    <rect x="775" y="3" width="28" height="26" rx="3" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="789" y="20" class="font-sans" font-size="12" fill="#334155" text-anchor="middle">2</text>
+    <rect x="810" y="3" width="28" height="26" rx="3" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="824" y="20" class="font-sans" font-size="12" fill="#334155" text-anchor="middle">3</text>
+    <rect x="845" y="3" width="35" height="26" rx="3" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="862" y="20" class="font-sans" font-size="12" fill="#334155" text-anchor="middle">&gt;</text>
+  </g>
+
+  <!-- Guide Annotation Bar Bottom -->
+  <rect x="40" y="525" width="920" height="120" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="65" y="550" class="font-sans" font-size="13" font-weight="bold" fill="#1e40af">💡 HƯỚNG DẪN ĐỌC THÔNG TIN TẠI BƯỚC NÀY:</text>
+  <text x="65" y="573" class="font-sans" font-size="12" fill="#1e3a8a">• <tspan font-weight="bold">Giá gói thầu:</tspan> Là mức giá trần dự toán ban đầu được Chủ đầu tư phê duyệt.</text>
+  <text x="65" y="593" class="font-sans" font-size="12" fill="#1e3a8a">• <tspan font-weight="bold" fill="#dc2626">Giá trúng thầu:</tspan> Là mức giá cuối cùng mà nhà thầu thắng thầu thực hiện (đã bao gồm thuế GTGT và chi phí liên quan).</text>
+  <text x="65" y="613" class="font-sans" font-size="12" fill="#1e3a8a">• <tspan font-weight="bold">Trạng thái "Đã có KQLCNT":</tspan> Đảm bảo gói thầu đã chính thức hoàn tất quá trình lựa chọn nhà thầu.</text>
+  <text x="65" y="633" class="font-sans" font-size="12" fill="#1e3a8a">• <tspan font-weight="bold" fill="#0284c7">THAO TÁC TIẾP THEO:</tspan> <tspan font-weight="bold">Nhấp chuột trực tiếp vào TÊN GÓI THẦU (màu xanh)</tspan> hoặc <tspan font-weight="bold">Mã TBMT</tspan> để mở màn hình chi tiết.</text>
+</svg>

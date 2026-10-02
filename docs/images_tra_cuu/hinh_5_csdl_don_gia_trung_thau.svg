@@ -1,0 +1,141 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="1000" height="680">
+  <defs>
+    <style>
+      .font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+      .shadow { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)); }
+      .step-text { fill: #ffffff; font-weight: bold; font-size: 12px; text-anchor: middle; dominant-baseline: central; }
+    </style>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1000" height="680" fill="#f1f5f9"/>
+
+  <!-- Browser Frame -->
+  <rect x="20" y="15" width="960" height="650" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" class="shadow"/>
+
+  <!-- Browser Header Bar -->
+  <path d="M 20 25 Q 20 15 30 15 L 970 15 Q 980 15 980 25 L 980 55 L 20 55 Z" fill="#e2e8f0"/>
+  <circle cx="45" cy="35" r="6" fill="#ef4444"/>
+  <circle cx="65" cy="35" r="6" fill="#f59e0b"/>
+  <circle cx="85" cy="35" r="6" fill="#10b981"/>
+  <rect x="120" y="24" width="700" height="24" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="140" y="40" class="font-sans" font-size="12" fill="#64748b">🔒 https://muasamcong.mpi.gov.vn/web/guest/csdl-don-gia-trung-thau</text>
+
+  <!-- Top Breadcrumb & Title -->
+  <g transform="translate(45, 75)">
+    <text x="0" y="0" class="font-sans" font-size="12" fill="#64748b">Trang chủ &gt; Cơ sở dữ liệu về đấu thầu &gt; <tspan font-weight="bold" fill="#0054a6">CSDL về đơn giá trúng thầu</tspan></text>
+    <text x="0" y="26" class="font-sans" font-size="16" font-weight="bold" fill="#0f172a">📊 TRA CỨU CƠ SỞ DỮ LIỆU VỀ ĐƠN GIÁ TRÚNG THẦU</text>
+  </g>
+
+  <!-- Filter Card -->
+  <rect x="40" y="125" width="920" height="150" fill="#f8fafc" stroke="#cbd5e1" rx="6"/>
+
+  <!-- Category Radios -->
+  <g transform="translate(60, 145)">
+    <text x="0" y="12" class="font-sans" font-size="12" font-weight="bold" fill="#1e293b">Phân loại lĩnh vực:</text>
+    
+    <!-- Option 1: Selected -->
+    <circle cx="140" cy="8" r="7" fill="#0054a6" stroke="#0054a6"/>
+    <circle cx="140" cy="8" r="3" fill="#ffffff"/>
+    <text x="155" y="12" class="font-sans" font-size="12" font-weight="bold" fill="#0054a6">Hàng hóa thông thường</text>
+
+    <!-- Option 2 -->
+    <circle cx="340" cy="8" r="7" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="355" y="12" class="font-sans" font-size="12" fill="#475569">Thuốc, Dược liệu, Vật tư y tế</text>
+
+    <!-- Option 3 -->
+    <circle cx="560" cy="8" r="7" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="575" y="12" class="font-sans" font-size="12" fill="#475569">Dịch vụ phi tư vấn</text>
+  </g>
+
+  <!-- Search Fields in Card -->
+  <g transform="translate(60, 180)">
+    <!-- Keyword Input -->
+    <text x="0" y="12" class="font-sans" font-size="12" fill="#475569">Tên hàng hóa / Ký mã hiệu / Model:</text>
+    <rect x="0" y="20" width="380" height="38" rx="4" fill="#ffffff" stroke="#0054a6" stroke-width="1.5"/>
+    <text x="12" y="44" class="font-sans" font-size="13" fill="#1e293b">Máy tính để bàn Core i5</text>
+
+    <!-- Date Range -->
+    <text x="400" y="12" class="font-sans" font-size="12" fill="#475569">Thời gian công khai KQLCNT:</text>
+    <rect x="400" y="20" width="135" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="410" y="44" class="font-sans" font-size="12" fill="#334155">01/01/2024</text>
+    <text x="545" y="44" class="font-sans" font-size="12" fill="#64748b">-</text>
+    <rect x="560" y="20" width="135" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="570" y="44" class="font-sans" font-size="12" fill="#334155">31/12/2024</text>
+
+    <!-- Search Button -->
+    <rect x="715" y="20" width="165" height="38" rx="4" fill="#0054a6"/>
+    <text x="797" y="44" class="font-sans" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">🔍 TÌM KIẾM GIÁ</text>
+  </g>
+
+  <!-- Table Results Section -->
+  <g transform="translate(40, 295)">
+    <!-- Results Header -->
+    <rect x="0" y="0" width="920" height="40" fill="#0054a6" rx="4"/>
+    <text x="15" y="25" class="font-sans" font-size="11" font-weight="bold" fill="#ffffff">STT</text>
+    <text x="55" y="25" class="font-sans" font-size="11" font-weight="bold" fill="#ffffff">Tên hàng hóa / Mô tả</text>
+    <text x="240" y="25" class="font-sans" font-size="11" font-weight="bold" fill="#ffffff">Ký mã hiệu / Model</text>
+    <text x="390" y="25" class="font-sans" font-size="11" font-weight="bold" fill="#ffffff">Hãng SX &amp; Xuất xứ</text>
+    <text x="510" y="25" class="font-sans" font-size="11" font-weight="bold" fill="#ffffff">ĐVT</text>
+    <text x="570" y="25" class="font-sans" font-size="11" font-weight="bold" fill="#ffffff">Đơn giá trúng thầu</text>
+    <text x="730" y="25" class="font-sans" font-size="11" font-weight="bold" fill="#ffffff">Số TBMT / Ngày duyệt</text>
+  </g>
+
+  <!-- Row 1 -->
+  <g transform="translate(40, 340)">
+    <rect x="0" y="0" width="920" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="15" y="35" class="font-sans" font-size="12" fill="#0f172a">1</text>
+    <text x="55" y="26" class="font-sans" font-size="12" font-weight="bold" fill="#0f172a">Máy tính để bàn đồng bộ</text>
+    <text x="55" y="44" class="font-sans" font-size="10" fill="#64748b">Core i5-13400, RAM 16GB, SSD 512GB</text>
+
+    <text x="240" y="35" class="font-sans" font-size="12" fill="#1e293b">ThinkCentre M70t Gen 4</text>
+    <text x="390" y="35" class="font-sans" font-size="11" fill="#1e293b">Lenovo / TQ</text>
+    <text x="510" y="35" class="font-sans" font-size="11" fill="#1e293b">Bộ</text>
+
+    <text x="570" y="35" class="font-sans" font-size="13" font-weight="bold" fill="#dc2626">16.500.000 VNĐ</text>
+    
+    <text x="730" y="26" class="font-sans" font-size="11" font-weight="bold" fill="#0284c7">IB2400085942</text>
+    <text x="730" y="44" class="font-sans" font-size="10" fill="#64748b">15/11/2024 (Cục CNTT)</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(40, 403)">
+    <rect x="0" y="0" width="920" height="60" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="15" y="35" class="font-sans" font-size="12" fill="#0f172a">2</text>
+    <text x="55" y="26" class="font-sans" font-size="12" font-weight="bold" fill="#0f172a">Máy vi tính để bàn văn phòng</text>
+    <text x="55" y="44" class="font-sans" font-size="10" fill="#64748b">Core i5-12400, RAM 8GB, SSD 256GB</text>
+
+    <text x="240" y="35" class="font-sans" font-size="12" fill="#1e293b">OptiPlex 3000 MT</text>
+    <text x="390" y="35" class="font-sans" font-size="11" fill="#1e293b">Dell / Malaysia</text>
+    <text x="510" y="35" class="font-sans" font-size="11" fill="#1e293b">Bộ</text>
+
+    <text x="570" y="35" class="font-sans" font-size="13" font-weight="bold" fill="#dc2626">14.200.000 VNĐ</text>
+    
+    <text x="730" y="26" class="font-sans" font-size="11" font-weight="bold" fill="#0284c7">IB2400078120</text>
+    <text x="730" y="44" class="font-sans" font-size="10" fill="#64748b">08/11/2024 (Sở Tài chính)</text>
+  </g>
+
+  <!-- Row 3 -->
+  <g transform="translate(40, 466)">
+    <rect x="0" y="0" width="920" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="15" y="35" class="font-sans" font-size="12" fill="#0f172a">3</text>
+    <text x="55" y="26" class="font-sans" font-size="12" font-weight="bold" fill="#0f172a">Máy vi tính để bàn ProDesk</text>
+    <text x="55" y="44" class="font-sans" font-size="10" fill="#64748b">Core i5-13500, RAM 16GB, SSD 512GB</text>
+
+    <text x="240" y="35" class="font-sans" font-size="12" fill="#1e293b">HP Pro SFF 400 G9</text>
+    <text x="390" y="35" class="font-sans" font-size="11" fill="#1e293b">HP / Singapore</text>
+    <text x="510" y="35" class="font-sans" font-size="11" fill="#1e293b">Bộ</text>
+
+    <text x="570" y="35" class="font-sans" font-size="13" font-weight="bold" fill="#dc2626">17.100.000 VNĐ</text>
+    
+    <text x="730" y="26" class="font-sans" font-size="11" font-weight="bold" fill="#0284c7">IB2400069345</text>
+    <text x="730" y="44" class="font-sans" font-size="10" fill="#64748b">25/10/2024 (Đại học QG)</text>
+  </g>
+
+  <!-- Bottom Annotation Bar -->
+  <rect x="40" y="540" width="920" height="110" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="65" y="565" class="font-sans" font-size="13" font-weight="bold" fill="#1e40af">💡 ƯU ĐIỂM KHI DÙNG CƠ SỞ DỮ LIỆU ĐƠN GIÁ TRÚNG THẦU:</text>
+  <text x="65" y="588" class="font-sans" font-size="12" fill="#1e3a8a">• <tspan font-weight="bold">Không cần biết trước Mã gói thầu:</tspan> Chỉ cần nhập tên hàng hóa, thiết bị hoặc Model muốn tham khảo giá.</text>
+  <text x="65" y="608" class="font-sans" font-size="12" fill="#1e3a8a">• <tspan font-weight="bold">So sánh giá đa chiều:</tspan> Dễ dàng đối chiếu cùng một cấu hình máy tính/thiết bị giữa các bên mời thầu trên cả nước đang mua với giá bao nhiêu.</text>
+  <text x="65" y="628" class="font-sans" font-size="12" fill="#1e3a8a">• <tspan font-weight="bold">Liên kết trực tiếp tới gói gốc:</tspan> Có thể nhấp vào Số TBMT để kiểm tra toàn bộ hồ sơ mời thầu và quyết định gốc.</text>
+</svg>
