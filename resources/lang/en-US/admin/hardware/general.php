@@ -29,6 +29,7 @@ return [
     'require_serial_help' => 'A serial number will be required when creating a new asset of this model.',
     'restore' => 'Restore Asset',
     'pending' => 'Pending',
+    'pending_request' => 'Pending',
     'fulfilled' => 'Fulfilled',
     'fulfill' => 'Fulfill',
     'fulfill_multiple' => 'Fulfill Multiple',
