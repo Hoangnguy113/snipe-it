@@ -31,4 +31,15 @@ return [
         'success' => 'Der Standort wurde erfolgreich gelöscht.',
     ],
 
+    'bulkedit' => [
+        'error' => 'Es wurden keine Felder geändert, somit wurde auch nichts aktualisiert.',
+        'success' => 'Standort erfolgreich aktualisiert. |:location_count Standorte erfolgreich aktualisiert.',
+        'warn' => 'Bearbeiten Sie die Felder unten, um diesen Standort zu aktualisieren. Die Felder, die Sie leer lassen, werden sich am Standort nicht ändern. Bearbeiten Sie die Felder unten, um alle :count ausgewählten Orte zu aktualisieren. Die Felder, die Sie leer lassen, werden sich bei keinem von ihnen ändern.',
+        'show_selected' => '1 ausgewählter Standort|:count ausgewählte Standorte',
+        'company_scope_mismatch_partial' => 'Das Unternehmen wurde an einem Standort nicht geändert, da Elemente oder Benutzer an diesem Standort zu verschiedenen Unternehmen gehören. Aktualisieren oder verschieben Sie diese zuerst. Das Unternehmen wurde an :count Standorten nicht geändert, da Elemente oder Benutzer an diesen Standorten zu verschiedenen Unternehmen gehören. Aktualisieren oder verschieben Sie diese zuerst.',
+        'company_scope_mismatch_all' => 'Es wurden keine Standorte neu zugewiesen. Die angeforderte Firma stimmt nicht mit Artikeln oder Benutzern am gewählten Standort überein. Es wurden keine Standorte neu zugewiesen. Die angeforderte Firma stimmt nicht mit Artikeln oder Benutzern an irgendeinem der :count ausgewählten Standorte überein.',
+        'parent_company_mismatch_partial' => 'The parent or company was not changed on 1 location because it would leave the location in a different company than its parent.|The parent or company was not changed on :count locations because it would leave those locations in a different company than their parent.',
+        'parent_company_mismatch_all' => 'No changes were saved. The requested parent or company would leave the location in a different company than its parent.|No changes were saved. The requested parent or company would leave every one of the :count selected locations in a different company than their parent.',
+    ],
+
 ];
