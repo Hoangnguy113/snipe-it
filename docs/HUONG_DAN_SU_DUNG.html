@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sách Hướng Dẫn Sử Dụng Hệ Thống Quản Lý Tài Sản CNTT</title>
+    <style>
+        :root {
+            --primary: #2b579a;
+            --primary-light: #e8eff9;
+            --success: #28a745;
+            --warning: #f39c12;
+            --danger: #dd4b39;
+            --dark: #2c3e50;
+            --gray-bg: #f8f9fa;
+            --border: #e2e8f0;
+            --text: #334155;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            background: #f1f5f9;
+            line-height: 1.65;
+        }
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 320px;
+            background: #1e293b;
+            color: #f8fafc;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+            padding: 24px 16px;
+            z-index: 100;
+        }
+        .sidebar h2 {
+            font-size: 1.15rem;
+            color: #38bdf8;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .sidebar p.subtitle {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 12px;
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar li {
+            margin-bottom: 6px;
+        }
+        .sidebar a {
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.88rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .sidebar a:hover {
+            background: #334155;
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+        .sidebar a.active {
+            background: var(--primary);
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .sidebar .group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #64748b;
+            margin: 16px 8px 6px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 320px;
+            flex: 1;
+            padding: 40px 60px;
+            max-width: 1200px;
+        }
+        .doc-header {
+            background: #ffffff;
+            padding: 36px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 36px;
+            border-top: 5px solid var(--primary);
+        }
+        .doc-header h1 {
+            font-size: 2rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .doc-meta {
+            display: flex;
+            gap: 24px;
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .doc-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-primary { background: var(--primary-light); color: var(--primary); }
+        .badge-success { background: #dcfce7; color: #166534; }
+
+        /* Vocabulary Table */
+        .vocab-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        .vocab-card h2 {
+            font-size: 1.35rem;
+            color: #0f172a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        table.vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+            font-size: 0.92rem;
+        }
+        table.vocab-table th, table.vocab-table td {
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+        table.vocab-table th {
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+        }
+        table.vocab-table tr:nth-child(even) {
+            background: #fdfdfd;
+        }
+
+        /* Step Card */
+        .step-section {
+            background: #ffffff;
+            padding: 36px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+        .step-section h2.part-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 12px;
+            margin-bottom: 28px;
+        }
+        .step-block {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+        .step-block:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .step-block h3 {
+            font-size: 1.22rem;
+            color: #1e293b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .step-badge {
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+        .step-purpose {
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 18px;
+            margin: 14px 0 18px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
+        .step-instructions {
+            margin: 16px 0;
+            padding-left: 20px;
+        }
+        .step-instructions li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .step-instructions strong {
+            color: #0f172a;
+        }
+        .alert-tip {
+            background: #fefce8;
+            border-left: 4px solid #eab308;
+            padding: 12px 16px;
+            margin: 14px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9rem;
+            color: #713f12;
+        }
+
+        /* Image Styling */
+        .step-image-wrap {
+            margin: 22px 0 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07);
+            background: #ffffff;
+        }
+        .step-image-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .step-image-caption {
+            background: #f8fafc;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            color: #64748b;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            font-style: italic;
+        }
+
+        /* Print Button */
+        .btn-print {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(43, 87, 154, 0.35);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.2s;
+        }
+        .btn-print:hover {
+            transform: scale(1.05);
+            background: #1e3e6d;
+        }
+
+        /* Print Media Queries */
+        @media print {
+            .sidebar, .btn-print {
+                display: none !important;
+            }
+            .content {
+                margin-left: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            .step-section, .vocab-card, .doc-header {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                page-break-inside: avoid;
+                margin-bottom: 24px;
+            }
+            .step-block {
+                page-break-inside: avoid;
+            }
+            body {
+                background: #fff;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <h2>HƯỚNG DẪN SỬ DỤNG</h2>
+        <p class="subtitle">Hệ thống Quản lý Thiết bị & Tài sản CNTT</p>
+
+        <div class="group-title">Khởi động</div>
+        <ul>
+            <li><a href="#vocab">Bảng Giải nghĩa Thuật ngữ</a></li>
+            <li><a href="#p1-1">1.1. Đăng nhập hệ thống</a></li>
+            <li><a href="#p1-2">1.2. Bảng điều khiển (Dashboard)</a></li>
+            <li><a href="#p1-3">1.3. Thanh tìm kiếm & Menu</a></li>
+        </ul>
+
+        <div class="group-title">Thiết bị & Tài sản</div>
+        <ul>
+            <li><a href="#p2-1">2.1. Tra cứu danh sách tài sản</a></li>
+            <li><a href="#p2-2">2.2. Thêm mới tài sản</a></li>
+            <li><a href="#p2-3">2.3. Cấp phát thiết bị (Bàn giao)</a></li>
+            <li><a href="#p2-4">2.4. Thu hồi thiết bị về kho</a></li>
+            <li><a href="#p2-5">2.5. Xem lý lịch & Lịch sử dùng</a></li>
+            <li><a href="#p2-6">2.6. In nhãn dán tem QR Code</a></li>
+        </ul>
+
+        <div class="group-title">Bản quyền & Phụ kiện</div>
+        <ul>
+            <li><a href="#p3-1">3.1. Danh mục bản quyền phần mềm</a></li>
+            <li><a href="#p3-2">3.2. Khai báo bản quyền mới</a></li>
+            <li><a href="#p3-3">3.3. Cấp phát bản quyền cho nhân viên</a></li>
+            <li><a href="#p4-1">4.1. Danh mục Phụ kiện & Tồn kho</a></li>
+            <li><a href="#p4-2">4.2. Thêm mới phụ kiện</a></li>
+            <li><a href="#p4-3">4.3. Cấp phát phụ kiện</a></li>
+        </ul>
+
+        <div class="group-title">Vật tư & Linh kiện</div>
+        <ul>
+            <li><a href="#p5-1">5.1. Theo dõi Vật tư tiêu hao</a></li>
+            <li><a href="#p5-2">5.2. Nhập thêm vật tư</a></li>
+            <li><a href="#p5-3">5.3. Xuất kho vật tư</a></li>
+            <li><a href="#p6-1">6.1. Danh sách Linh kiện trong kho</a></li>
+            <li><a href="#p6-2">6.2. Thêm mới linh kiện</a></li>
+            <li><a href="#p6-3">6.3. Lắp linh kiện vào máy tính</a></li>
+        </ul>
+
+        <div class="group-title">Gói Combo & Bảo trì</div>
+        <ul>
+            <li><a href="#p7-1">7.1. Danh sách Gói thiết bị mẫu</a></li>
+            <li><a href="#p7-2">7.2. Cấp phát 1 chạm cả gói</a></li>
+            <li><a href="#p8-1">8.1. Sổ theo dõi sửa chữa</a></li>
+            <li><a href="#p8-2">8.2. Lập phiếu báo hỏng máy</a></li>
+        </ul>
+
+        <div class="group-title">Nhân sự & Báo cáo</div>
+        <ul>
+            <li><a href="#p9-1">9.1. Danh sách Nhân viên</a></li>
+            <li><a href="#p9-2">9.2. Tạo hồ sơ nhân viên mới</a></li>
+            <li><a href="#p9-3">9.3. Đối soát tài sản khi nghỉ việc</a></li>
+            <li><a href="#p10-1">10.1. Quản lý Danh mục phân loại</a></li>
+            <li><a href="#p10-2">10.2. Quản lý Vị trí & Chi nhánh</a></li>
+            <li><a href="#p11-1">11.1. Báo cáo khấu hao tài sản</a></li>
+            <li><a href="#p11-2">11.2. Nhật ký hoạt động toàn hệ thống</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Document Header -->
+        <header class="doc-header">
+            <span class="badge badge-primary">Tài Liệu Hướng Dẫn Nội Bộ</span>
+            <span class="badge badge-success">Giao diện Tiếng Việt 100%</span>
+            <h1 style="margin-top: 10px;">SỔ TAY HƯỚNG DẪN SỬ DỤNG HỆ THỐNG QUẢN LÝ THIẾT BỊ & TÀI SẢN CNTT</h1>
+            <p style="font-size: 1.05rem; color: #475569;">
+                Tài liệu hướng dẫn trực quan "Cầm tay chỉ việc", minh họa thực tế từng thao tác, được biên soạn đặc biệt dành cho Cán bộ Quản lý Tài sản, Thủ kho, Kế toán và Nhân sự không chuyên sâu về công nghệ thông tin.
+            </p>
+            <div class="doc-meta">
+                <span><strong>Hệ thống:</strong> Snipe-IT Asset Management</span>
+                <span><strong>Phiên bản:</strong> 2.0 Hoàn thiện</span>
+                <span><strong>Độ dài:</strong> 32 Bước có hình ảnh minh họa thực tế</span>
+            </div>
+        </header>
+
+        <!-- Vocabulary Card -->
+        <section class="vocab-card" id="vocab">
+            <h2>📖 BẢNG GIẢI THÍCH THUẬT NGỮ "BÌNH DÂN" DỄ HIỂU</h2>
+            <p>Để tránh bỡ ngỡ với các từ ngữ chuyên môn, hãy tham khảo bảng so sánh thực tế dưới đây:</p>
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Thuật ngữ hệ thống</th>
+                        <th style="width: 25%;">Tên gọi tiếng Việt</th>
+                        <th style="width: 30%;">Ví dụ thực tế dễ hiểu</th>
+                        <th style="width: 25%;">Quy tắc bắt buộc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Hardware / Asset</strong></td>
+                        <td><strong>Tài sản / Thiết bị</strong></td>
+                        <td>Laptop, Máy tính để bàn PC, Màn hình, Máy in, Máy chiếu...</td>
+                        <td>Có mã tem và số sê-ri riêng. Phải theo dõi ai đang giữ.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Checkout</strong></td>
+                        <td><strong>Cấp phát / Bàn giao</strong></td>
+                        <td>Giao laptop cho nhân viên mới nhận việc, giao máy in cho phòng Kế toán.</td>
+                        <td>Ghi nhận đích danh người nhận chịu trách nhiệm bảo quản.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Checkin</strong></td>
+                        <td><strong>Thu hồi / Trả về kho</strong></td>
+                        <td>Nhân viên nghỉ việc trả lại máy, thu hồi máy cũ về kho cất.</td>
+                        <td>Máy quay trở lại kho để sẵn sàng cấp cho người tiếp theo.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Licenses</strong></td>
+                        <td><strong>Bản quyền / Giấy phép</strong></td>
+                        <td>Key bản quyền Windows 11, Microsoft Office 365, Photoshop...</td>
+                        <td>Quản lý theo số suất (Seats) được phép kích hoạt.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accessories</strong></td>
+                        <td><strong>Phụ kiện</strong></td>
+                        <td>Chuột máy tính, bàn phím rời, sạc laptop, tai nghe...</td>
+                        <td>Phát cho nhân viên, <strong>có thể thu hồi</strong> lại được.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Consumables</strong></td>
+                        <td><strong>Vật tư tiêu hao</strong></td>
+                        <td>Hộp mực máy in, giấy in A4, đầu bấm mạng RJ45, pin tiểu...</td>
+                        <td>Phát ra là dùng hết, <strong>không thu hồi</strong> lại về kho.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Components</strong></td>
+                        <td><strong>Linh kiện nâng cấp</strong></td>
+                        <td>Thanh RAM, ổ cứng SSD, card màn hình VGA...</td>
+                        <td>Lắp <strong>bên trong</strong> một máy tính cụ thể.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Predefined Kits</strong></td>
+                        <td><strong>Gói thiết bị mẫu</strong></td>
+                        <td>Gói nhân viên mới: 1 Laptop + 1 Chuột + 1 Office 365.</td>
+                        <td>Cấp phát 1 chạm cả combo thay vì tìm từng món riêng lẻ.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- PART 1 -->
+        <section class="step-section" id="part1">
+            <h2 class="part-title">PHẦN 1: ĐĂNG NHẬP & TỔNG QUAN HỆ THỐNG</h2>
+
+            <!-- Step 1.1 -->
+            <div class="step-block" id="p1-1">
+                <h3><span class="step-badge">Bước 1.1</span> Đăng nhập vào hệ thống</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Xác thực danh tính người dùng để đăng nhập và làm việc an toàn trên phần mềm.
+                </div>
+                <ol class="step-instructions">
+                    <li>Mở trình duyệt web (Google Chrome, Microsoft Edge hoặc Cốc Cốc).</li>
+                    <li>Truy cập địa chỉ website phần mềm do quản trị viên IT cung cấp (Ví dụ: <code>http://127.0.0.1:8000/login</code>).</li>
+                    <li>Nhập <strong>Tên người dùng (Username)</strong> hoặc địa chỉ <strong>Email</strong> vào ô đầu tiên.</li>
+                    <li>Nhập <strong>Mật khẩu (Password)</strong> vào ô thứ hai.</li>
+                    <li>Tích chọn vào ô <em>"Ghi nhớ đăng nhập"</em> để không phải gõ lại mật khẩu vào lần sau.</li>
+                    <li>Bấm nút xanh dương <strong>Đăng nhập</strong>.</li>
+                </ol>
+                <div class="alert-tip">
+                    💡 <strong>Lưu ý:</strong> Nếu gõ sai mật khẩu quá 5 lần, tài khoản sẽ tạm khóa 15 phút vì lý do bảo mật. Hãy liên hệ bộ phận IT để được hỗ trợ mở khóa nhanh.
+                </div>
+                <div class="step-image-wrap">
+                    <img src="manual_images/01_dang_nhap.png" alt="Màn hình Đăng nhập hệ thống">
+                    <div class="step-image-caption">Hình 1.1: Giao diện đăng nhập chuẩn của hệ thống</div>
+                </div>
+            </div>
+
+            <!-- Step 1.2 -->
+            <div class="step-block" id="p1-2">
+                <h3><span class="step-badge">Bước 1.2</span> Làm quen Bảng điều khiển (Dashboard)</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Nắm bắt bức tranh tổng thể tài sản toàn công ty trong vòng 3 giây ngay khi mở phần mềm.
+                </div>
+                <p>Trên màn hình Bảng điều khiển, bạn sẽ thấy ngay 4 khối số liệu nổi bật:</p>
+                <ol class="step-instructions">
+                    <li><strong>Khối Xanh dương (Tổng tài sản):</strong> Toàn bộ số lượng máy móc thiết bị hiện có của doanh nghiệp.</li>
+                    <li><strong>Khối Xanh lá (Đã cấp phát):</strong> Thiết bị đang được nhân viên hoặc phòng ban sử dụng thực tế hàng ngày.</li>
+                    <li><strong>Khối Vàng cam (Sẵn sàng cấp phát):</strong> Thiết bị hoạt động tốt đang nằm trong kho, có thể bàn giao ngay cho nhân sự mới.</li>
+                    <li><strong>Khối Đỏ (Cần sửa chữa / Chờ xử lý):</strong> Thiết bị đang bị hư hỏng, đang đi bảo hành hoặc đang cài đặt kỹ thuật.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/02_bang_dieu_khien_tong_quan.png" alt="Bảng điều khiển tổng quan">
+                    <div class="step-image-caption">Hình 1.2: Toàn cảnh Dashboard với các thẻ chỉ số và biểu đồ trạng thái</div>
+                </div>
+            </div>
+
+            <!-- Step 1.3 -->
+            <div class="step-block" id="p1-3">
+                <h3><span class="step-badge">Bước 1.3</span> Thanh tìm kiếm nhanh & Menu điều hướng bên trái</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Tra cứu thiết bị trong chớp mắt và di chuyển linh hoạt giữa các tính năng.
+                </div>
+                <ol class="step-instructions">
+                    <li><strong>Menu bên trái (Sidebar):</strong> Phân chia danh mục rành mạch: <em>Tài sản, Giấy phép, Phụ kiện, Vật tư tiêu hao, Linh kiện, Gói thiết bị mẫu, Người dùng, Cài đặt</em>.</li>
+                    <li><strong>Ô tìm kiếm nhanh (Góc trên cùng):</strong> Gõ mã tài sản (Ví dụ <code>TS-CNTT-001</code>), số sê-ri hoặc tên nhân viên rồi bấm <code>Enter</code> để mở ngay hồ sơ máy.</li>
+                    <li><strong>Nút Tạo mới nhanh (+ Tạo mới):</strong> Nằm ở thanh tiêu đề, giúp bạn tạo ngay một tài sản, người dùng hay bản quyền mới mà không cần chuyển trang.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/03_thanh_dieu_huong_menu.png" alt="Thanh điều hướng và Menu">
+                    <div class="step-image-caption">Hình 1.3: Cấu trúc menu phân hệ và thanh tìm kiếm nhanh</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 2 -->
+        <section class="step-section" id="part2">
+            <h2 class="part-title">PHẦN 2: QUẢN LÝ THIẾT BỊ & TÀI SẢN (HARDWARE / ASSETS)</h2>
+
+            <!-- Step 2.1 -->
+            <div class="step-block" id="p2-1">
+                <h3><span class="step-badge">Bước 2.1</span> Xem và tìm kiếm danh sách tài sản</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Nắm rõ danh sách máy tính, laptop, màn hình hiện có, ai đang giữ chiếc nào, máy nào đang nằm trong kho.
+                </div>
+                <ol class="step-instructions">
+                    <li>Tại menu bên trái, nhấp chuột vào mục <strong>Tài sản</strong> -> chọn <strong>Xem tất cả</strong>.</li>
+                    <li>Tại bảng dữ liệu:
+                        <ul>
+                            <li>Cột <strong>Tên tài sản & Mã tài sản:</strong> Tên máy và mã quản lý nội bộ.</li>
+                            <li>Cột <strong>Mẫu mã (Model):</strong> Dòng máy (Dell Latitude, MacBook, OptiPlex...).</li>
+                            <li>Cột <strong>Trạng thái:</strong> Màu xanh lá là máy tốt cất kho; Màu xanh dương là đã bàn giao cho nhân viên.</li>
+                            <li>Cột <strong>Được thanh toán tới:</strong> Tên nhân viên đang chịu trách nhiệm giữ máy.</li>
+                        </ul>
+                    </li>
+                    <li>Bạn có thể dùng ô <strong>Tìm kiếm</strong> ở góc trên bên phải bảng để lọc nhanh theo tên hoặc số sê-ri.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/04_danh_sach_tai_san.png" alt="Danh sách tài sản">
+                    <div class="step-image-caption">Hình 2.1: Bảng quản lý toàn bộ thiết bị và tình trạng cấp phát</div>
+                </div>
+            </div>
+
+            <!-- Step 2.2 -->
+            <div class="step-block" id="p2-2">
+                <h3><span class="step-badge">Bước 2.2</span> Thêm mới một thiết bị khi vừa mua về</h3>
+                <div class="step-purpose">
+                    <strong>Khi nào sử dụng:</strong> Khi công ty vừa mua thêm lô máy tính, màn hình hoặc máy in mới nhập về kho.
+                </div>
+                <ol class="step-instructions">
+                    <li>Bấm nút xanh lá <strong>Tạo mới</strong> tại góc phải trên cùng trang Tài sản.</li>
+                    <li>Điền các trường thông tin:
+                        <ul>
+                            <li><strong>Thẻ tài sản (Asset Tag):</strong> Mã tem dán (Ví dụ: <code>TS-CNTT-007</code>). Có thể để trống để hệ thống tự sinh số.</li>
+                            <li><strong>Tên tài sản:</strong> Tên dễ nhớ (Ví dụ: <em>Laptop Dell Latitude 5420 - Máy mới kho HN</em>).</li>
+                            <li><strong>Mẫu mã (Model) <span style="color:red;">*</span>:</strong> Bấm chọn dòng máy trong danh mục.</li>
+                            <li><strong>Trạng thái <span style="color:red;">*</span>:</strong> Chọn <em>"Sẵn sàng cấp phát"</em> (nếu máy tốt cất kho).</li>
+                            <li><strong>Số sê-ri (Serial Number):</strong> Dãy số sê-ri của nhà sản xuất in dưới đáy máy.</li>
+                            <li><strong>Ngày mua & Giá mua:</strong> Nhập ngày mua và đơn giá để hệ thống tính khấu hao tự động.</li>
+                        </ul>
+                    </li>
+                    <li>Cuộn xuống dưới và bấm nút <strong>Lưu lại</strong>.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/05_them_moi_tai_san.png" alt="Form thêm mới tài sản">
+                    <div class="step-image-caption">Hình 2.2: Màn hình khai báo thông tin tài sản nhập kho mới</div>
+                </div>
+            </div>
+
+            <!-- Step 2.3 -->
+            <div class="step-block" id="p2-3">
+                <h3><span class="step-badge">Bước 2.3</span> Cấp phát thiết bị (Bàn giao cho nhân viên)</h3>
+                <div class="step-purpose">
+                    <strong>Khi nào sử dụng:</strong> Khi nhân viên mới nhận việc, hoặc nhân viên cũ cần cấp thêm laptop, màn hình làm việc.
+                </div>
+                <ol class="step-instructions">
+                    <li>Tìm thiết bị đang ở trạng thái <em>"Sẵn sàng cấp phát"</em> trong danh sách tài sản.</li>
+                    <li>Nhấp vào biểu tượng nút <strong>Cấp phát (Check-out)</strong> ở cột Thao tác bên phải máy đó.</li>
+                    <li>Tại form Cấp phát:
+                        <ul>
+                            <li><strong>Cấp phát tới:</strong> Chọn <em>Người dùng</em> (hoặc có thể chọn cấp cho <em>Phòng ban/Vị trí</em>).</li>
+                            <li><strong>Người dùng:</strong> Nhấp vào ô và gõ tên nhân viên nhận máy (Ví dụ: <em>Trần Thị Bích</em>).</li>
+                            <li><strong>Ngày cấp phát:</strong> Mặc định là ngày hôm nay.</li>
+                            <li><strong>Ghi chú:</strong> Điền tình trạng bàn giao (Ví dụ: <em>Máy mới 100%, đủ sạc và túi xách</em>).</li>
+                        </ul>
+                    </li>
+                    <li>Bấm nút xanh dương <strong>Cấp phát</strong>. Máy sẽ ngay lập tức được ghi vào hồ sơ của nhân viên đó.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/06_cap_phat_tai_san.png" alt="Cấp phát tài sản">
+                    <div class="step-image-caption">Hình 2.3: Thao tác bàn giao thiết bị cho nhân sự phụ trách</div>
+                </div>
+            </div>
+
+            <!-- Step 2.4 -->
+            <div class="step-block" id="p2-4">
+                <h3><span class="step-badge">Bước 2.4</span> Thu hồi thiết bị về kho (Check-in)</h3>
+                <div class="step-purpose">
+                    <strong>Khi nào sử dụng:</strong> Khi nhân viên nghỉ việc, đổi máy hoặc chuyển phòng ban, mang máy trả lại kho.
+                </div>
+                <ol class="step-instructions">
+                    <li>Tìm máy cần thu hồi trong danh sách, nhấp nút màu vàng <strong>Thu hồi (Check-in)</strong>.</li>
+                    <li>Tại form Thu hồi:
+                        <ul>
+                            <li><strong>Trạng thái sau khi thu hồi:</strong> Chọn <em>Sẵn sàng cấp phát</em> (nếu máy tốt), hoặc <em>Đang sửa chữa</em> (nếu máy bị vỡ hỏng), hoặc <em>Đang chờ cài đặt</em> (nếu cần IT cài lại Win xóa dữ liệu cũ).</li>
+                            <li><strong>Vị trí kho lưu:</strong> Chọn kho cất giữ (Ví dụ: <em>Kho Thiết bị & Vật tư CNTT</em>).</li>
+                            <li><strong>Ghi chú thu hồi:</strong> Ghi rõ tình trạng nhận lại (Ví dụ: <em>Đã nhận đủ máy và sạc, máy hoạt động bình thường</em>).</li>
+                        </ul>
+                    </li>
+                    <li>Nhấn nút <strong>Thu hồi</strong> để hoàn thành.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/07_thu_hoi_tai_san.png" alt="Thu hồi tài sản">
+                    <div class="step-image-caption">Hình 2.4: Màn hình nhận lại tài sản và đưa về kho bảo quản</div>
+                </div>
+            </div>
+
+            <!-- Step 2.5 -->
+            <div class="step-block" id="p2-5">
+                <h3><span class="step-badge">Bước 2.5</span> Xem lý lịch & Lịch sử sử dụng của thiết bị</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Tra cứu vòng đời một chiếc máy tính: từng ai dùng, sửa chữa khi nào, có linh kiện gì nâng cấp.
+                </div>
+                <ol class="step-instructions">
+                    <li>Nhấp chuột trực tiếp vào <strong>Tên tài sản</strong> trong bảng danh sách.</li>
+                    <li>Trang hồ sơ mở ra với các thẻ thông tin chi tiết:
+                        <ul>
+                            <li><strong>Thông tin cơ bản:</strong> Cấu hình, giá mua, ngày mua, hạn bảo hành.</li>
+                            <li><strong>Tab Lịch sử (History):</strong> Ghi rõ từng mốc thời gian: Ngày nào bàn giao cho ai, ngày nào nhận lại máy.</li>
+                            <li><strong>Tab Linh kiện & Phụ kiện:</strong> Danh sách RAM, ổ cứng SSD hay chuột đang đi kèm máy này.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/08_chi_tiet_lich_su_tai_san.png" alt="Chi tiết lịch sử tài sản">
+                    <div class="step-image-caption">Hình 2.5: Xem toàn bộ lịch sử luân chuyển và bảo trì của thiết bị</div>
+                </div>
+            </div>
+
+            <!-- Step 2.6 -->
+            <div class="step-block" id="p2-6">
+                <h3><span class="step-badge">Bước 2.6</span> In nhãn dán mã vạch / QR Code lên thân máy</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> In tem decal mã QR để dán lên vỏ máy tính, giúp thủ kho dùng điện thoại hoặc máy quét đọc thông tin nhanh chóng.
+                </div>
+                <ol class="step-instructions">
+                    <li>Tại trang chi tiết tài sản, nhấp vào nút <strong>In nhãn (Print Label)</strong> trên thanh công cụ.</li>
+                    <li>Giao diện tem nhãn hiển thị trực quan gồm: Tên thiết bị, Mã tài sản, Số sê-ri và Mã QR Code chuẩn 2D.</li>
+                    <li>Bấm tổ hợp phím <code>Ctrl + P</code> trên bàn phím để in ra máy in tem dán decal và dán lên thân máy.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/09_in_tem_ma_vach_qr.png" alt="In tem mã vạch QR Code">
+                    <div class="step-image-caption">Hình 2.6: Mẫu tem nhãn dán mã vạch / QR Code chuẩn bị in</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 3 -->
+        <section class="step-section" id="part3">
+            <h2 class="part-title">PHẦN 3: QUẢN LÝ BẢN QUYỀN PHẦN MỀM (LICENSES)</h2>
+
+            <!-- Step 3.1 -->
+            <div class="step-block" id="p3-1">
+                <h3><span class="step-badge">Bước 3.1</span> Xem danh mục bản quyền phần mềm</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Nắm bắt công ty đã mua những gói bản quyền nào (Office 365, Windows, Photoshop...), đã dùng bao nhiêu suất và còn trống bao nhiêu suất.
+                </div>
+                <ol class="step-instructions">
+                    <li>Nhấp vào mục <strong>Giấy phép (Licenses)</strong> trên menu bên trái.</li>
+                    <li>Cột <strong>Tổng số (Seats):</strong> Tổng số người/máy được phép cài đặt hợp pháp.</li>
+                    <li>Cột <strong>Khả dụng (Available):</strong> Số suất còn trống sẵn sàng cấp phát.</li>
+                    <li>Cột <strong>Ngày hết hạn:</strong> Theo dõi thời điểm gói bản quyền hết hạn để kịp thời làm đề xuất gia hạn.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/10_danh_sach_ban_quyen.png" alt="Danh sách bản quyền phần mềm">
+                    <div class="step-image-caption">Hình 3.1: Quản lý tập trung các gói bản quyền phần mềm</div>
+                </div>
+            </div>
+
+            <!-- Step 3.2 -->
+            <div class="step-block" id="p3-2">
+                <h3><span class="step-badge">Bước 3.2</span> Khai báo gói bản quyền phần mềm mới</h3>
+                <div class="step-purpose">
+                    <strong>Khi nào sử dụng:</strong> Khi công ty vừa mua thêm key bản quyền từ đại lý hoặc hãng phần mềm.
+                </div>
+                <ol class="step-instructions">
+                    <li>Bấm nút <strong>Tạo mới</strong> trong trang Giấy phép.</li>
+                    <li>Nhập thông tin:
+                        <ul>
+                            <li><strong>Tên phần mềm:</strong> Ví dụ <em>Microsoft 365 Business Standard</em>.</li>
+                            <li><strong>Loại danh mục:</strong> Chọn <em>Phần mềm Văn phòng</em>.</li>
+                            <li><strong>Số lượng giấy phép (Seats):</strong> Nhập tổng số suất được kích hoạt (Ví dụ: <code>10</code>).</li>
+                            <li><strong>Mã sản phẩm (Product Key):</strong> Dãy key kích hoạt bản quyền.</li>
+                            <li><strong>Email cấp phép:</strong> Email tài khoản quản trị gói bản quyền của công ty.</li>
+                        </ul>
+                    </li>
+                    <li>Bấm nút <strong>Lưu lại</strong>.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/11_them_moi_ban_quyen.png" alt="Thêm mới bản quyền">
+                    <div class="step-image-caption">Hình 3.2: Khai báo gói bản quyền và số lượng suất cho phép sử dụng</div>
+                </div>
+            </div>
+
+            <!-- Step 3.3 -->
+            <div class="step-block" id="p3-3">
+                <h3><span class="step-badge">Bước 3.3</span> Cấp phát bản quyền cho nhân viên</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Gán 1 suất bản quyền cho một nhân viên cụ thể để họ cài đặt và sử dụng.
+                </div>
+                <ol class="step-instructions">
+                    <li>Bấm vào tên gói bản quyền (Ví dụ: <em>Microsoft 365 Business Standard</em>).</li>
+                    <li>Danh sách từng suất sử dụng (Seat 1, Seat 2...) sẽ hiển thị rõ ràng.</li>
+                    <li>Chọn một suất đang có trạng thái <em>"Sẵn sàng"</em>, bấm nút <strong>Cấp phát (Check-out)</strong>.</li>
+                    <li>Gõ chọn tên nhân viên nhận bản quyền (Ví dụ: <em>Trần Thị Bích</em>) rồi bấm <strong>Lưu</strong>.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/12_cap_phat_ban_quyen.png" alt="Cấp phát bản quyền">
+                    <div class="step-image-caption">Hình 3.3: Gán quyền sử dụng phần mềm cho đúng nhân sự</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 4 -->
+        <section class="step-section" id="part4">
+            <h2 class="part-title">PHẦN 4: QUẢN LÝ PHỤ KIỆN (ACCESSORIES)</h2>
+
+            <!-- Step 4.1 -->
+            <div class="step-block" id="p4-1">
+                <h3><span class="step-badge">Bước 4.1</span> Xem danh mục phụ kiện và tồn kho</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Quản lý số lượng phụ kiện (chuột, bàn phím, sạc, tai nghe...), biết đang phát cho những ai và còn bao nhiêu cái trong tủ.
+                </div>
+                <ol class="step-instructions">
+                    <li>Nhấp vào mục <strong>Phụ kiện</strong> trên menu bên trái.</li>
+                    <li>Kiểm tra cột <strong>Số lượng tổng</strong> và cột <strong>Khả dụng</strong> để biết số lượng còn lại có thể phát.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/13_danh_sach_phu_kien.png" alt="Danh sách phụ kiện">
+                    <div class="step-image-caption">Hình 4.1: Bảng theo dõi số lượng tồn kho phụ kiện máy tính</div>
+                </div>
+            </div>
+
+            <!-- Step 4.2 -->
+            <div class="step-block" id="p4-2">
+                <h3><span class="step-badge">Bước 4.2</span> Thêm mới phụ kiện vào kho</h3>
+                <ol class="step-instructions">
+                    <li>Bấm nút <strong>Tạo mới</strong> trong trang Phụ kiện.</li>
+                    <li>Nhập: <strong>Tên phụ kiện</strong> (Ví dụ: <em>Chuột không dây Logitech M331</em>), <strong>Số lượng nhập</strong> (Ví dụ: <code>30</code>) và <strong>Số lượng tối thiểu cảnh báo</strong> (Ví dụ: <code>5</code>).</li>
+                    <li>Nhấn nút <strong>Lưu lại</strong>.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/14_them_moi_phu_kien.png" alt="Thêm mới phụ kiện">
+                    <div class="step-image-caption">Hình 4.2: Khai báo số lượng phụ kiện mới nhập kho</div>
+                </div>
+            </div>
+
+            <!-- Step 4.3 -->
+            <div class="step-block" id="p4-3">
+                <h3><span class="step-badge">Bước 4.3</span> Cấp phát phụ kiện cho nhân viên</h3>
+                <ol class="step-instructions">
+                    <li>Bấm nút <strong>Cấp phát (Check-out)</strong> cạnh phụ kiện cần giao.</li>
+                    <li>Gõ chọn tên nhân viên nhận phụ kiện (Ví dụ: <em>Lê Hoàng Nam</em>) rồi bấm <strong>Cấp phát</strong>.</li>
+                    <li>Tồn kho tự động trừ đi 1 cái. Khi nhân viên nghỉ việc, có thể bấm nút <strong>Thu hồi</strong> để lấy lại phụ kiện về kho cất.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/15_cap_phat_phu_kien.png" alt="Cấp phát phụ kiện">
+                    <div class="step-image-caption">Hình 4.3: Bàn giao phụ kiện cho nhân viên sử dụng</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 5 -->
+        <section class="step-section" id="part5">
+            <h2 class="part-title">PHẦN 5: QUẢN LÝ VẬT TƯ TIÊU HAO (CONSUMABLES)</h2>
+
+            <!-- Step 5.1 -->
+            <div class="step-block" id="p5-1">
+                <h3><span class="step-badge">Bước 5.1</span> Theo dõi tồn kho vật tư tiêu hao</h3>
+                <div class="step-purpose">
+                    <strong>Đặc thù cốt lõi:</strong> Vật tư tiêu hao (Mực in, giấy A4, hạt mạng RJ45, pin...) là đồ <strong>dùng là hết, không thu hồi</strong>. Sau khi xuất kho, vật tư sẽ không có nút Check-in (thu hồi).
+                </div>
+                <div class="step-image-wrap">
+                    <img src="manual_images/16_danh_sach_vat_tu_tieu_hao.png" alt="Danh sách vật tư tiêu hao">
+                    <div class="step-image-caption">Hình 5.1: Theo dõi số lượng tồn kho mực in và vật tư văn phòng</div>
+                </div>
+            </div>
+
+            <!-- Step 5.2 -->
+            <div class="step-block" id="p5-2">
+                <h3><span class="step-badge">Bước 5.2</span> Khai báo nhập thêm vật tư tiêu hao</h3>
+                <ol class="step-instructions">
+                    <li>Bấm nút <strong>Tạo mới</strong> trong trang Vật tư tiêu hao.</li>
+                    <li>Nhập: <strong>Tên vật tư</strong> (Ví dụ: <em>Hộp mực in Canon Cartridge 303</em>), <strong>Số lượng nhập</strong> (Ví dụ: <code>12 hộp</code>) và <strong>Mức tối thiểu</strong> (Ví dụ: <code>3 hộp</code>).</li>
+                    <li>Bấm <strong>Lưu lại</strong>.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/17_them_moi_vat_tu_tieu_hao.png" alt="Thêm mới vật tư tiêu hao">
+                    <div class="step-image-caption">Hình 5.2: Khai báo số lượng vật tư tiêu hao nhập kho</div>
+                </div>
+            </div>
+
+            <!-- Step 5.3 -->
+            <div class="step-block" id="p5-3">
+                <h3><span class="step-badge">Bước 5.3</span> Xuất kho vật tư cho nhân viên / phòng ban</h3>
+                <ol class="step-instructions">
+                    <li>Bấm nút <strong>Cấp phát / Xuất kho (Check-out)</strong> ở dòng vật tư cần xuất.</li>
+                    <li>Chọn người nhận hoặc phòng ban nhận (Ví dụ xuất 1 hộp mực cho <em>Phòng Tài chính - Kế toán</em>).</li>
+                    <li>Nhấn <strong>Lưu</strong>. Kho sẽ trừ thẳng số lượng và lưu vết vào sổ nhật ký xuất kho.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/18_xuat_vat_tu_tieu_hao.png" alt="Xuất kho vật tư tiêu hao">
+                    <div class="step-image-caption">Hình 5.3: Thao tác xuất vật tư sử dụng trực tiếp</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 6 -->
+        <section class="step-section" id="part6">
+            <h2 class="part-title">PHẦN 6: QUẢN LÝ LINH KIỆN NÂNG CẤP (COMPONENTS)</h2>
+
+            <!-- Step 6.1 -->
+            <div class="step-block" id="p6-1">
+                <h3><span class="step-badge">Bước 6.1</span> Xem danh sách linh kiện trong kho</h3>
+                <div class="step-purpose">
+                    <strong>Đặc thù:</strong> Linh kiện (RAM, SSD, card đồ họa...) là bộ phận nằm <strong>bên trong</strong> máy tính. Linh kiện sẽ được gán vào <strong>một máy tính cụ thể (Asset)</strong> thay vì gán cho người dùng.
+                </div>
+                <div class="step-image-wrap">
+                    <img src="manual_images/19_danh_sach_linh_kien.png" alt="Danh sách linh kiện máy tính">
+                    <div class="step-image-caption">Hình 6.1: Danh mục linh kiện phần cứng dùng để nâng cấp máy</div>
+                </div>
+            </div>
+
+            <!-- Step 6.2 -->
+            <div class="step-block" id="p6-2">
+                <h3><span class="step-badge">Bước 6.2</span> Khai báo linh kiện mới nhập kho</h3>
+                <ol class="step-instructions">
+                    <li>Bấm nút <strong>Tạo mới</strong> trong trang Linh kiện.</li>
+                    <li>Nhập: <strong>Tên linh kiện</strong> (Ví dụ: <em>RAM Laptop Kingston Fury 16GB DDR4</em>) và <strong>Số lượng</strong> (Ví dụ: <code>8 thanh</code>).</li>
+                    <li>Bấm <strong>Lưu lại</strong>.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/20_them_moi_linh_kien.png" alt="Thêm mới linh kiện">
+                    <div class="step-image-caption">Hình 6.2: Khai báo linh kiện phần cứng mới vào tủ kỹ thuật</div>
+                </div>
+            </div>
+
+            <!-- Step 6.3 -->
+            <div class="step-block" id="p6-3">
+                <h3><span class="step-badge">Bước 6.3</span> Lắp ráp / Gán linh kiện vào một máy tính cụ thể</h3>
+                <div class="step-purpose">
+                    <strong>Khi nào sử dụng:</strong> Khi tháo máy tính ra cắm thêm 1 thanh RAM 16GB để nâng cấp máy cho nhân viên.
+                </div>
+                <ol class="step-instructions">
+                    <li>Tại dòng linh kiện RAM, bấm nút <strong>Cấp phát (Check-out)</strong>.</li>
+                    <li>Ở ô <strong>Tài sản (Asset):</strong> Gõ chọn máy tính được nhận thanh RAM này (Ví dụ: máy <em>Laptop Dell Latitude 5420 - TS-CNTT-002</em>).</li>
+                    <li>Nhập số lượng gắn: <code>1</code> rồi bấm <strong>Cấp phát</strong>.</li>
+                    <li>Khi mở hồ sơ của chiếc laptop Dell đó, bạn sẽ thấy ngay thông tin bên trong máy đang có thanh RAM này!</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/21_gan_linh_kien_vao_may.png" alt="Gắn linh kiện vào máy tính">
+                    <div class="step-image-caption">Hình 6.3: Ghi nhận linh kiện được lắp vào bên trong thân máy tính</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 7 -->
+        <section class="step-section" id="part7">
+            <h2 class="part-title">PHẦN 7: GÓI THIẾT BỊ MẪU / COMBO NHÂN VIÊN MỚI (PREDEFINED KITS)</h2>
+
+            <!-- Step 7.1 -->
+            <div class="step-block" id="p7-1">
+                <h3><span class="step-badge">Bước 7.1</span> Xem danh sách gói thiết bị mẫu</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Gom sẵn các thiết bị thành một Combo chuẩn (Ví dụ: Gói nhân viên văn phòng gồm 1 Laptop + 1 Chuột + 1 Giấy phép Office) để tiện bàn giao nhanh.
+                </div>
+                <div class="step-image-wrap">
+                    <img src="manual_images/22_danh_sach_goi_thiet_bi.png" alt="Danh sách gói thiết bị mẫu">
+                    <div class="step-image-caption">Hình 7.1: Quản lý các bộ thiết bị mẫu tiêu chuẩn</div>
+                </div>
+            </div>
+
+            <!-- Step 7.2 -->
+            <div class="step-block" id="p7-2">
+                <h3><span class="step-badge">Bước 7.2</span> Cấp phát 1 chạm cả gói combo cho nhân viên mới</h3>
+                <ol class="step-instructions">
+                    <li>Bấm nút <strong>Cấp phát (Check-out)</strong> cạnh gói combo thiết bị mẫu.</li>
+                    <li>Gõ chọn tên nhân sự mới vào nhận việc.</li>
+                    <li>Bấm <strong>Xác nhận cấp phát</strong>. Hệ thống sẽ tự động gán đồng thời Laptop, Chuột và Bản quyền cho nhân viên đó chỉ trong 1 thao tác duy nhất!</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/23_cap_phat_goi_thiet_bi.png" alt="Cấp phát gói thiết bị">
+                    <div class="step-image-caption">Hình 7.2: Bàn giao toàn bộ gói combo cho nhân viên mới trong 1 chạm</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 8 -->
+        <section class="step-section" id="part8">
+            <h2 class="part-title">PHẦN 8: THEO DÕI BẢO TRÌ & SỬA CHỮA (MAINTENANCES)</h2>
+
+            <!-- Step 8.1 -->
+            <div class="step-block" id="p8-1">
+                <h3><span class="step-badge">Bước 8.1</span> Xem sổ theo dõi sửa chữa và bảo hành</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Nắm được những máy nào đang hỏng, sửa chữa ở đâu, tốn bao nhiêu chi phí và dự kiến ngày hoàn tất.
+                </div>
+                <div class="step-image-wrap">
+                    <img src="manual_images/24_danh_sach_bao_tri.png" alt="Danh sách phiếu bảo trì">
+                    <div class="step-image-caption">Hình 8.1: Sổ nhật ký bảo trì và sửa chữa thiết bị</div>
+                </div>
+            </div>
+
+            <!-- Step 8.2 -->
+            <div class="step-block" id="p8-2">
+                <h3><span class="step-badge">Bước 8.2</span> Lập phiếu báo hỏng / gửi bảo trì thiết bị</h3>
+                <ol class="step-instructions">
+                    <li>Bấm nút <strong>Tạo mới phiếu bảo trì</strong>.</li>
+                    <li>Chọn thiết bị bị hỏng (Ví dụ: <em>Máy in Canon LBP 2900</em>).</li>
+                    <li>Chọn loại hình (<em>Sửa chữa, Bảo dưỡng, Bảo hành</em>) và đơn vị sửa chữa (Ví dụ: <em>Công ty Tin học Phong Vũ</em>).</li>
+                    <li>Mô tả sự cố (Ví dụ: <em>Kẹt giấy, rách bao lụa do dị vật ghim kẹp rơi vào</em>) và nhập chi phí dự kiến.</li>
+                    <li>Bấm <strong>Lưu lại</strong>. Trạng thái máy sẽ tự chuyển sang <em>"Đang sửa chữa"</em> để tránh bị xuất kho nhầm.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/25_tao_phieu_bao_tri.png" alt="Tạo phiếu bảo trì">
+                    <div class="step-image-caption">Hình 8.2: Form ghi nhận sự cố hỏng hóc và theo dõi sửa chữa</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 9 -->
+        <section class="step-section" id="part9">
+            <h2 class="part-title">PHẦN 9: QUẢN LÝ NHÂN VIÊN / NGƯỜI DÙNG (USERS)</h2>
+
+            <!-- Step 9.1 -->
+            <div class="step-block" id="p9-1">
+                <h3><span class="step-badge">Bước 9.1</span> Tra cứu danh sách nhân viên</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Xem toàn bộ nhân sự công ty, vị trí phòng ban và số lượng thiết bị từng người đang phụ trách.
+                </div>
+                <div class="step-image-wrap">
+                    <img src="manual_images/26_danh_sach_nhan_vien.png" alt="Danh sách nhân viên">
+                    <div class="step-image-caption">Hình 9.1: Bảng nhân sự và số lượng thiết bị đang nắm giữ</div>
+                </div>
+            </div>
+
+            <!-- Step 9.2 -->
+            <div class="step-block" id="p9-2">
+                <h3><span class="step-badge">Bước 9.2</span> Tạo hồ sơ nhân viên mới</h3>
+                <ol class="step-instructions">
+                    <li>Bấm nút <strong>Tạo mới</strong> trong trang Người dùng.</li>
+                    <li>Điền: <strong>Họ & Tên</strong> (Ví dụ: <em>Trần Thị Bích</em>), <strong>Tên đăng nhập</strong> (Ví dụ: <code>bich.tran</code>), <strong>Email</strong>, <strong>Phòng ban</strong> và <strong>Chức danh</strong>.</li>
+                    <li>Nhấn nút <strong>Lưu lại</strong>.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/27_them_moi_nhan_vien.png" alt="Thêm mới nhân viên">
+                    <div class="step-image-caption">Hình 9.2: Form tiếp nhận thông tin nhân sự mới</div>
+                </div>
+            </div>
+
+            <!-- Step 9.3 -->
+            <div class="step-block" id="p9-3">
+                <h3><span class="step-badge">Bước 9.3</span> Đối soát tài sản khi nhân viên nghỉ việc (CỰC KỲ QUAN TRỌNG)</h3>
+                <div class="step-purpose">
+                    <strong>Khi nào sử dụng:</strong> Khi nhân viên làm thủ tục nghỉ việc hoặc chuyển chi nhánh. Thủ kho và Nhân sự cần vào đây để thu hồi triệt để tất cả tài sản, tránh thất thoát.
+                </div>
+                <ol class="step-instructions">
+                    <li>Bấm vào tên nhân viên cần đối soát (Ví dụ: <em>Trần Thị Bích</em>).</li>
+                    <li>Hệ thống liệt kê đầy đủ từng mục:
+                        <ul>
+                            <li><strong>Tài sản đang giữ:</strong> 1 Laptop Dell Latitude và 1 Màn hình Dell UltraSharp.</li>
+                            <li><strong>Bản quyền đang dùng:</strong> 1 Suất Microsoft 365.</li>
+                            <li><strong>Phụ kiện đang cầm:</strong> 1 Chuột không dây Logitech.</li>
+                        </ul>
+                    </li>
+                    <li>Chỉ cần nhấp nút <strong>Thu hồi (Check-in)</strong> ở từng dòng là xong!</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/28_ho_so_tai_san_nhan_vien.png" alt="Hồ sơ tài sản nhân viên">
+                    <div class="step-image-caption">Hình 9.3: Đối soát danh sách tài sản nhân viên đang cầm trước khi ký nghỉ việc</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 10 -->
+        <section class="step-section" id="part10">
+            <h2 class="part-title">PHẦN 10: THIẾT LẬP DANH MỤC NỀN TẢNG (CATEGORIES, LOCATIONS, STATUS)</h2>
+
+            <!-- Step 10.1 -->
+            <div class="step-block" id="p10-1">
+                <h3><span class="step-badge">Bước 10.1</span> Quản lý Loại tài sản (Categories)</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Chuẩn hóa các nhóm thiết bị (Laptop, Máy bàn, Màn hình, Máy in...) để tiện lập báo cáo và tính khấu hao.
+                </div>
+                <div class="step-image-wrap">
+                    <img src="manual_images/29_quan_ly_danh_muc.png" alt="Quản lý danh mục">
+                    <div class="step-image-caption">Hình 10.1: Phân loại tài sản theo từng nhóm danh mục nghiệp vụ</div>
+                </div>
+            </div>
+
+            <!-- Step 10.2 -->
+            <div class="step-block" id="p10-2">
+                <h3><span class="step-badge">Bước 10.2</span> Quản lý Vị trí / Chi nhánh (Locations) & Phòng ban</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Định danh rõ ràng thiết bị đang đặt ở văn phòng nào (Trụ sở Hà Nội, Chi nhánh TP.HCM, Kho CNTT...).
+                </div>
+                <div class="step-image-wrap">
+                    <img src="manual_images/30_quan_ly_vi_tri_phong_ban.png" alt="Quản lý vị trí phòng ban">
+                    <div class="step-image-caption">Hình 10.2: Quản lý vị trí địa lý, chi nhánh và các phòng ban</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART 11 -->
+        <section class="step-section" id="part11">
+            <h2 class="part-title">PHẦN 11: BÁO CÁO, KHẤU HAO & NHẬT KÝ HOẠT ĐỘNG (REPORTS)</h2>
+
+            <!-- Step 11.1 -->
+            <div class="step-block" id="p11-1">
+                <h3><span class="step-badge">Bước 11.1</span> Báo cáo khấu hao giá trị tài sản</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Giúp phòng Kế toán và Giám đốc biết toàn bộ thiết bị qua thời gian sử dụng hiện còn lại giá trị sổ sách bao nhiêu tiền.
+                </div>
+                <ol class="step-instructions">
+                    <li>Vào mục <strong>Báo cáo</strong> -> chọn <strong>Báo cáo khấu hao</strong>.</li>
+                    <li>Bảng tính tự động hiện: <strong>Giá mua ban đầu</strong>, <strong>Khấu hao lũy kế</strong> và <strong>Giá trị còn lại</strong>.</li>
+                    <li>Có thể bấm nút <strong>Xuất dữ liệu (Export)</strong> ra file Excel để phục vụ quyết toán tài chính.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/31_bao_cao_khau_hao.png" alt="Báo cáo khấu hao">
+                    <div class="step-image-caption">Hình 11.1: Bảng tổng hợp khấu hao tài sản phục vụ kế toán</div>
+                </div>
+            </div>
+
+            <!-- Step 11.2 -->
+            <div class="step-block" id="p11-2">
+                <h3><span class="step-badge">Bước 11.2</span> Xem Nhật ký hoạt động toàn hệ thống (Audit Log)</h3>
+                <div class="step-purpose">
+                    <strong>Mục đích:</strong> Minh bạch hóa mọi hành động trong hệ thống. Biết chính xác ai đã giao máy, ai nhận máy, ai sửa thông tin vào thời gian nào.
+                </div>
+                <ol class="step-instructions">
+                    <li>Vào mục <strong>Báo cáo</strong> -> chọn <strong>Nhật ký hoạt động (Activity Log)</strong>.</li>
+                    <li>Màn hình lưu lại chi tiết từng giây phút thao tác của mọi quản trị viên.</li>
+                </ol>
+                <div class="step-image-wrap">
+                    <img src="manual_images/32_nhat_ky_hoat_dong.png" alt="Nhật ký hoạt động">
+                    <div class="step-image-caption">Hình 11.2: Nhật ký ghi vết kiểm toán toàn diện mọi biến động tài sản</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Principles -->
+        <div class="vocab-card" style="margin-top: 40px; border-top: 4px solid var(--success);">
+            <h2>📌 QUY TẮC 3 KHÔNG - 3 PHẢI CHO NGƯỜI QUẢN LÝ TÀI SẢN</h2>
+            <ol style="padding-left: 24px; line-height: 2;">
+                <li><strong>PHẢI dán tem mã tài sản (Asset Tag)</strong> ngay khi bóc hộp thiết bị mới mua về.</li>
+                <li><strong>PHẢI bấm "Cấp phát (Check-out)" trên phần mềm</strong> TRƯỚC KHI trao máy vào tay nhân viên.</li>
+                <li><strong>PHẢI bấm "Thu hồi (Check-in)" trên phần mềm</strong> NGAY KHI nhận lại máy từ nhân viên nghỉ việc.</li>
+                <li><strong>KHÔNG cho mượn máy truyền tay nhau</strong> giữa các nhân viên mà không báo cho quản lý cập nhật hệ thống.</li>
+                <li><strong>KHÔNG tự ý vứt bỏ máy hỏng</strong> mà chưa đổi trạng thái sang "Đã thanh lý".</li>
+                <li><strong>KHÔNG để tồn kho vật tư tiêu hao xuống dưới mức tối thiểu</strong> rồi mới làm đề xuất mua sắm.</li>
+            </ol>
+        </div>
+    </main>
+</div>
+
+<!-- Print Action Button -->
+<button class="btn-print" onclick="window.print()">🖨️ In hoặc Xuất PDF</button>
+
+</body>
+</html>

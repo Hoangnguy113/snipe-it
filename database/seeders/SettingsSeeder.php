@@ -17,12 +17,12 @@ class SettingsSeeder extends Seeder
         $settings->per_page = 20;
         $settings->site_name = 'Snipe-IT Demo';
         $settings->auto_increment_assets = 1;
-        $settings->logo = 'snipe-logo.png';
+        $settings->logo = 'it-manager-icon-256.png';
         $settings->alert_email = 'service@snipe-it.io';
         $settings->header_color = null;
         $settings->label2_2d_type = 'QRCODE';
-        $settings->default_currency = 'USD';
-        $settings->brand = 2;
+        $settings->default_currency = 'VND';
+        $settings->brand = 3;
         // Forumsys hosts a free public read-only LDAP directory
         // (ldap://ldap.forumsys.com) that's handy for exercising the
         // LDAP wizard against a real server without standing up your
@@ -59,7 +59,7 @@ class SettingsSeeder extends Seeder
         $settings->date_display_format = 'D M d, Y';
         $settings->time_display_format = 'g:iA';
         $settings->thumbnail_max_h = '30';
-        $settings->locale = 'en-US';
+        $settings->locale = 'vi-VN';
         $settings->version_footer = 'on';
         $settings->support_footer = 'on';
         $settings->pwd_secure_min = '8';
@@ -67,13 +67,14 @@ class SettingsSeeder extends Seeder
         $settings->save();
 
         if ($user = User::where('username', '=', 'admin')->first()) {
-            $user->locale = 'en-US';
+            $user->locale = 'vi-VN';
             $user->enable_sound = 1;
             $user->enable_confetti = 1;
             $user->save();
         }
 
         // Copy the logos from the img/demo directory
+        Storage::disk('local_public')->put('it-manager-icon-256.png', file_get_contents(public_path('img/logo.png')));
         Storage::disk('local_public')->put('snipe-logo.png', file_get_contents(public_path('img/demo/snipe-logo.png')));
         Storage::disk('local_public')->put('snipe-logo-lg.png', file_get_contents(public_path('img/demo/snipe-logo-lg.png')));
     }

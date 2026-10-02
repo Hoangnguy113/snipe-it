@@ -15,23 +15,28 @@ class StatuslabelSeeder extends Seeder
         $admin = User::where('permissions->superuser', '1')->first() ?? User::factory()->firstAdmin()->create();
 
         Statuslabel::factory()->rtd()->create([
-            'name' => 'Ready to Deploy',
+            'name' => 'Sẵn sàng cấp phát',
             'created_by' => $admin->id,
+            'default_label' => 1,
+            'notes' => 'Thiết bị hoạt động tốt trong kho',
         ]);
 
         Statuslabel::factory()->pending()->create([
-            'name' => 'Pending',
+            'name' => 'Đang chờ xử lý / Cài đặt',
             'created_by' => $admin->id,
+            'notes' => 'Đang cài phần mềm hoặc kiểm tra kỹ thuật',
         ]);
 
         Statuslabel::factory()->archived()->create([
-            'name' => 'Archived',
+            'name' => 'Đã thanh lý / Hỏng nặng',
             'created_by' => $admin->id,
+            'notes' => 'Không còn sử dụng được, đã thanh lý',
         ]);
 
-        Statuslabel::factory()->outForDiagnostics()->create(['created_by' => $admin->id]);
-        Statuslabel::factory()->outForRepair()->create(['created_by' => $admin->id]);
-        Statuslabel::factory()->broken()->create(['created_by' => $admin->id]);
-        Statuslabel::factory()->lost()->create(['created_by' => $admin->id]);
+        Statuslabel::factory()->outForRepair()->create([
+            'name' => 'Đang sửa chữa / Bảo hành',
+            'created_by' => $admin->id,
+            'notes' => 'Đang gửi hãng hoặc trung tâm sửa chữa',
+        ]);
     }
 }

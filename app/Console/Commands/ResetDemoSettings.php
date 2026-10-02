@@ -46,7 +46,7 @@ class ResetDemoSettings extends Command
         $settings->per_page = 20;
         $settings->site_name = 'Snipe-IT Asset Management Demo';
         $settings->auto_increment_assets = 1;
-        $settings->logo = 'snipe-logo.png';
+        $settings->logo = 'it-manager-icon-256.png';
         $settings->alert_email = 'service@snipe-it.io';
         $settings->login_note = "Use any of the following credentials to login to the demo:\n\n- `admin` / `password`\n- `assets` / `password`\n- `testuser` / `password`";
         $settings->header_color = '#3c8dbc';
@@ -129,6 +129,7 @@ class ResetDemoSettings extends Command
         ]);
         $testUser->save();
 
+        \Storage::disk('public')->put('it-manager-icon-256.png', file_get_contents(public_path('img/logo.png')));
         \Storage::disk('public')->put('snipe-logo.png', file_get_contents(public_path('img/demo/snipe-logo.png')));
         \Storage::disk('public')->put('snipe-logo-lg.png', file_get_contents(public_path('img/demo/snipe-logo-lg.png')));
 

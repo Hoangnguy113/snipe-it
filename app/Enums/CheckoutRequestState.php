@@ -29,7 +29,7 @@ enum CheckoutRequestState: string
     public function label(): string
     {
         return match ($this) {
-            self::Pending => trans('admin/hardware/general.pending'),
+            self::Pending => trans('admin/hardware/general.pending_request'),
             self::Fulfilled => trans('admin/hardware/general.fulfilled'),
             self::Canceled => trans('button.cancel'),
         };
